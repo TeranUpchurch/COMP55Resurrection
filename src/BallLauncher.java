@@ -5,6 +5,8 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
 
+
+// testing
 public class BallLauncher extends GraphicsProgram{
 	public static final int PROGRAM_HEIGHT = 600;
 	public static final int PROGRAM_WIDTH = 800;
