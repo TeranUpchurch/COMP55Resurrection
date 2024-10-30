@@ -10,6 +10,7 @@ public class BallLauncher extends GraphicsProgram{
 	public static final int PROGRAM_WIDTH = 800;
 	public static final int SIZE = 25;
 	
+	// aaaaaaaaaahhhhhhhhhhhh
 	public void init() {
 		setSize(PROGRAM_WIDTH, PROGRAM_HEIGHT);
 		requestFocus();
