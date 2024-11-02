@@ -9,7 +9,7 @@ import javax.swing.*;
 // as a whole.
 
 public class MainApplication extends GraphicsApplication{
-	private Scene HowToPlayScene;
+	private HowToPlayScene HowToPlayScene = new HowToPlayScene();
 	private Scene MainMenuScene;
 	private Scene LevelSelectScene;
 	private Scene GameScene;
@@ -24,10 +24,8 @@ public class MainApplication extends GraphicsApplication{
 		switchSceneTo(HowToPlayScene);
 	}
 	
-	public static void switchSceneTo(Scene scene)
+	public void switchSceneTo(Scene scene)
 	{
-		Scene currentScene = GraphicsApplication.getCurrentScene();
-		
 		if (currentScene != null)
 		{
 			System.out.println("Switching scene.");
@@ -41,6 +39,8 @@ public class MainApplication extends GraphicsApplication{
 			currentScene = scene;
 			currentScene.showContents();
 		}
+		
+		currentScene.addMouseListeners();
 	}
 
 	public static void main(String[] args) {

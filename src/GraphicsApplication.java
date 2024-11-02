@@ -9,10 +9,10 @@ import javax.swing.*;
 // and switching between them.
 
 public class GraphicsApplication extends GraphicsProgram{
-	private static final int RESOLUTION_WIDTH = 800;
-	private static final int RESOLUTION_HEIGHT = 600;
+	protected static final int RESOLUTION_WIDTH = 800;
+	protected static final int RESOLUTION_HEIGHT = 600;
 	
-	private static Scene currentScene = null;
+	protected Scene currentScene;
 	
 	public void init() {
 		setSize(RESOLUTION_WIDTH, RESOLUTION_HEIGHT);
@@ -33,9 +33,14 @@ public class GraphicsApplication extends GraphicsProgram{
 		return RESOLUTION_HEIGHT;
 	}
 	
-	public static Scene getCurrentScene()
+	public Scene getCurrentScene()
 	{
 		return currentScene;
+	}
+	
+	public void setCurrentScene(Scene scene)
+	{
+		currentScene = scene;
 	}
 	
 	public static void main(String[] args) {

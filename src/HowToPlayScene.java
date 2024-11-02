@@ -3,30 +3,16 @@ import acm.program.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 import javax.swing.*;
 
 // This class is responsible for handling the current "scene"
 // and switching between them.
 
-interface Displayable {
-	public void showContents();
-	public void hideContents();
-}
-
-interface Interfaceable extends Displayable{
-	public void mousePressed(MouseEvent e);
-	public void mouseReleased(MouseEvent e);
-	public void mouseClicked(MouseEvent e);
-	public void mouseDragged(MouseEvent e);
-}
-
-public class Scene extends GraphicsApplication implements Interfaceable{
-	Set<GObject> activeContents = new HashSet<>();
+public class HowToPlayScene extends Scene{
+	private GLabel label = new GLabel("HowToPlayScene", MainApplication.getResolutionWidth(), MainApplication.getResolutionHeight());
 	
 	public void init() {
-		setSize(RESOLUTION_WIDTH, RESOLUTION_HEIGHT);
+		setSize(MainApplication.getResolutionWidth(), MainApplication.getResolutionHeight());
 		requestFocus();
 	}
 	
@@ -37,30 +23,12 @@ public class Scene extends GraphicsApplication implements Interfaceable{
 	public void showContents()
 	{
 		System.out.println("Show contents from this point..");
+		addElement(label);
 	}
 	
 	public void hideContents()
 	{
 		System.out.println("Hide contents from this point..");
-	}
-	
-	public void addElement(GObject element)
-	{
-		activeContents.add(element);
-		add(element);
-	}
-	
-	public void removeElement(GObject element)
-	{
-		if (activeContents.contains(element))
-		{
-			activeContents.remove(element);
-			remove(element);
-		}
-		else
-		{
-			return;
-		}
 	}
 	
 	public void mousePressed(MouseEvent e) {
@@ -80,7 +48,7 @@ public class Scene extends GraphicsApplication implements Interfaceable{
 	}
 
 	public static void main(String[] args) {
-		new Scene().start();
+		new HowToPlayScene().start();
 	}
 
 }
