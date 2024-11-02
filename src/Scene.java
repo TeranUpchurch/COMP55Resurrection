@@ -21,9 +21,9 @@ interface Interfaceable extends Displayable{
 }
 
 public class Scene extends GraphicsProgram implements Interfaceable{
-	public static final int RESOLUTION_X = 800;
-	public static final int RESOLUTION_Y = 600;
-	public static final int SIZE = 25;
+	private static final int RESOLUTION_X = 800;
+	private static final int RESOLUTION_Y = 600;
+	private static final int SIZE = 25;
 	
 	public void init() {
 		setSize(RESOLUTION_X, RESOLUTION_Y);

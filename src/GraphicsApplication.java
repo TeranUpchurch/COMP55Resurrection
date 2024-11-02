@@ -9,13 +9,13 @@ import javax.swing.*;
 // and switching between them.
 
 public class GraphicsApplication extends GraphicsProgram{
-	public static final int RESOLUTION_X = 800;
-	public static final int RESOLUTION_Y = 600;
-	public static final int SIZE = 25;
+	private static final int RESOLUTION_WIDTH = 800;
+	private static final int RESOLUTION_HEIGHT = 600;
 	
-	// aaaaaaaaaahhhhhhhhhhhhs
+	private static Scene currentScene = null;
+	
 	public void init() {
-		setSize(RESOLUTION_X, RESOLUTION_Y);
+		setSize(RESOLUTION_WIDTH, RESOLUTION_HEIGHT);
 		requestFocus();
 	}
 	
@@ -23,20 +23,23 @@ public class GraphicsApplication extends GraphicsProgram{
 		addMouseListeners();
 	}
 	
-	public void mousePressed(MouseEvent e) {
-		GOval ball = makeBall(SIZE/2, e.getY());
-		add(ball);
+	public static int getResolutionWidth()
+	{
+		return RESOLUTION_WIDTH;
 	}
 	
-	public GOval makeBall(double x, double y) {
-		GOval temp = new GOval(x-SIZE/2, y-SIZE/2, SIZE, SIZE);
-		temp.setColor(Color.RED);
-		temp.setFilled(true);
-		return temp;
+	public static int getResolutionHeight()
+	{
+		return RESOLUTION_HEIGHT;
+	}
+	
+	public static Scene getCurrentScene()
+	{
+		return currentScene;
 	}
 	
 	public static void main(String[] args) {
-		new GraphicsApplication().start();
+		new MainApplication().start();
 	}
 
 }
