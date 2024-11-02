@@ -8,12 +8,23 @@ import javax.swing.*;
 // This class is responsible for handling the current "scene"
 // and switching between them.
 
-public class Scene extends GraphicsProgram{
+interface Displayable {
+	public void showContents();
+	public void hideContents();
+}
+
+interface Interfaceable extends Displayable{
+	public void mousePressed(MouseEvent e);
+	public void mouseReleased(MouseEvent e);
+	public void mouseClicked(MouseEvent e);
+	public void mouseDragged(MouseEvent e);
+}
+
+public class Scene extends GraphicsProgram implements Interfaceable{
 	public static final int RESOLUTION_X = 800;
 	public static final int RESOLUTION_Y = 600;
 	public static final int SIZE = 25;
 	
-	// aaaaaaaaaahhhhhhhhhhhhs
 	public void init() {
 		setSize(RESOLUTION_X, RESOLUTION_Y);
 		requestFocus();
@@ -23,9 +34,31 @@ public class Scene extends GraphicsProgram{
 		addMouseListeners();
 	}
 	
+	public void showContents()
+	{
+		
+	}
+	
+	public void hideContents()
+	{
+		
+	}
+	
 	public void mousePressed(MouseEvent e) {
 		GOval ball = makeBall(SIZE/2, e.getY());
 		add(ball);
+	}
+	
+	public void mouseReleased(MouseEvent e) {
+
+	}
+	
+	public void mouseClicked(MouseEvent e) {
+
+	}
+	
+	public void mouseDragged(MouseEvent e) {
+
 	}
 	
 	public GOval makeBall(double x, double y) {
