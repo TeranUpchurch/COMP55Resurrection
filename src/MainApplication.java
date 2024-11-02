@@ -14,6 +14,8 @@ public class MainApplication extends GraphicsApplication{
 	private Scene LevelSelectScene;
 	private Scene GameScene;
 	
+	private GLabel label = new GLabel("Test", MainApplication.getResolutionWidth(), MainApplication.getResolutionHeight());
+	
 	public void init() {
 		setSize(GraphicsApplication.getResolutionWidth(), GraphicsApplication.getResolutionHeight());
 		requestFocus();

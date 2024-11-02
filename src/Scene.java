@@ -23,8 +23,6 @@ interface Interfaceable extends Displayable{
 }
 
 public class Scene extends GraphicsApplication implements Interfaceable{
-	Set<GObject> activeContents = new HashSet<>();
-	
 	public void init() {
 		setSize(RESOLUTION_WIDTH, RESOLUTION_HEIGHT);
 		requestFocus();
@@ -47,7 +45,7 @@ public class Scene extends GraphicsApplication implements Interfaceable{
 	public void addElement(GObject element)
 	{
 		activeContents.add(element);
-		add(element);
+		gw.add(element);
 	}
 	
 	public void removeElement(GObject element)
@@ -55,7 +53,7 @@ public class Scene extends GraphicsApplication implements Interfaceable{
 		if (activeContents.contains(element))
 		{
 			activeContents.remove(element);
-			remove(element);
+			gw.remove(element);
 		}
 		else
 		{
