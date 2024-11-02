@@ -5,13 +5,17 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
 
-public class BallLauncher extends GraphicsProgram{
-	public static final int PROGRAM_HEIGHT = 600;
-	public static final int PROGRAM_WIDTH = 800;
+// This class is responsible for handling the current "scene"
+// and switching between them.
+
+public class GraphicsApplication extends GraphicsProgram{
+	public static final int RESOLUTION_X = 800;
+	public static final int RESOLUTION_Y = 600;
 	public static final int SIZE = 25;
 	
+	// aaaaaaaaaahhhhhhhhhhhhs
 	public void init() {
-		setSize(PROGRAM_WIDTH, PROGRAM_HEIGHT);
+		setSize(RESOLUTION_X, RESOLUTION_Y);
 		requestFocus();
 	}
 	
@@ -32,7 +36,7 @@ public class BallLauncher extends GraphicsProgram{
 	}
 	
 	public static void main(String[] args) {
-		new BallLauncher().start();
+		new GraphicsApplication().start();
 	}
 
 }
