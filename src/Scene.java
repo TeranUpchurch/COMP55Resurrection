@@ -36,38 +36,30 @@ public class Scene extends GraphicsProgram implements Interfaceable{
 	
 	public void showContents()
 	{
-		
+		System.out.println("Show contents from this point..");
 	}
 	
 	public void hideContents()
 	{
-		
+		System.out.println("Hide contents from this point..");
 	}
 	
 	public void mousePressed(MouseEvent e) {
-		GOval ball = makeBall(SIZE/2, e.getY());
-		add(ball);
+		System.out.println("Mouse pressed.");
 	}
 	
 	public void mouseReleased(MouseEvent e) {
-
+		System.out.println("Mouse released.");
 	}
 	
 	public void mouseClicked(MouseEvent e) {
-
+		System.out.println("Mouse clicked.");
 	}
 	
 	public void mouseDragged(MouseEvent e) {
+		System.out.println("Mouse dragged.");
+	}
 
-	}
-	
-	public GOval makeBall(double x, double y) {
-		GOval temp = new GOval(x-SIZE/2, y-SIZE/2, SIZE, SIZE);
-		temp.setColor(Color.RED);
-		temp.setFilled(true);
-		return temp;
-	}
-	
 	public static void main(String[] args) {
 		new Scene().start();
 	}
