@@ -24,8 +24,6 @@ public class MainApplication extends GraphicsApplication{
 	public void run() {
 		addMouseListeners();
 		switchSceneTo(HowToPlayScene, this.gw);
-		switchSceneTo(MainMenuScene);
-		switchSceneTo(HowToPlayScene);
 	}
 	
 	public void switchSceneTo(Scene scene)
@@ -33,15 +31,15 @@ public class MainApplication extends GraphicsApplication{
 		if (currentScene != null)
 		{
 			System.out.println("Switching scene.");
-			currentScene.hideContents();
+			currentScene.hideContents(this.gw);
 			currentScene = scene;
-			currentScene.showContents();
+			currentScene.showContents(this.gw);
 		}
 		else
 		{
 			System.out.println("Starting application (currentScene = null)");
 			currentScene = scene;
-			currentScene.showContents();
+			currentScene.showContents(this.gw);
 		}
 		
 		currentScene.addMouseListeners();
