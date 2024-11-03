@@ -29,7 +29,7 @@ public class GraphicsApplication extends GraphicsProgram{
 		add(label);
 	}
 	
-	public void switchSceneTo(Scene scene, GWindow mainApp)
+	public void switchSceneTo(Scene scene)
 	{
 		if (currentScene != null)
 		{

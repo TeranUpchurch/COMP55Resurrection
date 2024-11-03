@@ -23,7 +23,7 @@ public class MainMenuScene extends Scene {
 	private void drawStartButton() {
 		String filename = IMG_FILENAME_PATH + "startButton" + IMG_EXTENSION;
 		GImage startImage = new GImage(filename);
-		this.startButton = new GButton(startImage,225,400);
+		this.startButton = new GButton(startImage,225,200);
 		addElement(startButton);
 		startButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
@@ -32,7 +32,6 @@ public class MainMenuScene extends Scene {
 				// switchSceneTo(new GameScene());
 				// switchSceneTo(MainMenuScene()); // it's supposed to be GameScene() like the line above
 				System.out.println("Start Button clicked!");
-				mainApp.switchSceneTo(mainApp.HowToPlayScene);
 			}
 			
 			public void mouseEntered (MouseEvent e) {
@@ -53,6 +52,7 @@ public class MainMenuScene extends Scene {
 				// switchSceneTo(new GameScene());
 				// switchSceneTo(MainMenuScene()); // it's supposed to be GameScene() like the line above
 				System.out.println("Help Button clicked!");
+				mainApp.switchSceneTo(mainApp.HowToPlayScene);
 			}
 			public void mouseEntered (MouseEvent e) {
 				startButton.onHover();
@@ -68,7 +68,10 @@ public class MainMenuScene extends Scene {
 	}
 	
 	public void hideContents() {
-		remove(startButton);
+		for (GObject obj : activeContents)
+		{
+			removeElement(obj);
+		}
 	}
 	
 	public static void main(String[] args) {
