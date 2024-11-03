@@ -44,6 +44,10 @@ public class MainApplication extends GraphicsApplication{
 		
 		currentScene.addMouseListeners();
 	}
+	
+	public void exitApplication() {
+		System.exit(0); // Terminates the application
+	}
 
 	public static void main(String[] args) {
 		new MainApplication().start();
