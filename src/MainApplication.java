@@ -10,7 +10,7 @@ import javax.swing.*;
 
 public class MainApplication extends GraphicsApplication{
 	private HowToPlayScene HowToPlayScene = new HowToPlayScene();
-	private Scene MainMenuScene;
+	private MainMenuScene MainMenuScene = new MainMenuScene();
 	private Scene LevelSelectScene;
 	private Scene GameScene;
 	
@@ -23,6 +23,7 @@ public class MainApplication extends GraphicsApplication{
 	
 	public void run() {
 		addMouseListeners();
+		switchSceneTo(MainMenuScene);
 		switchSceneTo(HowToPlayScene);
 	}
 	
