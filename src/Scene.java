@@ -11,8 +11,8 @@ import javax.swing.*;
 // and switching between them.
 
 interface Displayable {
-	public void showContents();
-	public void hideContents();
+	public void showContents(GWindow mainApp);
+	public void hideContents(GWindow mainApp);
 }
 
 interface Interfaceable extends Displayable{
@@ -23,42 +23,14 @@ interface Interfaceable extends Displayable{
 }
 
 public class Scene extends GraphicsApplication implements Interfaceable{
-	public void init() {
-		setSize(RESOLUTION_WIDTH, RESOLUTION_HEIGHT);
-		requestFocus();
-	}
-	
-	public void run() {
-		addMouseListeners();
-	}
-	
-	public void showContents()
+	public void showContents(GWindow mainApp)
 	{
 		System.out.println("Show contents from this point..");
 	}
 	
-	public void hideContents()
+	public void hideContents(GWindow mainApp)
 	{
 		System.out.println("Hide contents from this point..");
-	}
-	
-	public void addElement(GObject element)
-	{
-		activeContents.add(element);
-		gw.add(element);
-	}
-	
-	public void removeElement(GObject element)
-	{
-		if (activeContents.contains(element))
-		{
-			activeContents.remove(element);
-			gw.remove(element);
-		}
-		else
-		{
-			return;
-		}
 	}
 	
 	public void mousePressed(MouseEvent e) {
@@ -78,7 +50,7 @@ public class Scene extends GraphicsApplication implements Interfaceable{
 	}
 
 	public static void main(String[] args) {
-		new Scene().start();
+		
 	}
 
 }

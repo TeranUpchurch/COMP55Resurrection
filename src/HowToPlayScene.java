@@ -9,24 +9,15 @@ import javax.swing.*;
 // and switching between them.
 
 public class HowToPlayScene extends Scene{
-	private GLabel label = new GLabel("HowToPlayScene", MainApplication.getResolutionWidth(), MainApplication.getResolutionHeight());
+	private GLabel label = new GLabel("HowToPlayScene", MainApplication.getResolutionWidth() / 2, MainApplication.getResolutionHeight() / 2);
 	
-	public void init() {
-		setSize(MainApplication.getResolutionWidth(), MainApplication.getResolutionHeight());
-		requestFocus();
-	}
-	
-	public void run() {
-		addMouseListeners();
-	}
-	
-	public void showContents()
+	public void showContents(GWindow mainApp)
 	{
 		System.out.println("Show contents from this point..");
-		addElement(label);
+		mainApp.add(label);
 	}
 	
-	public void hideContents()
+	public void hideContents(GWindow mainApp)
 	{
 		System.out.println("Hide contents from this point..");
 	}
@@ -48,7 +39,7 @@ public class HowToPlayScene extends Scene{
 	}
 
 	public static void main(String[] args) {
-		new HowToPlayScene().start();
+
 	}
 
 }

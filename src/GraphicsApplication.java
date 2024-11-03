@@ -18,7 +18,7 @@ public class GraphicsApplication extends GraphicsProgram{
 	
 	protected Scene currentScene;
 	
-	private GLabel label = new GLabel("Test", MainApplication.getResolutionWidth(), MainApplication.getResolutionHeight());
+	private GLabel label = new GLabel("Test", MainApplication.getResolutionWidth() / 3, MainApplication.getResolutionHeight() / 2);
 	
 	public void init() {
 		setSize(RESOLUTION_WIDTH, RESOLUTION_HEIGHT);
@@ -28,6 +28,44 @@ public class GraphicsApplication extends GraphicsProgram{
 	public void run() {
 		addMouseListeners();
 		add(label);
+	}
+	
+	public void switchSceneTo(Scene scene, GWindow mainApp)
+	{
+		if (currentScene != null)
+		{
+			System.out.println("Switching scene.");
+			currentScene.hideContents(mainApp);
+			currentScene = scene;
+			currentScene.showContents(mainApp);
+		}
+		else
+		{
+			System.out.println("Starting application (currentScene = null)");
+			currentScene = scene;
+			currentScene.showContents(mainApp);
+		}
+		
+		
+	}
+	
+	public void addElement(GObject element)
+	{
+		activeContents.add(element);
+		gw.add(element);
+	}
+	
+	public void removeElement(GObject element)
+	{
+		if (activeContents.contains(element))
+		{
+			activeContents.remove(element);
+			gw.remove(element);
+		}
+		else
+		{
+			return;
+		}
 	}
 	
 	public static int getResolutionWidth()
@@ -51,7 +89,7 @@ public class GraphicsApplication extends GraphicsProgram{
 	}
 	
 	public static void main(String[] args) {
-		new MainApplication().start();
+		new GraphicsApplication().start();
 	}
 
 }

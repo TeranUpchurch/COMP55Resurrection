@@ -14,7 +14,7 @@ public class MainApplication extends GraphicsApplication{
 	private Scene LevelSelectScene;
 	private Scene GameScene;
 	
-	private GLabel label = new GLabel("Test", MainApplication.getResolutionWidth(), MainApplication.getResolutionHeight());
+	private GLabel label = new GLabel("Test", MainApplication.getResolutionWidth() / 2, MainApplication.getResolutionHeight() / 2);
 	
 	public void init() {
 		setSize(GraphicsApplication.getResolutionWidth(), GraphicsApplication.getResolutionHeight());
@@ -23,26 +23,7 @@ public class MainApplication extends GraphicsApplication{
 	
 	public void run() {
 		addMouseListeners();
-		switchSceneTo(HowToPlayScene);
-	}
-	
-	public void switchSceneTo(Scene scene)
-	{
-		if (currentScene != null)
-		{
-			System.out.println("Switching scene.");
-			currentScene.hideContents();
-			currentScene = scene;
-			currentScene.showContents();
-		}
-		else
-		{
-			System.out.println("Starting application (currentScene = null)");
-			currentScene = scene;
-			currentScene.showContents();
-		}
-		
-		currentScene.addMouseListeners();
+		switchSceneTo(HowToPlayScene, this.gw);
 	}
 
 	public static void main(String[] args) {
