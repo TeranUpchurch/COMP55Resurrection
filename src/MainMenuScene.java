@@ -7,6 +7,7 @@ import javax.swing.*;
 
 // The main menu scene that contains buttons for staring the game
 // viewing instruction, and exiting
+
 public class MainMenuScene extends Scene {
 	private GLabel label = new GLabel("MainMenuScene", MainApplication.getResolutionWidth() / 2, MainApplication.getResolutionHeight() / 2);
 
@@ -23,13 +24,14 @@ public class MainMenuScene extends Scene {
 		String filename = IMG_FILENAME_PATH + "startButton" + IMG_EXTENSION;
 		GImage startImage = new GImage(filename);
 		this.startButton = new GButton(startImage,225,400);
-		
+		addElement(startButton);
 		startButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				startButton.onClick();
 				// trigger action to start the game
 				// switchSceneTo(new GameScene());
 				// switchSceneTo(MainMenuScene()); // it's supposed to be GameScene() like the line above
+				System.out.println("Button clicked!");
 			}
 			
 			public void mouseEntered (MouseEvent e) {
@@ -39,7 +41,7 @@ public class MainMenuScene extends Scene {
 	}
 	
 	public void showContents() {
-		//drawButton(mainApp);
+		drawButton();
 		System.out.println("Show contents from this point...");
 		addElement(label);
 	}
