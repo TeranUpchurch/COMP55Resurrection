@@ -11,8 +11,8 @@ import javax.swing.*;
 // and switching between them.
 
 interface Displayable {
-	public void showContents(GWindow mainApp);
-	public void hideContents(GWindow mainApp);
+	public void showContents();
+	public void hideContents();
 }
 
 interface Interfaceable extends Displayable{
@@ -23,12 +23,39 @@ interface Interfaceable extends Displayable{
 }
 
 public class Scene extends GraphicsApplication implements Interfaceable{
-	public void showContents(GWindow mainApp)
+	protected static Set<GObject> activeContents = new HashSet<>();
+	protected GWindow mainApp;
+	
+	public Scene(GWindow gw)
+	{
+		mainApp = gw;
+	}
+	
+	public void addElement(GObject element)
+	{
+		activeContents.add(element);
+		mainApp.add(element);
+	}
+	
+	public void removeElement(GObject element)
+	{
+		if (activeContents.contains(element))
+		{
+			activeContents.remove(element);
+			mainApp.remove(element);
+		}
+		else
+		{
+			return;
+		}
+	}
+	
+	public void showContents()
 	{
 		System.out.println("Show contents from this point..");
 	}
 	
-	public void hideContents(GWindow mainApp)
+	public void hideContents()
 	{
 		System.out.println("Hide contents from this point..");
 	}

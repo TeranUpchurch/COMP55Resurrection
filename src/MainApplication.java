@@ -9,8 +9,8 @@ import javax.swing.*;
 // as a whole.
 
 public class MainApplication extends GraphicsApplication{
-	private HowToPlayScene HowToPlayScene = new HowToPlayScene();
-	private MainMenuScene MainMenuScene = new MainMenuScene();
+	private HowToPlayScene HowToPlayScene;
+	private MainMenuScene MainMenuScene;
 	private Scene LevelSelectScene;
 	private Scene GameScene;
 	
@@ -19,11 +19,12 @@ public class MainApplication extends GraphicsApplication{
 	public void init() {
 		setSize(GraphicsApplication.getResolutionWidth(), GraphicsApplication.getResolutionHeight());
 		requestFocus();
+		MainMenuScene = new MainMenuScene(this.gw);
 	}
 	
 	public void run() {
 		addMouseListeners();
-		switchSceneTo(HowToPlayScene, this.gw);
+		switchSceneTo(MainMenuScene); // DEBUG - 
 	}
 	
 	public void switchSceneTo(Scene scene)
@@ -31,18 +32,16 @@ public class MainApplication extends GraphicsApplication{
 		if (currentScene != null)
 		{
 			System.out.println("Switching scene.");
-			currentScene.hideContents(this.gw);
+			currentScene.hideContents();
 			currentScene = scene;
-			currentScene.showContents(this.gw);
+			currentScene.showContents();
 		}
 		else
 		{
 			System.out.println("Starting application (currentScene = null)");
 			currentScene = scene;
-			currentScene.showContents(this.gw);
+			currentScene.showContents();
 		}
-		
-		currentScene.addMouseListeners();
 	}
 	
 	public void exitApplication() {

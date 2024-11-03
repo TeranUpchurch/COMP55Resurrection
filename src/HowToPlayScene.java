@@ -11,13 +11,18 @@ import javax.swing.*;
 public class HowToPlayScene extends Scene{
 	private GLabel label = new GLabel("HowToPlayScene", MainApplication.getResolutionWidth() / 2, MainApplication.getResolutionHeight() / 2);
 	
-	public void showContents(GWindow mainApp)
+	public HowToPlayScene(GWindow gw)
+	{
+		super(gw);
+	}
+	
+	public void showContents()
 	{
 		System.out.println("Show contents from this point..");
 		mainApp.add(label);
 	}
 	
-	public void hideContents(GWindow mainApp)
+	public void hideContents()
 	{
 		System.out.println("Hide contents from this point..");
 	}

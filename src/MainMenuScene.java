@@ -8,30 +8,21 @@ import javax.swing.*;
 // The main menu scene that contains buttons for staring the game
 // viewing instruction, and exiting
 public class MainMenuScene extends Scene {
-	private GLabel label = new GLabel("MainMenuScene", MainApplication.getResolutionWidth(), MainApplication.getResolutionHeight());
-	private MainApplication mainApp;
+	private GLabel label = new GLabel("MainMenuScene", MainApplication.getResolutionWidth() / 2, MainApplication.getResolutionHeight() / 2);
+
 	private GButton startButton;
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
 	
-	@Override
-	public void init() {
-		setSize(MainApplication.getResolutionWidth(), MainApplication.getResolutionHeight());
-		requestFocus();
-		showContents();
+	public MainMenuScene(GWindow gw)
+	{
+		super(gw);
 	}
-	
-	@Override
-	public void run() {
-		addMouseListeners();
-	}
-	
 	
 	private void drawButton() {
 		String filename = IMG_FILENAME_PATH + "startButton" + IMG_EXTENSION;
 		GImage startImage = new GImage(filename);
 		this.startButton = new GButton(startImage,225,400);
-		add(this.startButton);
 		
 		startButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
@@ -48,8 +39,8 @@ public class MainMenuScene extends Scene {
 	}
 	
 	public void showContents() {
-		drawButton();
-		System.out.println("Show contents from this point..");
+		//drawButton(mainApp);
+		System.out.println("Show contents from this point...");
 		addElement(label);
 	}
 	
@@ -58,6 +49,6 @@ public class MainMenuScene extends Scene {
 	}
 	
 	public static void main(String[] args) {
-		new MainMenuScene().start();
+		
 	}
 }

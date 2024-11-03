@@ -12,7 +12,6 @@ import javax.swing.*;
 // and switching between them.
 
 public class GraphicsApplication extends GraphicsProgram{
-	protected static Set<GObject> activeContents = new HashSet<>();
 	protected static final int RESOLUTION_WIDTH = 800;
 	protected static final int RESOLUTION_HEIGHT = 600;
 	
@@ -35,37 +34,18 @@ public class GraphicsApplication extends GraphicsProgram{
 		if (currentScene != null)
 		{
 			System.out.println("Switching scene.");
-			currentScene.hideContents(mainApp);
+			currentScene.hideContents();
 			currentScene = scene;
-			currentScene.showContents(mainApp);
+			currentScene.showContents();
 		}
 		else
 		{
 			System.out.println("Starting application (currentScene = null)");
 			currentScene = scene;
-			currentScene.showContents(mainApp);
+			currentScene.showContents();
 		}
 		
 		
-	}
-	
-	public void addElement(GObject element)
-	{
-		activeContents.add(element);
-		gw.add(element);
-	}
-	
-	public void removeElement(GObject element)
-	{
-		if (activeContents.contains(element))
-		{
-			activeContents.remove(element);
-			gw.remove(element);
-		}
-		else
-		{
-			return;
-		}
 	}
 	
 	public static int getResolutionWidth()
