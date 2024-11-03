@@ -9,17 +9,16 @@ import javax.swing.*;
 // as a whole.
 
 public class MainApplication extends GraphicsApplication{
-	private HowToPlayScene HowToPlayScene;
-	private MainMenuScene MainMenuScene;
-	private Scene LevelSelectScene;
-	private Scene GameScene;
-	
-	private GLabel label = new GLabel("Test", MainApplication.getResolutionWidth() / 2, MainApplication.getResolutionHeight() / 2);
+	public HowToPlayScene HowToPlayScene;
+	public MainMenuScene MainMenuScene;
+	public Scene LevelSelectScene;
+	public Scene GameScene;
 	
 	public void init() {
 		setSize(GraphicsApplication.getResolutionWidth(), GraphicsApplication.getResolutionHeight());
 		requestFocus();
-		MainMenuScene = new MainMenuScene(this.gw);
+		HowToPlayScene = new HowToPlayScene(this);
+		MainMenuScene = new MainMenuScene(this);
 	}
 	
 	public void run() {
@@ -42,6 +41,22 @@ public class MainApplication extends GraphicsApplication{
 			currentScene = scene;
 			currentScene.showContents();
 		}
+	}
+	
+	public void switchSceneToString(String sceneName)
+	{
+		if (sceneName == "HowToPlayScene")
+		{
+			currentScene = HowToPlayScene;
+		}
+		else if (sceneName == "MainMenuScene")
+		{
+			currentScene = MainMenuScene;
+		}
+		
+		System.out.println("Switching scene to" + sceneName);
+		currentScene.hideContents();
+		currentScene.showContents();
 	}
 	
 	public void exitApplication() {

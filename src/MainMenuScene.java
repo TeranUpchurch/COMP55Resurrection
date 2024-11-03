@@ -15,12 +15,12 @@ public class MainMenuScene extends Scene {
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
 	
-	public MainMenuScene(GWindow gw)
+	public MainMenuScene(MainApplication mainApp)
 	{
-		super(gw);
+		super(mainApp);
 	}
 	
-	private void drawButton() {
+	private void drawStartButton() {
 		String filename = IMG_FILENAME_PATH + "startButton" + IMG_EXTENSION;
 		GImage startImage = new GImage(filename);
 		this.startButton = new GButton(startImage,225,400);
@@ -31,7 +31,8 @@ public class MainMenuScene extends Scene {
 				// trigger action to start the game
 				// switchSceneTo(new GameScene());
 				// switchSceneTo(MainMenuScene()); // it's supposed to be GameScene() like the line above
-				System.out.println("Button clicked!");
+				System.out.println("Start Button clicked!");
+				mainApp.switchSceneTo(mainApp.HowToPlayScene);
 			}
 			
 			public void mouseEntered (MouseEvent e) {
@@ -40,8 +41,28 @@ public class MainMenuScene extends Scene {
 		});
 	}
 	
+	private void drawHelpButton() {
+		String filename = IMG_FILENAME_PATH + "startButton" + IMG_EXTENSION;
+		GImage startImage = new GImage(filename);
+		this.startButton = new GButton(startImage,0,400);
+		addElement(startButton);
+		startButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				startButton.onClick();
+				// trigger action to start the game
+				// switchSceneTo(new GameScene());
+				// switchSceneTo(MainMenuScene()); // it's supposed to be GameScene() like the line above
+				System.out.println("Help Button clicked!");
+			}
+			public void mouseEntered (MouseEvent e) {
+				startButton.onHover();
+			}
+		});
+	}
+	
 	public void showContents() {
-		drawButton();
+		drawStartButton();
+		drawHelpButton();
 		System.out.println("Show contents from this point...");
 		addElement(label);
 	}

@@ -24,11 +24,11 @@ interface Interfaceable extends Displayable{
 
 public class Scene extends GraphicsApplication implements Interfaceable{
 	protected static Set<GObject> activeContents = new HashSet<>();
-	protected GWindow mainApp;
+	protected MainApplication mainApp;
 	
-	public Scene(GWindow gw)
+	public Scene(MainApplication mainApp)
 	{
-		mainApp = gw;
+		this.mainApp = mainApp;
 	}
 	
 	public void addElement(GObject element)

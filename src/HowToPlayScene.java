@@ -11,9 +11,9 @@ import javax.swing.*;
 public class HowToPlayScene extends Scene{
 	private GLabel label = new GLabel("HowToPlayScene", MainApplication.getResolutionWidth() / 2, MainApplication.getResolutionHeight() / 2);
 	
-	public HowToPlayScene(GWindow gw)
+	public HowToPlayScene(MainApplication mainApp)
 	{
-		super(gw);
+		super(mainApp);
 	}
 	
 	public void showContents()
