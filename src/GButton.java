@@ -15,44 +15,44 @@ public class GButton extends GCompound {
 		this.image = img;
 		add(this.image, x, y);
 		
-		shape = image;
+		this.shape = image;
 		
 		initTimer();
 		
 	}
 	
 	private void initTimer() {
-		pressCooldown = 200; // Cooldown in milliseconds
-		buttonTimer = new Timer(pressCooldown, this::timerElapsed);
-		buttonTimer.setRepeats(false);
+		this.pressCooldown = 200; // Cooldown in milliseconds
+		this.buttonTimer = new Timer(this.pressCooldown, this::timerElapsed);
+		this.buttonTimer.setRepeats(false);
 	}
 	
-	private void onClick() {
+	public void onClick() {
 		//change color or appearance of click
-		if (shape instanceof GRect) {
-			((GRect) shape).setFillColor(Color.GRAY);
+		if (this.shape instanceof GRect) {
+			((GRect) this.shape).setFillColor(Color.GRAY);
 		}
 	}
 	
 	public void onHover() {
 		//change appearance on hover
-		if (shape instanceof GRect) {
-			((GRect) shape).setFillColor(Color.LIGHT_GRAY);
+		if (this.shape instanceof GRect) {
+			((GRect) this.shape).setFillColor(Color.LIGHT_GRAY);
 		}
 	}
 	
 	public void setShape(GObject newShape) {
-		if (shape != null) {
-			remove(shape);
+		if (this.shape != null) {
+			remove(this.shape);
 		}
-		shape = newShape;
-		add(shape);
+		this.shape = newShape;
+		add(this.shape);
 	}
 	
 	private void timerElapsed(ActionEvent e) {
 		// reset appearance after cooldown 
-		if (shape instanceof GRect) {
-			((GRect) shape).setFillColor(Color.WHITE);
+		if (this.shape instanceof GRect) {
+			((GRect) this.shape).setFillColor(Color.WHITE);
 		}
 	}
 	
@@ -62,14 +62,14 @@ public class GButton extends GCompound {
 	}
 	
 	public void setFillColor(Color c) {
-		if (shape instanceof GRect) {
-			((GRect) shape).setFillColor(c);
+		if (this.shape instanceof GRect) {
+			((GRect) this.shape).setFillColor(c);
 		}
 	}
 	
 	public void setColor(Color c) {
-		if (shape instanceof GRect) {
-			((GRect) shape).setColor(c);
+		if (this.shape instanceof GRect) {
+			((GRect) this.shape).setColor(c);
 		} else if (image != null) {
 			image.setColor(c);
 		}
