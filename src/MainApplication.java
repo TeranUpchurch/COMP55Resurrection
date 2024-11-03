@@ -48,6 +48,39 @@ public class MainApplication extends GraphicsApplication{
 	public void exitApplication() {
 		System.exit(0); // Terminates the application
 	}
+	
+	// Mouse event handlers
+	public void mousePressed(MouseEvent e) {
+		if (currentScene != null) {
+			currentScene.mousePressed(e);
+		}
+	}
+	
+	public void mouseReleased(MouseEvent e) {
+		if (currentScene != null) {
+			currentScene.mouseReleased(e);
+		}
+	}
+	
+	public void mouseClicked(MouseEvent e) {
+		if (currentScene != null) {
+			currentScene.mouseClicked(e);
+		}
+	}
+	
+	public void mouseDragged(MouseEvent e) {
+		if (currentScene != null) {
+			currentScene.mouseDragged(e);
+		}
+	}
+	
+	public void mouseMoved(MouseEvent e) {
+		if (currentScene != null) {
+			currentScene.mouseMoved(e);
+		}
+	}
+	
+	
 
 	public static void main(String[] args) {
 		new MainApplication().start();
