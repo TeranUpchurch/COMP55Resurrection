@@ -21,10 +21,10 @@ public class HowToPlayScene extends Scene{
 	}
 	
 	private void drawReturnButtom() {
-		String filename = IMG_FILENAME_PATH + "robot" + IMG_EXTENSION;
+		String filename = IMG_FILENAME_PATH + "returnButton" + IMG_EXTENSION;
 		// change from robot to "X" button
-		GImage returnImage = new GImage(filename);
-		this.returnButtom = new GButton(returnImage,0,0);
+		GImage returnButtonImage = new GImage(filename);
+		this.returnButtom = new GButton(returnButtonImage,0,0);
 		addElement(returnButtom);
 		returnButtom.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
