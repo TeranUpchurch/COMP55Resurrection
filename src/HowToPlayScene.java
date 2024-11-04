@@ -5,26 +5,55 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
 
-// This class is responsible for handling the current "scene"
-// and switching between them.
+// The how to play scene that contains instructions on how to play
+// and a button to return to main menu scene..
 
 public class HowToPlayScene extends Scene{
 	private GLabel label = new GLabel("HowToPlayScene", MainApplication.getResolutionWidth() / 2, MainApplication.getResolutionHeight() / 2);
+	
+	private GButton returnButtom;
+	public static final String IMG_FILENAME_PATH = "media/";
+	public static final String IMG_EXTENSION = ".png";
 	
 	public HowToPlayScene(MainApplication mainApp)
 	{
 		super(mainApp);
 	}
 	
+	private void drawReturnButtom() {
+		String filename = IMG_FILENAME_PATH + "robot" + IMG_EXTENSION;
+		// change from robot to "X" button
+		GImage returnImage = new GImage(filename);
+		this.returnButtom = new GButton(returnImage,0,0);
+		addElement(returnButtom);
+		returnButtom.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				returnButtom.onClick();
+				// trigger return to main menu
+				System.out.println("Return Button clicked!");
+				mainApp.switchSceneTo(mainApp.MainMenuScene);
+			}
+			public void mouseEntered (MouseEvent e) {
+				returnButtom.onHover();
+			}
+		});
+	}
+	
+	
 	public void showContents()
 	{
 		System.out.println("Show contents from this point..");
 		mainApp.add(label);
+		drawReturnButtom();
 	}
 	
 	public void hideContents()
 	{
 		System.out.println("Hide contents from this point..");
+		for (GObject obj : activeContents)
+		{
+			removeElement(obj);
+		}
 	}
 	
 	public void mousePressed(MouseEvent e) {
@@ -46,5 +75,6 @@ public class HowToPlayScene extends Scene{
 	public static void main(String[] args) {
 
 	}
+	
 
 }
