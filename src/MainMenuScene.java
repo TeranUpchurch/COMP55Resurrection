@@ -23,8 +23,8 @@ public class MainMenuScene extends Scene {
 	
 	private void drawStartButton() {
 		String filename = IMG_FILENAME_PATH + "startButton" + IMG_EXTENSION;
-		GImage startImage = new GImage(filename);
-		this.startButton = new GButton(startImage,225,200);
+		GImage startButtonImage = new GImage(filename);
+		this.startButton = new GButton(startButtonImage,225,200);
 		addElement(startButton);
 		startButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
@@ -43,8 +43,8 @@ public class MainMenuScene extends Scene {
 	
 	private void drawHelpButton() {
 		String filename = IMG_FILENAME_PATH + "helpButton" + IMG_EXTENSION;
-		GImage startImage = new GImage(filename);
-		this.helpButton = new GButton(startImage,0,0);
+		GImage helpButtonImage = new GImage(filename);
+		this.helpButton = new GButton(helpButtonImage,0,0);
 		addElement(helpButton);
 		helpButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
