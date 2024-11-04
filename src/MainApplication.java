@@ -43,6 +43,15 @@ public class MainApplication extends GraphicsApplication{
 		}
 	}
 	
+	// TODO - Actually make the Game class before this. 
+	public void switchSceneToGame(String difficulty)
+	{
+		System.out.println("Switching scene.");
+		currentScene.hideContents();
+		currentScene = GameScene;
+		currentScene.showContents();
+	}
+	
 	public void switchSceneToString(String sceneName)
 	{
 		if (sceneName == "HowToPlayScene")
