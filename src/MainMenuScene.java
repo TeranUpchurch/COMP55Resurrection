@@ -10,8 +10,9 @@ import javax.swing.*;
 
 public class MainMenuScene extends Scene {
 	private GLabel label = new GLabel("MainMenuScene", MainApplication.getResolutionWidth() / 2, MainApplication.getResolutionHeight() / 2);
-
 	private GButton startButton;
+	private GButton helpButton;
+	
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
 	
@@ -43,11 +44,11 @@ public class MainMenuScene extends Scene {
 	private void drawHelpButton() {
 		String filename = IMG_FILENAME_PATH + "helpButton" + IMG_EXTENSION;
 		GImage startImage = new GImage(filename);
-		this.startButton = new GButton(startImage,0,0);
-		addElement(startButton);
-		startButton.addMouseListener(new MouseAdapter() {
+		this.helpButton = new GButton(startImage,0,0);
+		addElement(helpButton);
+		helpButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				startButton.onClick();
+				helpButton.onClick();
 				// trigger action to start the game
 				// switchSceneTo(new GameScene());
 				// switchSceneTo(MainMenuScene()); // it's supposed to be GameScene() like the line above
@@ -55,7 +56,7 @@ public class MainMenuScene extends Scene {
 				mainApp.switchSceneTo(mainApp.HowToPlayScene);
 			}
 			public void mouseEntered (MouseEvent e) {
-				startButton.onHover();
+				helpButton.onHover();
 			}
 		});
 	}
@@ -68,10 +69,9 @@ public class MainMenuScene extends Scene {
 	}
 	
 	public void hideContents() {
-		for (GObject obj : activeContents)
-		{
-			removeElement(obj);
-		}
+		removeElement(label);
+		removeElement(startButton);
+		removeElement(helpButton);
 	}
 	
 	public static void main(String[] args) {
