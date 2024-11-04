@@ -20,7 +20,7 @@ public class HowToPlayScene extends Scene{
 		super(mainApp);
 	}
 	
-	private void drawReturnButtom() {
+	private void drawReturnButton() {
 		String filename = IMG_FILENAME_PATH + "returnButton" + IMG_EXTENSION;
 		// change from robot to "X" button
 		GImage returnButtonImage = new GImage(filename);
@@ -44,7 +44,7 @@ public class HowToPlayScene extends Scene{
 	{
 		System.out.println("Show contents from this point..");
 		mainApp.add(label);
-		drawReturnButtom();
+		drawReturnButton();
 	}
 	
 	public void hideContents()
