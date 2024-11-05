@@ -23,7 +23,7 @@ public class HowToPlayScene extends Scene{
 	private void drawReturnButton() {
 		String filename = IMG_FILENAME_PATH + "returnButton" + IMG_EXTENSION;
 		GImage returnButtonImage = new GImage(filename);
-		int returnButtonX = (int)(MainApplication.getResolutionWidth() * 0.02);
+		int returnButtonX = (int)(MainApplication.getResolutionWidth() * 0.90);
 		int returnButtonY = (int)(MainApplication.getResolutionHeight() * 0.02);
 		this.returnButton = new GButton(returnButtonImage,returnButtonX,returnButtonY);
 		addElement(returnButton);
