@@ -24,17 +24,16 @@ public class LevelSelectScene extends Scene{
 	}
 	
 	private void drawEasyLevelButton() {
-		String filename = IMG_FILENAME_PATH + "robot" + IMG_EXTENSION;
-		// change from robot to "X" button
-		GImage returnImage = new GImage(filename);
-		this.easyLevelButton = new GButton(returnImage,0,0);
+		String filename = IMG_FILENAME_PATH + "easyButton" + IMG_EXTENSION;
+		GImage easyButtonImage = new GImage(filename);
+		this.easyLevelButton = new GButton(easyButtonImage,0,400);
 		addElement(easyLevelButton);
 		easyLevelButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				easyLevelButton.onClick();
 				// trigger return to main menu
-				System.out.println("Return Button clicked!");
-				mainApp.switchSceneTo(mainApp.MainMenuScene);
+				System.out.println("Easy Level Button clicked!");
+				mainApp.switchSceneTo(mainApp.MainMenuScene); // for now switch to main menu scene
 			}
 			public void mouseEntered (MouseEvent e) {
 				easyLevelButton.onHover();
@@ -84,7 +83,7 @@ public class LevelSelectScene extends Scene{
 	public void showContents()
 	{
 		System.out.println("Show contents from this point..");
-		mainApp.add(label);
+		addElement(label);
 		drawEasyLevelButton();
 		drawMediumLevelButton();
 		drawHardLevelButton();
@@ -94,7 +93,7 @@ public class LevelSelectScene extends Scene{
 	public void hideContents()
 	{
 		System.out.println("Hide contents from this point..");
-		for (GObject obj : activeContents)
+		for (GObject obj : new ArrayList<>(activeContents)) // create a copy to avoid modification
 		{
 			removeElement(obj);
 		}
