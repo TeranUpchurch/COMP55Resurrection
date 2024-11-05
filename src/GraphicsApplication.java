@@ -16,6 +16,7 @@ public class GraphicsApplication extends GraphicsProgram{
 	protected static final int RESOLUTION_HEIGHT = 675;
 	
 	protected Scene currentScene;
+	protected Scene previousScene;
 	
 	private GLabel label = new GLabel("Test", MainApplication.getResolutionWidth() / 3, MainApplication.getResolutionHeight() / 2);
 	
@@ -34,6 +35,7 @@ public class GraphicsApplication extends GraphicsProgram{
 		if (currentScene != null)
 		{
 			System.out.println("Switching scene.");
+			previousScene = currentScene;
 			currentScene.hideContents();
 			currentScene = scene;
 			currentScene.showContents();
@@ -44,7 +46,6 @@ public class GraphicsApplication extends GraphicsProgram{
 			currentScene = scene;
 			currentScene.showContents();
 		}
-		
 		
 	}
 	
@@ -61,6 +62,10 @@ public class GraphicsApplication extends GraphicsProgram{
 	public Scene getCurrentScene()
 	{
 		return currentScene;
+	}
+	
+	public Scene getPreviousScene() {
+		return previousScene;
 	}
 	
 	public void setCurrentScene(Scene scene)

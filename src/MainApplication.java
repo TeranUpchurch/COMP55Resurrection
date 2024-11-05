@@ -32,6 +32,7 @@ public class MainApplication extends GraphicsApplication{
 		if (currentScene != null)
 		{
 			System.out.println("Switching scene.");
+			previousScene = currentScene;
 			currentScene.hideContents();
 			currentScene = scene;
 			currentScene.showContents();
