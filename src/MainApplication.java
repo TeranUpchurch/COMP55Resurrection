@@ -11,7 +11,7 @@ import javax.swing.*;
 public class MainApplication extends GraphicsApplication{
 	public HowToPlayScene HowToPlayScene;
 	public MainMenuScene MainMenuScene;
-	public Scene LevelSelectScene;
+	public LevelSelectScene LevelSelectScene;
 	public Scene GameScene;
 	
 	public void init() {
@@ -19,6 +19,7 @@ public class MainApplication extends GraphicsApplication{
 		requestFocus();
 		HowToPlayScene = new HowToPlayScene(this);
 		MainMenuScene = new MainMenuScene(this);
+		LevelSelectScene = new LevelSelectScene(this);
 	}
 	
 	public void run() {

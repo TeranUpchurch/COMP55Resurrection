@@ -30,9 +30,8 @@ public class MainMenuScene extends Scene {
 			public void mouseClicked(MouseEvent e) {
 				startButton.onClick();
 				// trigger action to start the game
-				// switchSceneTo(new GameScene());
-				// switchSceneTo(MainMenuScene()); // it's supposed to be GameScene() like the line above
 				System.out.println("Start Button clicked!");
+				mainApp.switchSceneTo(mainApp.LevelSelectScene);
 			}
 			
 			public void mouseEntered (MouseEvent e) {
@@ -50,8 +49,6 @@ public class MainMenuScene extends Scene {
 			public void mouseClicked(MouseEvent e) {
 				helpButton.onClick();
 				// trigger action to start the game
-				// switchSceneTo(new GameScene());
-				// switchSceneTo(MainMenuScene()); // it's supposed to be GameScene() like the line above
 				System.out.println("Help Button clicked!");
 				mainApp.switchSceneTo(mainApp.HowToPlayScene);
 			}
