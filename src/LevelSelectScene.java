@@ -14,6 +14,7 @@ public class LevelSelectScene extends Scene{
 	private GButton easyLevelButton;
 	private GButton mediumLevelButton;
 	private GButton hardLevelButton;
+	private GButton returnButton;
 
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
@@ -78,6 +79,24 @@ public class LevelSelectScene extends Scene{
 		});
 	}
 	
+	private void drawReturnButton() {
+		String filename = IMG_FILENAME_PATH + "returnButton" + IMG_EXTENSION;
+		GImage returnButtonImage = new GImage(filename);
+		this.returnButton = new GButton(returnButtonImage,0,0);
+		addElement(returnButton);
+		returnButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				returnButton.onClick();
+				// trigger return to main menu
+				System.out.println("Return Button clicked!");
+				mainApp.switchSceneTo(mainApp.MainMenuScene);
+			}
+			public void mouseEntered (MouseEvent e) {
+				returnButton.onHover();
+			}
+		});
+	}
+	
 	
 	public void showContents()
 	{
@@ -86,6 +105,7 @@ public class LevelSelectScene extends Scene{
 		drawEasyLevelButton();
 		drawMediumLevelButton();
 		drawHardLevelButton();
+		drawReturnButton();
 
 	}
 	
