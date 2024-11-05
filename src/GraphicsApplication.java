@@ -5,6 +5,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Stack;
 
 import javax.swing.*;
 
@@ -20,6 +21,10 @@ public class GraphicsApplication extends GraphicsProgram{
 	
 	private GLabel label = new GLabel("Test", MainApplication.getResolutionWidth() / 3, MainApplication.getResolutionHeight() / 2);
 	
+	// Stack to keep track of previous scene
+	// Handle the returnButton's job
+	private Stack<Scene> sceneHistory = new Stack<>(); 
+	
 	public void init() {
 		setSize(RESOLUTION_WIDTH, RESOLUTION_HEIGHT);
 		requestFocus();
@@ -30,10 +35,13 @@ public class GraphicsApplication extends GraphicsProgram{
 		add(label);
 	}
 	
-	public void switchSceneTo(Scene scene)
+	public void switchSceneTo(Scene scene, boolean isSubScene)
 	{
 		if (currentScene != null)
 		{
+			if (!isSubScene) {
+				sceneHistory.push(currentScene); // // Only push non-sub-scenes to history
+			}
 			System.out.println("Switching scene.");
 			previousScene = currentScene;
 			currentScene.hideContents();
