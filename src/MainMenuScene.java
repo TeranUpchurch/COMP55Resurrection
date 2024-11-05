@@ -12,6 +12,7 @@ public class MainMenuScene extends Scene {
 	private GLabel label = new GLabel("MainMenuScene", MainApplication.getResolutionWidth() / 2, MainApplication.getResolutionHeight() / 2);
 	private GButton startButton;
 	private GButton helpButton;
+	private GImage backgroundMainMenu;
 	
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
@@ -28,7 +29,7 @@ public class MainMenuScene extends Scene {
 		int startButtonY = (int)(RESOLUTION_HEIGHT * 0.6);
 		this.startButton = new GButton(startButtonImage,startButtonX,startButtonY);
 		addElement(startButton);
-		startButton.addMouseListener(new MouseAdapter() {
+		this.startButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				startButton.onClick();
 				// trigger action to start the game
@@ -49,7 +50,7 @@ public class MainMenuScene extends Scene {
 		int helpButtonY = (int)(RESOLUTION_HEIGHT * 0.02);
 		this.helpButton = new GButton(helpButtonImage,helpButtonX,helpButtonY);
 		addElement(helpButton);
-		helpButton.addMouseListener(new MouseAdapter() {
+		this.helpButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				helpButton.onClick();
 				// trigger action to start the game
@@ -62,11 +63,21 @@ public class MainMenuScene extends Scene {
 		});
 	}
 	
+	private void drawBackground() {
+		String filename = IMG_FILENAME_PATH + "backgroundMainMenu" + IMG_EXTENSION;
+	    this.backgroundMainMenu = new GImage(filename);
+	    this.backgroundMainMenu.setLocation(0, 0);
+	    mainApp.add(this.backgroundMainMenu);
+	}
+	
 	public void showContents() {
+		drawBackground();
 		drawStartButton();
 		drawHelpButton();
 		System.out.println("Show contents from this point...");
-		addElement(label);
+		addElement(this.label);
+		activeContents.add(this.backgroundMainMenu);
+
 	}
 	
 	public void hideContents() {
