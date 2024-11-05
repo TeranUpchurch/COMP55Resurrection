@@ -70,9 +70,11 @@ public class MainMenuScene extends Scene {
 	}
 	
 	public void hideContents() {
-		removeElement(label);
-		removeElement(startButton);
-		removeElement(helpButton);
+		System.out.println("Hide contents from this point..");
+		for (GObject obj : new ArrayList<>(activeContents)) // create a copy to avoid modification
+		{
+			removeElement(obj);
+		}
 	}
 	
 	public static void main(String[] args) {
