@@ -42,10 +42,9 @@ public class LevelSelectScene extends Scene{
 	}
 	
 	private void drawMediumLevelButton() {
-		String filename = IMG_FILENAME_PATH + "robot" + IMG_EXTENSION;
-		// change from robot to "X" button
-		GImage returnImage = new GImage(filename);
-		this.mediumLevelButton = new GButton(returnImage,0,0);
+		String filename = IMG_FILENAME_PATH + "mediumButton" + IMG_EXTENSION;
+		GImage mediumButtonImage = new GImage(filename);
+		this.mediumLevelButton = new GButton(mediumButtonImage,300,400);
 		addElement(mediumLevelButton);
 		mediumLevelButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
@@ -61,10 +60,10 @@ public class LevelSelectScene extends Scene{
 	}
 	
 	private void drawHardLevelButton() {
-		String filename = IMG_FILENAME_PATH + "robot" + IMG_EXTENSION;
+		String filename = IMG_FILENAME_PATH + "hardButton" + IMG_EXTENSION;
 		// change from robot to "X" button
-		GImage returnImage = new GImage(filename);
-		this.hardLevelButton = new GButton(returnImage,0,0);
+		GImage hardButtonImage = new GImage(filename);
+		this.hardLevelButton = new GButton(hardButtonImage,600,400);
 		addElement(hardLevelButton);
 		hardLevelButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
