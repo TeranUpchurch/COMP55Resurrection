@@ -83,7 +83,9 @@ public class LevelSelectScene extends Scene{
 	private void drawReturnButton() {
 		String filename = IMG_FILENAME_PATH + "returnButton" + IMG_EXTENSION;
 		GImage returnButtonImage = new GImage(filename);
-		this.returnButton = new GButton(returnButtonImage,0,0);
+		int returnButtonX = (int)(RESOLUTION_WIDTH * 0.02);
+		int returnButtonY = (int)(RESOLUTION_HEIGHT * 0.02);
+		this.returnButton = new GButton(returnButtonImage,returnButtonX,returnButtonY);
 		addElement(returnButton);
 		returnButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
