@@ -12,6 +12,7 @@ public class MainMenuScene extends Scene {
 	private GLabel label = new GLabel("MainMenuScene", MainApplication.getResolutionWidth() / 2, MainApplication.getResolutionHeight() / 2);
 	private GButton startButton;
 	private GButton helpButton;
+	private GButton exitButton;
 	private GImage backgroundMainMenu;
 	
 	public static final String IMG_FILENAME_PATH = "media/";
@@ -63,6 +64,26 @@ public class MainMenuScene extends Scene {
 		});
 	}
 	
+	private void drawExitButton() {
+		String filename = IMG_FILENAME_PATH + "exitButton" + IMG_EXTENSION;
+		GImage exitButtonImage = new GImage(filename);
+		int exitButtonX = (int)(MainApplication.getResolutionWidth() * 0.90);
+		int exitButtonY = (int)(MainApplication.getResolutionHeight() * 0.02);
+		this.exitButton = new GButton(exitButtonImage,exitButtonX,exitButtonY);
+		addElement(exitButton);
+		this.exitButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				exitButton.onClick();
+				// trigger action to start the game
+				System.out.println("Help Button clicked!");
+				mainApp.exitApplication();
+			}
+			public void mouseEntered (MouseEvent e) {
+				helpButton.onHover();
+			}
+		});
+	}
+	
 	private void drawBackground() {
 		String filename = IMG_FILENAME_PATH + "backgroundMainMenu" + IMG_EXTENSION;
 	    this.backgroundMainMenu = new GImage(filename);
@@ -76,6 +97,7 @@ public class MainMenuScene extends Scene {
 		drawBackground();
 		drawStartButton();
 		drawHelpButton();
+		drawExitButton();
 		activeContents.add(this.backgroundMainMenu);
 
 	}
