@@ -42,14 +42,14 @@ public class HowToPlayScene extends Scene{
 	public void showContents()
 	{
 		System.out.println("Show contents from this point..");
-		mainApp.add(label);
+		addElement(label);
 		drawReturnButton();
 	}
 	
 	public void hideContents()
 	{
 		System.out.println("Hide contents from this point..");
-		for (GObject obj : activeContents)
+		for (GObject obj : new ArrayList<>(activeContents)) // create a copy to avoid modification
 		{
 			removeElement(obj);
 		}
