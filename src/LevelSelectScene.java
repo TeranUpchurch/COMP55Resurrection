@@ -15,6 +15,7 @@ public class LevelSelectScene extends Scene{
 	private GButton mediumLevelButton;
 	private GButton hardLevelButton;
 	private GButton returnButton;
+	private GButton helpButton;
 
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
@@ -83,8 +84,8 @@ public class LevelSelectScene extends Scene{
 	private void drawReturnButton() {
 		String filename = IMG_FILENAME_PATH + "returnButton" + IMG_EXTENSION;
 		GImage returnButtonImage = new GImage(filename);
-		int returnButtonX = (int)(RESOLUTION_WIDTH * 0.02);
-		int returnButtonY = (int)(RESOLUTION_HEIGHT * 0.02);
+		int returnButtonX = (int)(MainApplication.getResolutionWidth() * 0.90);
+		int returnButtonY = (int)(MainApplication.getResolutionHeight() * 0.02);
 		this.returnButton = new GButton(returnButtonImage,returnButtonX,returnButtonY);
 		addElement(returnButton);
 		returnButton.addMouseListener(new MouseAdapter() {
@@ -100,6 +101,27 @@ public class LevelSelectScene extends Scene{
 		});
 	}
 	
+	private void drawHelpButton() {
+		String filename = IMG_FILENAME_PATH + "helpButton" + IMG_EXTENSION;
+		GImage helpButtonImage = new GImage(filename);
+		int helpButtonX = (int)(MainApplication.getResolutionWidth() * 0.02);
+		int helpButtonY = (int)(MainApplication.getResolutionHeight() * 0.02);
+		this.helpButton = new GButton(helpButtonImage,helpButtonX,helpButtonY);
+		addElement(helpButton);
+		this.helpButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				helpButton.onClick();
+				// trigger action to start the game
+				System.out.println("Help Button clicked!");
+				mainApp.switchSceneTo(mainApp.HowToPlayScene);
+			}
+			public void mouseEntered (MouseEvent e) {
+				helpButton.onHover();
+			}
+		});
+	}
+	
+	
 	
 	public void showContents()
 	{
@@ -109,6 +131,7 @@ public class LevelSelectScene extends Scene{
 		drawMediumLevelButton();
 		drawHardLevelButton();
 		drawReturnButton();
+		drawHelpButton();
 
 	}
 	

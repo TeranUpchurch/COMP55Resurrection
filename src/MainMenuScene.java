@@ -25,8 +25,8 @@ public class MainMenuScene extends Scene {
 	private void drawStartButton() {
 		String filename = IMG_FILENAME_PATH + "startButton" + IMG_EXTENSION;
 		GImage startButtonImage = new GImage(filename);
-		int startButtonX = (RESOLUTION_WIDTH - (int) startButtonImage.getWidth()) / 2;
-		int startButtonY = (int)(RESOLUTION_HEIGHT * 0.6);
+		int startButtonX = (MainApplication.getResolutionWidth() - (int) startButtonImage.getWidth()) / 2;
+		int startButtonY = (int)(MainApplication.getResolutionHeight() * 0.6);
 		this.startButton = new GButton(startButtonImage,startButtonX,startButtonY);
 		addElement(startButton);
 		this.startButton.addMouseListener(new MouseAdapter() {
@@ -46,8 +46,8 @@ public class MainMenuScene extends Scene {
 	private void drawHelpButton() {
 		String filename = IMG_FILENAME_PATH + "helpButton" + IMG_EXTENSION;
 		GImage helpButtonImage = new GImage(filename);
-		int helpButtonX = (int)(RESOLUTION_WIDTH * 0.02);
-		int helpButtonY = (int)(RESOLUTION_HEIGHT * 0.02);
+		int helpButtonX = (int)(MainApplication.getResolutionWidth() * 0.02);
+		int helpButtonY = (int)(MainApplication.getResolutionHeight() * 0.02);
 		this.helpButton = new GButton(helpButtonImage,helpButtonX,helpButtonY);
 		addElement(helpButton);
 		this.helpButton.addMouseListener(new MouseAdapter() {
