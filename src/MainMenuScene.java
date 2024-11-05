@@ -24,7 +24,10 @@ public class MainMenuScene extends Scene {
 	private void drawStartButton() {
 		String filename = IMG_FILENAME_PATH + "startButton" + IMG_EXTENSION;
 		GImage startButtonImage = new GImage(filename);
-		this.startButton = new GButton(startButtonImage,225,200);
+		int startButtonX = (RESOLUTION_WIDTH - (int) startButtonImage.getWidth()) / 2;
+		int startButtonY = (int)(RESOLUTION_HEIGHT * 0.6);
+		System.out.println(startButtonX);
+		this.startButton = new GButton(startButtonImage,startButtonX,startButtonY);
 		addElement(startButton);
 		startButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {

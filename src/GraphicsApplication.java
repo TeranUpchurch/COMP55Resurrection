@@ -12,8 +12,8 @@ import javax.swing.*;
 // and switching between them.
 
 public class GraphicsApplication extends GraphicsProgram{
-	protected static final int RESOLUTION_WIDTH = 800;
-	protected static final int RESOLUTION_HEIGHT = 600;
+	protected static final int RESOLUTION_WIDTH = 1200; // tried to make the ratio 16:9
+	protected static final int RESOLUTION_HEIGHT = 675;
 	
 	protected Scene currentScene;
 	
