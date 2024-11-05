@@ -11,6 +11,7 @@ import javax.swing.*;
 public class LevelSelectScene extends Scene{
 	private GLabel label = new GLabel("LevelSelectScene", MainApplication.getResolutionWidth() / 2, MainApplication.getResolutionHeight() / 4);
 	
+	private GImage backgroundLevelSelectScene;
 	private GButton easyLevelButton;
 	private GButton mediumLevelButton;
 	private GButton hardLevelButton;
@@ -121,18 +122,24 @@ public class LevelSelectScene extends Scene{
 		});
 	}
 	
-	
+	private void drawBackground() {
+		String filename = IMG_FILENAME_PATH + "backgroundLevelSelectScene" + IMG_EXTENSION;
+	    this.backgroundLevelSelectScene = new GImage(filename);
+	    this.backgroundLevelSelectScene.setLocation(0, 0);
+	    mainApp.add(this.backgroundLevelSelectScene);
+	}
 	
 	public void showContents()
 	{
 		System.out.println("Show contents from this point..");
 		addElement(label);
+		drawBackground();
 		drawEasyLevelButton();
 		drawMediumLevelButton();
 		drawHardLevelButton();
 		drawReturnButton();
 		drawHelpButton();
-
+		activeContents.add(this.backgroundLevelSelectScene);
 	}
 	
 	public void hideContents()

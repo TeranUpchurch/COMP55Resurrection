@@ -71,11 +71,11 @@ public class MainMenuScene extends Scene {
 	}
 	
 	public void showContents() {
+		System.out.println("Show contents from this point...");
+		addElement(this.label);
 		drawBackground();
 		drawStartButton();
 		drawHelpButton();
-		System.out.println("Show contents from this point...");
-		addElement(this.label);
 		activeContents.add(this.backgroundMainMenu);
 
 	}

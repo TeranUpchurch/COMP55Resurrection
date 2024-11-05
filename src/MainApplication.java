@@ -109,8 +109,6 @@ public class MainApplication extends GraphicsApplication{
 		}
 	}
 	
-	
-
 	public static void main(String[] args) {
 		new MainApplication().start();
 	}

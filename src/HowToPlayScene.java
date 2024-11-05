@@ -40,7 +40,6 @@ public class HowToPlayScene extends Scene{
 		});
 	}
 	
-	
 	public void showContents()
 	{
 		System.out.println("Show contents from this point..");
