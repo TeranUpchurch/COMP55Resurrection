@@ -63,6 +63,10 @@ public class MainApplication extends GraphicsApplication{
 		{
 			currentScene = MainMenuScene;
 		}
+		else if (sceneName == "LevelSelectScene")
+		{
+			currentScene = LevelSelectScene;
+		}
 		
 		System.out.println("Switching scene to" + sceneName);
 		currentScene.hideContents();
