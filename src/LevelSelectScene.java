@@ -9,7 +9,7 @@ import javax.swing.*;
 // difficulty level of game..
 
 public class LevelSelectScene extends Scene{
-	private GLabel label = new GLabel("LevelSelectScene", MainApplication.getResolutionWidth() / 2, MainApplication.getResolutionHeight() / 2);
+	private GLabel label = new GLabel("LevelSelectScene", MainApplication.getResolutionWidth() / 2, MainApplication.getResolutionHeight() / 4);
 	
 	private GButton easyLevelButton;
 	private GButton mediumLevelButton;
@@ -27,7 +27,7 @@ public class LevelSelectScene extends Scene{
 	private void drawEasyLevelButton() {
 		String filename = IMG_FILENAME_PATH + "easyButton" + IMG_EXTENSION;
 		GImage easyButtonImage = new GImage(filename);
-		this.easyLevelButton = new GButton(easyButtonImage,0,400);
+		this.easyLevelButton = new GButton(easyButtonImage,MainApplication.getResolutionWidth() / 16,MainApplication.getResolutionHeight() / 2);
 		addElement(easyLevelButton);
 		easyLevelButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
@@ -42,10 +42,11 @@ public class LevelSelectScene extends Scene{
 		});
 	}
 	
+	
 	private void drawMediumLevelButton() {
 		String filename = IMG_FILENAME_PATH + "mediumButton" + IMG_EXTENSION;
 		GImage mediumButtonImage = new GImage(filename);
-		this.mediumLevelButton = new GButton(mediumButtonImage,300,400);
+		this.mediumLevelButton = new GButton(mediumButtonImage,6 * MainApplication.getResolutionWidth() / 16,MainApplication.getResolutionHeight() / 2);
 		addElement(mediumLevelButton);
 		mediumLevelButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
@@ -64,7 +65,7 @@ public class LevelSelectScene extends Scene{
 		String filename = IMG_FILENAME_PATH + "hardButton" + IMG_EXTENSION;
 		// change from robot to "X" button
 		GImage hardButtonImage = new GImage(filename);
-		this.hardLevelButton = new GButton(hardButtonImage,600,400);
+		this.hardLevelButton = new GButton(hardButtonImage, 11 * MainApplication.getResolutionWidth() / 16,MainApplication.getResolutionHeight() / 2);
 		addElement(hardLevelButton);
 		hardLevelButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
