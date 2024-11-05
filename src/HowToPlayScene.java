@@ -11,7 +11,7 @@ import javax.swing.*;
 public class HowToPlayScene extends Scene{
 	private GLabel label = new GLabel("HowToPlayScene", MainApplication.getResolutionWidth() / 2, MainApplication.getResolutionHeight() / 2);
 	
-	private GButton returnButtom;
+	private GButton returnButton;
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
 	
@@ -22,19 +22,18 @@ public class HowToPlayScene extends Scene{
 	
 	private void drawReturnButton() {
 		String filename = IMG_FILENAME_PATH + "returnButton" + IMG_EXTENSION;
-		// change from robot to "X" button
 		GImage returnButtonImage = new GImage(filename);
-		this.returnButtom = new GButton(returnButtonImage,0,0);
-		addElement(returnButtom);
-		returnButtom.addMouseListener(new MouseAdapter() {
+		this.returnButton = new GButton(returnButtonImage,0,0);
+		addElement(returnButton);
+		returnButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				returnButtom.onClick();
+				returnButton.onClick();
 				// trigger return to main menu
 				System.out.println("Return Button clicked!");
 				mainApp.switchSceneTo(mainApp.MainMenuScene);
 			}
 			public void mouseEntered (MouseEvent e) {
-				returnButtom.onHover();
+				returnButton.onHover();
 			}
 		});
 	}
