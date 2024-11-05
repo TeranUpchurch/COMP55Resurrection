@@ -31,6 +31,9 @@ public class MainApplication extends GraphicsApplication{
 	{
 		if (currentScene != null)
 		{
+			if (!isSubScene(scene)) {
+				sceneHistory.push(currentScene); // // Only push non-sub-scenes to history
+			}
 			System.out.println("Switching scene.");
 			previousScene = currentScene;
 			currentScene.hideContents();
@@ -43,6 +46,33 @@ public class MainApplication extends GraphicsApplication{
 			currentScene = scene;
 			currentScene.showContents();
 		}
+	}
+	
+	/*
+	 * The HowToPlayScene is treated as a subscene
+	 * because it serves as auxiliary information rather than a main gameplay or navigation area.
+	 * Unlike primary scenes such as MainMenuScene or LevelSelectScene,
+	 * which represent key stages of user interaction,
+	 * the HowToPlayScene is a temporary display
+	 * that provides instructions and does not change the game's overall flow.
+	 */
+	/*
+	 * By marking it as a subscene,
+	 * we ensure that it does not disrupt the user's main navigation path.
+	 * When returning from HowToPlayScene, the app goes back to the previous main scene
+	 */
+	public boolean isSubScene (Scene scene) {
+		if (currentScene == HowToPlayScene) {
+			return true;
+		}
+		return false;
+	}
+	
+	public void returnToPreviousScene() {
+		if (!sceneHistory.empty()) {
+			this.previousScene = sceneHistory.pop(); // remove the previous screen from the stack
+		}
+		switchSceneTo(this.previousScene); 
 	}
 	
 	// TODO - Actually make the Game class before this. 

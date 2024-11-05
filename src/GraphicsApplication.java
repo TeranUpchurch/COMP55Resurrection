@@ -23,7 +23,7 @@ public class GraphicsApplication extends GraphicsProgram{
 	
 	// Stack to keep track of previous scene
 	// Handle the returnButton's job
-	private Stack<Scene> sceneHistory = new Stack<>(); 
+	protected Stack<Scene> sceneHistory = new Stack<>(); 
 	
 	public void init() {
 		setSize(RESOLUTION_WIDTH, RESOLUTION_HEIGHT);
@@ -35,15 +35,15 @@ public class GraphicsApplication extends GraphicsProgram{
 		add(label);
 	}
 	
-	public void switchSceneTo(Scene scene, boolean isSubScene)
+	/*
+	 public void switchSceneTo(Scene scene, boolean isSubScene)
 	{
 		if (currentScene != null)
 		{
 			if (!isSubScene) {
-				sceneHistory.push(currentScene); // // Only push non-sub-scenes to history
+				sceneHistory.push(currentScene); // Only push non-subscenes to history
 			}
 			System.out.println("Switching scene.");
-			previousScene = currentScene;
 			currentScene.hideContents();
 			currentScene = scene;
 			currentScene.showContents();
@@ -56,6 +56,7 @@ public class GraphicsApplication extends GraphicsProgram{
 		}
 		
 	}
+	*/
 	
 	public static int getResolutionWidth()
 	{
@@ -73,7 +74,10 @@ public class GraphicsApplication extends GraphicsProgram{
 	}
 	
 	public Scene getPreviousScene() {
-		return previousScene;
+		if (!sceneHistory.empty()) {
+			return sceneHistory.peek();
+		}
+		return null;
 	}
 	
 	public void setCurrentScene(Scene scene)

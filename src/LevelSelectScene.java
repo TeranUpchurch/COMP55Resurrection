@@ -94,7 +94,8 @@ public class LevelSelectScene extends Scene{
 				returnButton.onClick();
 				// trigger return to main menu
 				System.out.println("Return Button clicked!");
-				mainApp.switchSceneTo(mainApp.getPreviousScene());
+				// mainApp.switchSceneTo(mainApp.getPreviousScene());
+				mainApp.returnToPreviousScene();
 			}
 			public void mouseEntered (MouseEvent e) {
 				returnButton.onHover();
