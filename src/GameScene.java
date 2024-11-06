@@ -10,9 +10,10 @@ import javax.swing.*;
 
 public class GameScene extends Scene{
 	private String labelText;
-	private GLabel label = new GLabel(labelText, MainApplication.getResolutionWidth() / 2, MainApplication.getResolutionHeight() / 2);
+	private GLabel label;
 	
 	private GButton returnButton;
+	
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
 	
@@ -46,7 +47,7 @@ public class GameScene extends Scene{
 	public void showContents()
 	{
 		System.out.println("Show contents from this point..");
-		addElement(label);
+		addElement(new GLabel(labelText, MainApplication.getResolutionWidth() / 2, MainApplication.getResolutionHeight() / 2));
 		drawReturnButton();
 	}
 	
