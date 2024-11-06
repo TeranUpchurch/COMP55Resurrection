@@ -13,10 +13,17 @@ public class Robot {
 	private int moveSpeed;
 	private int currencyEarned;
 	private Unit unitAttacking;
-	public boolean flag;
+	public boolean isMoving;
 	
 	public Robot() {
-		
+		image = new GImage("robot.png");
+		health = 100;
+		damage = 20;
+		lane = 1;
+		moveSpeed = 5;
+		currencyEarned = 25;
+		unitAttacking = null;
+		isMoving = true;
 	}
 	
 	public int getImageX() {
