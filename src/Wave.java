@@ -8,6 +8,7 @@ import javax.swing.*;
 public class Wave {
 	ArrayList<Robot> robots;
 	ArrayList<Integer> intervals;
+	
 	private int enemyNum;
 	private Timer waveTimer;
 	private int numTimes;

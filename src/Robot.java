@@ -5,7 +5,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
 
-public class robot {
+public class Robot {
 	private GImage image;
 	private int health;
 	private int damage;
@@ -15,7 +15,7 @@ public class robot {
 	private Unit unitAttacking;
 	public boolean flag;
 	
-	public robot() {
+	public Robot() {
 		
 	}
 	
