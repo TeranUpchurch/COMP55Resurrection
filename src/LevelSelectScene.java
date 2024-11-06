@@ -36,7 +36,7 @@ public class LevelSelectScene extends Scene{
 				easyLevelButton.onClick();
 				// trigger return to main menu
 				System.out.println("Easy Level Button clicked!");
-				mainApp.switchSceneTo(mainApp.MainMenuScene); // for now switch to main menu scene
+				mainApp.switchSceneToGame("Easy"); // for now switch to main menu scene
 			}
 			public void mouseEntered (MouseEvent e) {
 				easyLevelButton.onHover();
@@ -55,7 +55,7 @@ public class LevelSelectScene extends Scene{
 				mediumLevelButton.onClick();
 				// trigger return to main menu
 				System.out.println("Return Button clicked!");
-				mainApp.switchSceneTo(mainApp.MainMenuScene);
+				mainApp.switchSceneToGame("Medium");
 			}
 			public void mouseEntered (MouseEvent e) {
 				mediumLevelButton.onHover();
@@ -74,7 +74,7 @@ public class LevelSelectScene extends Scene{
 				hardLevelButton.onClick();
 				// trigger return to main menu
 				System.out.println("Return Button clicked!");
-				mainApp.switchSceneTo(mainApp.MainMenuScene);
+				mainApp.switchSceneToGame("Hard");
 			}
 			public void mouseEntered (MouseEvent e) {
 				hardLevelButton.onHover();

@@ -12,7 +12,7 @@ public class MainApplication extends GraphicsApplication{
 	public HowToPlayScene HowToPlayScene;
 	public MainMenuScene MainMenuScene;
 	public LevelSelectScene LevelSelectScene;
-	public Scene GameScene;
+	public GameScene GameScene;
 	
 	public void init() {
 		setSize(GraphicsApplication.getResolutionWidth(), GraphicsApplication.getResolutionHeight());
@@ -79,6 +79,7 @@ public class MainApplication extends GraphicsApplication{
 	public void switchSceneToGame(String difficulty)
 	{
 		System.out.println("Switching scene.");
+		GameScene = new GameScene(this, difficulty);
 		currentScene.hideContents();
 		currentScene = GameScene;
 		currentScene.showContents();
