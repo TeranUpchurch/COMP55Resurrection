@@ -45,14 +45,14 @@ public class HowToPlayScene extends Scene{
 	
 	private void drawPauseButton() {
 		String filename = IMG_FILENAME_PATH + "pauseButton" + IMG_EXTENSION;
-		GImage returnButtonImage = new GImage(filename);
-		int returnButtonX = (int)(0);
-		int returnButtonY = (int)(0);
-		this.returnButton = new GButton(returnButtonImage,returnButtonX,returnButtonY);
+		GImage pauseButtonImage = new GImage(filename);
+		int pauseButtonX = (int)(0);
+		int pauseButtonY = (int)(0);
+		this.returnButton = new GButton(pauseButtonImage,pauseButtonX,pauseButtonY);
 		addElement(returnButton);
-		returnButton.addMouseListener(new MouseAdapter() {
+		pauseButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				returnButton.onClick();
+				pauseButton.onClick();
 				// trigger return to main menu
 				System.out.println("Pause Button clicked!");
 				// mainApp.switchSceneTo(mainApp.getPreviousScene());
@@ -60,7 +60,7 @@ public class HowToPlayScene extends Scene{
 				//mainApp.returnToPreviousScene();
 			}
 			public void mouseEntered (MouseEvent e) {
-				returnButton.onHover();
+				pauseButton.onHover();
 			}
 		});
 	}
