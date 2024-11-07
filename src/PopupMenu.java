@@ -3,7 +3,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PopupMenu extends MainApplication{
+public class PopupMenu {
 	protected List<GObject> menuElements = new ArrayList<>();
 	protected GCompound overlay = new GCompound();
 	protected boolean isVisible = false;
