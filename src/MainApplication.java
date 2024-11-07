@@ -13,6 +13,7 @@ public class MainApplication extends GraphicsApplication{
 	public MainMenuScene MainMenuScene;
 	public LevelSelectScene LevelSelectScene;
 	public GameScene GameScene;
+	public PauseMenu pauseMenu;
 	
 	public void init() {
 		setSize(GraphicsApplication.getResolutionWidth(), GraphicsApplication.getResolutionHeight());

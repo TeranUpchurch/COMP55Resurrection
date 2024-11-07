@@ -55,9 +55,8 @@ public class HowToPlayScene extends Scene{
 				pauseButton.onClick();
 				// trigger return to main menu
 				System.out.println("Pause Button clicked!");
-				// mainApp.switchSceneTo(mainApp.getPreviousScene());
-				
-				mainApp.returnToPreviousScene(); // just for now
+				PauseMenu pauseMenu = new PauseMenu ("media/pauseMenu.png");
+				pauseMenu.showPopup(mainApp); // Display the pause menu
 			}
 			public void mouseEntered (MouseEvent e) {
 				pauseButton.onHover();

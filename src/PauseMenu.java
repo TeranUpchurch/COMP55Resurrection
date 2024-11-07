@@ -1,42 +1,50 @@
 import acm.graphics.*;
-import acm.program.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.util.ArrayList;
-import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 
-// The level select scene that contains buttons to select
-// difficulty level of game..
-
-public class PauseMenu extends Scene{
-	private GLabel label = new GLabel("PausMenu", MainApplication.getResolutionWidth() / 2, MainApplication.getResolutionHeight() / 4);
+public class PauseMenu extends PopupMenu{
+	private GLabel label = new GLabel("pauseMenu", MainApplication.getResolutionWidth() / 2, MainApplication.getResolutionHeight() / 4);
 	
 	private GImage pauseMenu;
+	private GButton exitButton;
 
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
 	
-	public PauseMenu(MainApplication mainApp)
+	public PauseMenu(String imagePath)
 	{
-		super(mainApp);
+		super(imagePath);  // Use the image as the background for the popup
+		
+		this.exitButton = drawButton("exitButton", 1000, 200); // JUST FOR NOW
+		
+		addMenuElement(exitButton);
+		
+		addActionListeners();
+		
+		
 	}
 	
-	
-	
-	public void showContents()
-	{
-		System.out.println("Show contents from this point..");
-		addElement(label);
+	private GButton drawButton(String lable, double x, double y) {
+		GImage image = new GImage(IMG_FILENAME_PATH + "exitButton" + IMG_EXTENSION);
+		GButton button = new GButton(image, x, y);
+		
+		return button;
 	}
 	
-	public void hideContents()
-	{
-		System.out.println("Hide contents from this point..");
-		for (GObject obj : new ArrayList<>(activeContents)) // create a copy to avoid modification
-		{
-			removeElement(obj);
-		}
+	private void addActionListeners() {
+		exitButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				handleExit();
+			}
+		});
 	}
+	
+	private void handleExit() {
+        System.out.println("Exiting to main menu...");
+        // Logic to exit to main menu (e.g., loading MainMenuScene)
+    }
+	
 	
 	public void mousePressed(MouseEvent e) {
 		System.out.println("Mouse pressed.");
