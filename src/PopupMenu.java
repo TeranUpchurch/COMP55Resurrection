@@ -10,6 +10,7 @@ public class PopupMenu {
 	
 	public PopupMenu(String imagePath) {
 		GImage background = new GImage (imagePath);
+		background.setLocation((MainApplication.getResolutionWidth() - background.getWidth()) / 2, (MainApplication.getResolutionHeight() - background.getHeight()) / 2);
 		this.overlay.add(background);
 		this.menuElements.add(background);
 	}
