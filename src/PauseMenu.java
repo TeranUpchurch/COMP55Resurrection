@@ -19,7 +19,6 @@ public class PauseMenu extends PopupMenu{
 		String filename = IMG_FILENAME_PATH + "pauseMenu" + IMG_EXTENSION;
 		this.pauseMenu = new GImage(filename);
 		this.biggerExitButton = drawButton("biggerExitButton", pauseMenu);
-		System.out.println(pauseMenu.getWidth());
 		
 		addMenuElement(biggerExitButton);
 		
@@ -31,8 +30,6 @@ public class PauseMenu extends PopupMenu{
 	private GButton drawButton(String lable, GImage backgroundImage) {
 		GImage image = new GImage(IMG_FILENAME_PATH + lable + IMG_EXTENSION);
 		
-	    System.out.println(image.getWidth());
-	    
 		double x = (MainApplication.getResolutionWidth() - backgroundImage.getWidth()) / 2 + 30;
 		double y = MainApplication.getResolutionHeight() * 0.4;
 		GButton button = new GButton(image, x, y);
