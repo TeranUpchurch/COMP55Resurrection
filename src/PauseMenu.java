@@ -8,6 +8,7 @@ public class PauseMenu extends PopupMenu{
 	
 	private GImage pauseMenu;
 	private GButton biggerRestartButton;
+	private GButton resumeButton;
 
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
@@ -16,22 +17,34 @@ public class PauseMenu extends PopupMenu{
 	{
 		super(imagePath);  // Use the image as the background for the popup
 		
-		String filename = IMG_FILENAME_PATH + "pauseMenu" + IMG_EXTENSION;
-		this.pauseMenu = new GImage(filename);
-		this.biggerRestartButton = drawButton("biggerRestartButton", pauseMenu);
+		String filename1 = IMG_FILENAME_PATH + "pauseMenu" + IMG_EXTENSION;
+		this.pauseMenu = new GImage(filename1);
+		this.biggerRestartButton = drawRestartButton("biggerRestartButton", pauseMenu);
+		this.resumeButton = drawResumeButton("resumeButton", pauseMenu);
 		
 		addMenuElement(biggerRestartButton);
+		addMenuElement(resumeButton);
 		
 		addActionListeners();
 		
 		
 	}
 	
-	private GButton drawButton(String lable, GImage backgroundImage) {
+	private GButton drawRestartButton(String lable, GImage backgroundImage) {
 		GImage image = new GImage(IMG_FILENAME_PATH + lable + IMG_EXTENSION);
 		
 		double x = (MainApplication.getResolutionWidth() - backgroundImage.getWidth()) / 2 + 30;
 		double y = MainApplication.getResolutionHeight() * 0.4;
+		GButton button = new GButton(image, x, y);
+		
+		return button;
+	}
+	
+	private GButton drawResumeButton(String lable, GImage backgroundImage) {
+		GImage image = new GImage(IMG_FILENAME_PATH + lable + IMG_EXTENSION);
+		
+		double x = (MainApplication.getResolutionWidth() - image.getWidth()) / 2;
+		double y = MainApplication.getResolutionHeight() * 0.65;
 		GButton button = new GButton(image, x, y);
 		
 		return button;
