@@ -7,7 +7,7 @@ public class PauseMenu extends PopupMenu{
 	private GLabel label = new GLabel("pauseMenu", MainApplication.getResolutionWidth() / 2, MainApplication.getResolutionHeight() / 4);
 	
 	private GImage pauseMenu;
-	private GButton biggerExitButton;
+	private GButton biggerRestartButton;
 
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
@@ -18,9 +18,9 @@ public class PauseMenu extends PopupMenu{
 		
 		String filename = IMG_FILENAME_PATH + "pauseMenu" + IMG_EXTENSION;
 		this.pauseMenu = new GImage(filename);
-		this.biggerExitButton = drawButton("biggerExitButton", pauseMenu);
+		this.biggerRestartButton = drawButton("biggerRestartButton", pauseMenu);
 		
-		addMenuElement(biggerExitButton);
+		addMenuElement(biggerRestartButton);
 		
 		addActionListeners();
 		
@@ -38,7 +38,7 @@ public class PauseMenu extends PopupMenu{
 	}
 	
 	private void addActionListeners() {
-		biggerExitButton.addActionListener(new ActionListener() {
+		biggerRestartButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				handleExit();
 			}
