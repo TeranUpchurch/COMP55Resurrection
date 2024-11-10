@@ -3,6 +3,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class RestartConfirmation extends PopupMenu{
+	private static final int BUTTON_DISTANCE = 305;
+	
 	private GImage restartBackground;
 	private GButton confirmButton;
 	private GButton cancelButton;
@@ -34,7 +36,7 @@ public class RestartConfirmation extends PopupMenu{
 	private GButton drawConfirmButton(String label, GImage background) {
 		GImage image = new GImage(IMG_FILENAME_PATH + label + IMG_EXTENSION);
 		
-		double x = (MainApplication.getResolutionWidth() - (0.9)*background.getWidth());
+		double x = (MainApplication.getResolutionWidth() - image.getWidth()) / 3 + BUTTON_DISTANCE;
 		double y = MainApplication.getResolutionHeight() * 0.60;
 		GButton button = new GButton(image, x, y);
 		return button;
