@@ -14,16 +14,28 @@ public class RestartConfirmation extends PopupMenu{
 		super(imagePath);
 		String filename = IMG_FILENAME_PATH + "restartBackground" + IMG_EXTENSION;
 		this.restartBackground = new GImage(filename);
-		this.confirmButton = drawButton("confirmButton", 100, 100); // JUST FOR NOW
-		this.cancelButton = drawButton("cancelButton", 200, 200); // JUST FOR NOW
+		this.confirmButton = drawConfirmButton("confirmButton", restartBackground); // JUST FOR NOW
+		this.cancelButton = drawCancelButton("cancelButton", restartBackground); // JUST FOR NOW
 		
 		addMenuElement(confirmButton);
 		addMenuElement(cancelButton);
 		addMouseListeners();
 	}
 	
-	private GButton drawButton(String label, double x, double y) {
+	private GButton drawCancelButton(String label, GImage background) {
 		GImage image = new GImage(IMG_FILENAME_PATH + label + IMG_EXTENSION);
+		
+		double x = (MainApplication.getResolutionWidth() - image.getWidth()) / 3;
+		double y = MainApplication.getResolutionHeight() * 0.60;
+		GButton button = new GButton(image, x, y);
+		return button;
+	}
+	
+	private GButton drawConfirmButton(String label, GImage background) {
+		GImage image = new GImage(IMG_FILENAME_PATH + label + IMG_EXTENSION);
+		
+		double x = (MainApplication.getResolutionWidth() - (0.9)*background.getWidth());
+		double y = MainApplication.getResolutionHeight() * 0.60;
 		GButton button = new GButton(image, x, y);
 		return button;
 	}
