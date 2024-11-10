@@ -11,6 +11,7 @@ public class PauseMenu extends PopupMenu{
 	private GButton biggerRestartButton;
 	private GButton resumeButton;
 	private MainApplication mainApp;
+	private RestartConfirmation restartConfirmation;
 
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
@@ -68,8 +69,12 @@ public class PauseMenu extends PopupMenu{
 	}
 	
 	private void handleRestart() {
-		System.out.println("Restarting game...");
+		System.out.println("Restart button clicked: Showing confirmation dialog.");
+		hidePopup(this.mainApp);
 		// Logic to restart the game (e.g., restarting level)
+		String filename = IMG_FILENAME_PATH + "restartBackground" + IMG_EXTENSION;
+		this.restartConfirmation = new RestartConfirmation(filename, mainApp);
+		this.restartConfirmation.showPopup(mainApp); // Display the confirmation menu
 	}
 	private void handleResume() {
 		System.out.println("Resuming game...");
