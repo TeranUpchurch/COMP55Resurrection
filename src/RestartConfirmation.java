@@ -9,12 +9,17 @@ public class RestartConfirmation extends PopupMenu{
 	private GImage restartBackground;
 	private GButton confirmButton;
 	private GButton cancelButton;
+	private MainApplication mainApp;
+	private PauseMenu pauseMenu;
 	
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
 	
-	public RestartConfirmation(String imagePath, MainApplication mainApp) {
+	public RestartConfirmation(String imagePath, MainApplication mainApp, PauseMenu pauseMenu) {
 		super(imagePath);
+		this.pauseMenu = pauseMenu;
+		this.mainApp = mainApp;
+		
 		String filename = IMG_FILENAME_PATH + "restartBackground" + IMG_EXTENSION;
 		this.restartBackground = new GImage(filename);
 		this.confirmButton = drawConfirmButton("confirmButton", restartBackground); 
@@ -64,6 +69,8 @@ public class RestartConfirmation extends PopupMenu{
 	
 	private void handleCancel() {
 		System.out.println("Cancel");
+		hidePopup(mainApp);
+		pauseMenu.showPopup(mainApp);
 	}
 	
 }

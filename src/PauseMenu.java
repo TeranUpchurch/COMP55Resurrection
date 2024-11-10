@@ -76,7 +76,7 @@ public class PauseMenu extends PopupMenu{
 		hidePopup(this.mainApp);
 		// Logic to restart the game (e.g., restarting level)
 		String filename = IMG_FILENAME_PATH + "restartBackground" + IMG_EXTENSION;
-		this.restartConfirmation = new RestartConfirmation(filename, mainApp);
+		this.restartConfirmation = new RestartConfirmation(filename, mainApp, this);
 		this.restartConfirmation.showPopup(mainApp); // Display the confirmation menu
 	}
 	private void handleResume() {
