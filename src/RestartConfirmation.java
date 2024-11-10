@@ -3,6 +3,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class RestartConfirmation extends PopupMenu{
+	private static final double Y_RATIO = 0.60;
 	private static final int BUTTON_DISTANCE = 305;
 	
 	private GImage restartBackground;
@@ -16,8 +17,8 @@ public class RestartConfirmation extends PopupMenu{
 		super(imagePath);
 		String filename = IMG_FILENAME_PATH + "restartBackground" + IMG_EXTENSION;
 		this.restartBackground = new GImage(filename);
-		this.confirmButton = drawConfirmButton("confirmButton", restartBackground); // JUST FOR NOW
-		this.cancelButton = drawCancelButton("cancelButton", restartBackground); // JUST FOR NOW
+		this.confirmButton = drawConfirmButton("confirmButton", restartBackground); 
+		this.cancelButton = drawCancelButton("cancelButton", restartBackground);
 		
 		addMenuElement(confirmButton);
 		addMenuElement(cancelButton);
@@ -28,7 +29,7 @@ public class RestartConfirmation extends PopupMenu{
 		GImage image = new GImage(IMG_FILENAME_PATH + label + IMG_EXTENSION);
 		
 		double x = (MainApplication.getResolutionWidth() - image.getWidth()) / 3;
-		double y = MainApplication.getResolutionHeight() * 0.60;
+		double y = MainApplication.getResolutionHeight() * Y_RATIO;
 		GButton button = new GButton(image, x, y);
 		return button;
 	}
@@ -37,7 +38,7 @@ public class RestartConfirmation extends PopupMenu{
 		GImage image = new GImage(IMG_FILENAME_PATH + label + IMG_EXTENSION);
 		
 		double x = (MainApplication.getResolutionWidth() - image.getWidth()) / 3 + BUTTON_DISTANCE;
-		double y = MainApplication.getResolutionHeight() * 0.60;
+		double y = MainApplication.getResolutionHeight() * Y_RATIO;
 		GButton button = new GButton(image, x, y);
 		return button;
 	}
