@@ -1,6 +1,7 @@
 import acm.graphics.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class PauseMenu extends PopupMenu{
@@ -9,13 +10,15 @@ public class PauseMenu extends PopupMenu{
 	private GImage pauseMenu;
 	private GButton biggerRestartButton;
 	private GButton resumeButton;
+	private MainApplication mainApp;
 
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
 	
-	public PauseMenu(String imagePath)
+	public PauseMenu(String imagePath, MainApplication mainApp)
 	{
 		super(imagePath);  // Use the image as the background for the popup
+		this.mainApp = mainApp;
 		
 		String filename1 = IMG_FILENAME_PATH + "pauseMenu" + IMG_EXTENSION;
 		this.pauseMenu = new GImage(filename1);
@@ -25,8 +28,7 @@ public class PauseMenu extends PopupMenu{
 		addMenuElement(biggerRestartButton);
 		addMenuElement(resumeButton);
 		
-		addActionListeners();
-		
+		addMouseListeners();
 		
 	}
 	
@@ -50,12 +52,28 @@ public class PauseMenu extends PopupMenu{
 		return button;
 	}
 	
-	private void addActionListeners() {
-		biggerRestartButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				handleExit();
+	//TODO: ADD FOR ANOTHER BUTTONS
+	private void addMouseListeners() {
+		biggerRestartButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				handleRestart();
 			}
 		});
+		
+		resumeButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				handleResume();
+			}
+		});
+	}
+	
+	private void handleRestart() {
+		System.out.println("Restarting game...");
+		// Logic to restart the game (e.g., restarting level)
+	}
+	private void handleResume() {
+		System.out.println("Resuming game...");
+		hidePopup(this.mainApp);
 	}
 	
 	private void handleExit() {
