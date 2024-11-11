@@ -16,7 +16,7 @@ public class PauseMenu extends PopupMenu{
 	private GButton resumeButton;
 	private MainApplication mainApp;
 	private RestartConfirmation restartConfirmation;
-	private LevelSelectConfirmation levelSelectConfirmation;
+	private LevelMenuConfirmation levelMenuConfirmation;
 
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
@@ -105,9 +105,9 @@ public class PauseMenu extends PopupMenu{
 		System.out.println("LevelSelect button clicked: Showing confirmation dialog.");
 		hidePopup(this.mainApp);
 		// Logic to go to level select from the game (e.g., exit level and select new difficulty)
-		String filename = IMG_FILENAME_PATH + "levelSelectBackground" + IMG_EXTENSION;
-		this.levelSelectConfirmation = new LevelSelectConfirmation(filename, mainApp, this);
-		this.levelSelectConfirmation.showPopup(mainApp); // Display the confirmation menu
+		String filename = IMG_FILENAME_PATH + "levelMenuBackground" + IMG_EXTENSION;
+		this.levelMenuConfirmation = new LevelMenuConfirmation(filename, mainApp, this);
+		this.levelMenuConfirmation.showPopup(mainApp); // Display the confirmation menu
 	}
 	
 	private void handleResume() {
