@@ -48,16 +48,15 @@ public class HowToPlayScene extends Scene{
 		GImage pauseButtonImage = new GImage(filename);
 		int pauseButtonX = (int)(0);
 		int pauseButtonY = (int)(0);
-		this.returnButton = new GButton(pauseButtonImage,pauseButtonX,pauseButtonY);
-		addElement(returnButton);
+		this.pauseButton = new GButton(pauseButtonImage,pauseButtonX,pauseButtonY);
+		addElement(pauseButton);
 		pauseButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				pauseButton.onClick();
 				// trigger return to main menu
 				System.out.println("Pause Button clicked!");
-				// mainApp.switchSceneTo(mainApp.getPreviousScene());
-				
-				//mainApp.returnToPreviousScene();
+				PauseMenu pauseMenu = new PauseMenu ("media/pauseMenu.png", mainApp);
+				pauseMenu.showPopup(mainApp); // Display the pause menu
 			}
 			public void mouseEntered (MouseEvent e) {
 				pauseButton.onHover();
