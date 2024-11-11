@@ -12,9 +12,11 @@ public class PauseMenu extends PopupMenu{
 	
 	private GImage pauseMenu;
 	private GButton biggerRestartButton;
+	private GButton biggerLevelMenuButton;
 	private GButton resumeButton;
 	private MainApplication mainApp;
 	private RestartConfirmation restartConfirmation;
+	private LevelSelectConfirmation levelSelectConfirmation;
 
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
@@ -27,9 +29,12 @@ public class PauseMenu extends PopupMenu{
 		String filename1 = IMG_FILENAME_PATH + "pauseMenu" + IMG_EXTENSION;
 		this.pauseMenu = new GImage(filename1);
 		this.biggerRestartButton = drawRestartButton("biggerRestartButton", pauseMenu);
+		this.biggerLevelMenuButton = drawLevelSelectButton("biggerLevelSelectButton", pauseMenu);		
 		this.resumeButton = drawResumeButton("resumeButton", pauseMenu);
 		
 		addMenuElement(biggerRestartButton);
+		addMenuElement(biggerLevelMenuButton);
+
 		addMenuElement(resumeButton);
 		
 		addMouseListeners();
@@ -43,6 +48,16 @@ public class PauseMenu extends PopupMenu{
 		double y = MainApplication.getResolutionHeight() * Y_RATIO;
 		GButton button = new GButton(image, x, y);
 		
+		return button;
+	}
+	
+	private GButton drawLevelSelectButton(String lable, GImage backgroundImage) {
+		GImage image = new GImage(IMG_FILENAME_PATH + lable + IMG_EXTENSION);
+		
+		double x = (MainApplication.getResolutionWidth() - backgroundImage.getWidth()) / 2;
+		double y = MainApplication.getResolutionHeight() * Y_RATIO;
+		GButton button = new GButton(image, x, y);
+
 		return button;
 	}
 	
@@ -64,6 +79,12 @@ public class PauseMenu extends PopupMenu{
 			}
 		});
 		
+		biggerLevelMenuButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				handleLevelSelect();
+			}
+		});
+		
 		resumeButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				handleResume();
@@ -79,6 +100,16 @@ public class PauseMenu extends PopupMenu{
 		this.restartConfirmation = new RestartConfirmation(filename, mainApp, this);
 		this.restartConfirmation.showPopup(mainApp); // Display the confirmation menu
 	}
+	
+	private void handleLevelSelect() {
+		System.out.println("LevelSelect button clicked: Showing confirmation dialog.");
+		hidePopup(this.mainApp);
+		// Logic to go to level select from the game (e.g., exit level and select new difficulty)
+		String filename = IMG_FILENAME_PATH + "levelSelectBackground" + IMG_EXTENSION;
+		this.levelSelectConfirmation = new LevelSelectConfirmation(filename, mainApp, this);
+		this.levelSelectConfirmation.showPopup(mainApp); // Display the confirmation menu
+	}
+	
 	private void handleResume() {
 		System.out.println("Resuming game...");
 		hidePopup(this.mainApp);
