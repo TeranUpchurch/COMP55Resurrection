@@ -26,6 +26,15 @@ public class Robot {
 		isMoving = true;
 	}
 	
+	public Robot(GImage image, int health, int damage, int lane, int moveSpeed, int currencyEarned) {
+		this.image = image;
+		this.health = health;
+		this.damage = damage;
+		this.lane = lane;
+		this.moveSpeed = moveSpeed;
+		this.currencyEarned = currencyEarned;
+	}
+	
 	public int getImageX() {
 		return 0;
 	}
