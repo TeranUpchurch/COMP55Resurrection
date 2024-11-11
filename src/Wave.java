@@ -11,7 +11,7 @@ public class Wave {
 	
 	private int enemyNum = 0;
 	private GameTimer waveTimer;
-	private int MS = 500;
+	private int MS = 100;
 	private int numTimes = 0;
 	private int arraySize;
 	
@@ -61,10 +61,10 @@ public class Wave {
 		robots1.add(new Robot());
 		robots1.add(new Robot());
 		ArrayList<Integer> intervals1 = new ArrayList<Integer>();
-		intervals1.add(2);
-		intervals1.add(4);
-		intervals1.add(6);
-		intervals1.add(8);
+		intervals1.add(10);
+		intervals1.add(10);
+		intervals1.add(10);
+		intervals1.add(10);
 		Wave wave = new Wave(robots1, intervals1);
 		wave.stepThrough();
 	}
