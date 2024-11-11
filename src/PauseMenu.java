@@ -54,7 +54,7 @@ public class PauseMenu extends PopupMenu{
 	private GButton drawLevelMenuButton(String lable, GImage backgroundImage) {
 		GImage image = new GImage(IMG_FILENAME_PATH + lable + IMG_EXTENSION);
 		
-		double x = (MainApplication.getResolutionWidth() - backgroundImage.getWidth()) / 2;
+		double x = (MainApplication.getResolutionWidth() - backgroundImage.getWidth()) / 2 + 240;
 		double y = MainApplication.getResolutionHeight() * Y_RATIO;
 		GButton button = new GButton(image, x, y);
 
