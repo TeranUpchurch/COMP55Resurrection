@@ -29,7 +29,7 @@ public class PauseMenu extends PopupMenu{
 		String filename1 = IMG_FILENAME_PATH + "pauseMenu" + IMG_EXTENSION;
 		this.pauseMenu = new GImage(filename1);
 		this.biggerRestartButton = drawRestartButton("biggerRestartButton", pauseMenu);
-		this.biggerLevelMenuButton = drawLevelSelectButton("biggerLevelSelectButton", pauseMenu);		
+		this.biggerLevelMenuButton = drawLevelMenuButton("biggerLevelMenuButton", pauseMenu);		
 		this.resumeButton = drawResumeButton("resumeButton", pauseMenu);
 		
 		addMenuElement(biggerRestartButton);
@@ -51,7 +51,7 @@ public class PauseMenu extends PopupMenu{
 		return button;
 	}
 	
-	private GButton drawLevelSelectButton(String lable, GImage backgroundImage) {
+	private GButton drawLevelMenuButton(String lable, GImage backgroundImage) {
 		GImage image = new GImage(IMG_FILENAME_PATH + lable + IMG_EXTENSION);
 		
 		double x = (MainApplication.getResolutionWidth() - backgroundImage.getWidth()) / 2;
