@@ -13,10 +13,13 @@ public class PauseMenu extends PopupMenu{
 	private GImage pauseMenu;
 	private GButton biggerRestartButton;
 	private GButton biggerLevelMenuButton;
+	private GButton biggerExitButton;
 	private GButton resumeButton;
 	private MainApplication mainApp;
 	private RestartConfirmation restartConfirmation;
 	private LevelMenuConfirmation levelMenuConfirmation;
+	private ExitConfirmation exitConfirmation;
+
 
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
@@ -29,11 +32,13 @@ public class PauseMenu extends PopupMenu{
 		String filename1 = IMG_FILENAME_PATH + "pauseMenu" + IMG_EXTENSION;
 		this.pauseMenu = new GImage(filename1);
 		this.biggerRestartButton = drawRestartButton("biggerRestartButton", pauseMenu);
-		this.biggerLevelMenuButton = drawLevelMenuButton("biggerLevelMenuButton", pauseMenu);		
+		this.biggerLevelMenuButton = drawLevelMenuButton("biggerLevelMenuButton", pauseMenu);
+		this.biggerExitButton = drawExitButton("biggerExitButton", pauseMenu);		
 		this.resumeButton = drawResumeButton("resumeButton", pauseMenu);
 		
 		addMenuElement(biggerRestartButton);
 		addMenuElement(biggerLevelMenuButton);
+		addMenuElement(biggerExitButton);
 
 		addMenuElement(resumeButton);
 		
@@ -55,6 +60,16 @@ public class PauseMenu extends PopupMenu{
 		GImage image = new GImage(IMG_FILENAME_PATH + lable + IMG_EXTENSION);
 		
 		double x = (MainApplication.getResolutionWidth() - backgroundImage.getWidth()) / 2 + 240;
+		double y = MainApplication.getResolutionHeight() * Y_RATIO;
+		GButton button = new GButton(image, x, y);
+
+		return button;
+	}
+	
+	private GButton drawExitButton(String lable, GImage backgroundImage) {
+		GImage image = new GImage(IMG_FILENAME_PATH + lable + IMG_EXTENSION);
+		
+		double x = (MainApplication.getResolutionWidth() - backgroundImage.getWidth()) / 2 + 450;
 		double y = MainApplication.getResolutionHeight() * Y_RATIO;
 		GButton button = new GButton(image, x, y);
 
@@ -85,6 +100,14 @@ public class PauseMenu extends PopupMenu{
 			}
 		});
 		
+
+		biggerExitButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				handleExit();
+			}
+		});
+		
+		
 		resumeButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				handleResume();
@@ -101,6 +124,15 @@ public class PauseMenu extends PopupMenu{
 		this.restartConfirmation.showPopup(mainApp); // Display the confirmation menu
 	}
 	
+	private void handleExit() {
+		System.out.println("Exit button clicked: Showing confirmation dialog.");
+		hidePopup(this.mainApp);
+		// Logic to exit level to main menu (e.g., exiting level)
+		String filename = IMG_FILENAME_PATH + "exitBackground" + IMG_EXTENSION;
+		this.exitConfirmation = new ExitConfirmation(filename, mainApp, this);
+		this.exitConfirmation.showPopup(mainApp); // Display the confirmation menu
+	}
+	
 	private void handleLevelSelect() {
 		System.out.println("LevelSelect button clicked: Showing confirmation dialog.");
 		hidePopup(this.mainApp);
@@ -115,9 +147,5 @@ public class PauseMenu extends PopupMenu{
 		hidePopup(this.mainApp);
 	}
 	
-	private void handleExit() {
-        System.out.println("Exiting to main menu...");
-        // Logic to exit to main menu (e.g., loading MainMenuScene)
-    }
 
 }

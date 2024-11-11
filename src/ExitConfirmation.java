@@ -2,11 +2,11 @@ import acm.graphics.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class LevelMenuConfirmation extends PopupMenu{
+public class ExitConfirmation extends PopupMenu{
 	private static final double Y_RATIO = 0.60;
 	private static final int BUTTON_DISTANCE = 305;
 	
-	private GImage levelMenuBackground;
+	private GImage exitBackground;
 	private GButton confirmButton;
 	private GButton cancelButton;
 	private MainApplication mainApp;
@@ -15,15 +15,15 @@ public class LevelMenuConfirmation extends PopupMenu{
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
 	
-	public LevelMenuConfirmation(String imagePath, MainApplication mainApp, PauseMenu pauseMenu) {
+	public ExitConfirmation(String imagePath, MainApplication mainApp, PauseMenu pauseMenu) {
 		super(imagePath);
 		this.pauseMenu = pauseMenu;
 		this.mainApp = mainApp;
 		
-		String filename = IMG_FILENAME_PATH + "levelMenuBackground" + IMG_EXTENSION;
-		this.levelMenuBackground = new GImage(filename);
-		this.confirmButton = drawConfirmButton("confirmButton", levelMenuBackground); 
-		this.cancelButton = drawCancelButton("cancelButton", levelMenuBackground);
+		String filename = IMG_FILENAME_PATH + "exitBackground" + IMG_EXTENSION;
+		this.exitBackground = new GImage(filename);
+		this.confirmButton = drawConfirmButton("confirmButton", exitBackground); 
+		this.cancelButton = drawCancelButton("cancelButton", exitBackground);
 		
 		addMenuElement(confirmButton);
 		addMenuElement(cancelButton);
@@ -64,9 +64,9 @@ public class LevelMenuConfirmation extends PopupMenu{
 	}
 	
 	private void handleConfirm() {
-		System.out.println("Exiting to level select scene...");
+		System.out.println("Exiting to main menu scene...");
 		hidePopup(mainApp);
-		mainApp.switchSceneTo(mainApp.LevelSelectScene);
+		mainApp.switchSceneTo(mainApp.MainMenuScene);
 	}
 	
 	private void handleCancel() {
