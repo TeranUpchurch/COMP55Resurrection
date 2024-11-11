@@ -65,6 +65,7 @@ public class RestartConfirmation extends PopupMenu{
 	
 	private void handleConfirm() {
 		System.out.println("Restarting game...");
+		// TODO restart the level
 	}
 	
 	private void handleCancel() {
