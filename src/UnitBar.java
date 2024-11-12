@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import javax.swing.*;
 import java.util.List;
 
+// at the top of the screen is a unit bar that has all of the player units in it.
+// the player can click and drag on a unit in the unit bar and place it down anywhere on the grid (if they have enough currency to afford it)
 public class UnitBar {
 	private static final int Y_UNIT_BAR = 20;
 	private static final int X_UNIT_BAR = 20;
@@ -28,7 +30,7 @@ public class UnitBar {
 			scene.addElement(unit); // Add to display so it appears on screen
 		}
 	}
-	
+	// handles how many units are in the unit bar
 	public GImage handleMousePressed(double x, double y) {
 		String[] unit = {"soldier", "machineGun"};
 		for (int i = 0; i < unitBar.size(); i++) {
