@@ -15,6 +15,7 @@ public class ExitConfirmation extends PopupMenu{
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
 	
+	// handles exiting the game
 	public ExitConfirmation(String imagePath, MainApplication mainApp, PauseMenu pauseMenu) {
 		super(imagePath);
 		this.pauseMenu = pauseMenu;
@@ -63,12 +64,14 @@ public class ExitConfirmation extends PopupMenu{
 		
 	}
 	
+	// exits the game
 	private void handleConfirm() {
 		System.out.println("Exiting to main menu scene...");
 		hidePopup(mainApp);
 		mainApp.switchSceneTo(mainApp.MainMenuScene);
 	}
 	
+	// if the player hits a button then realizes they don't want to use the function they clicked on, this handles them canceling that function
 	private void handleCancel() {
 		System.out.println("Cancel");
 		hidePopup(mainApp);
