@@ -12,8 +12,6 @@ public class GameScene extends Scene{
 	private String labelText;
 	private GLabel label;
 	
-	private GButton returnButton;
-	
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
 	
@@ -23,32 +21,10 @@ public class GameScene extends Scene{
 		labelText = difficulty;
 	}
 	
-	private void drawReturnButton() {
-		String filename = IMG_FILENAME_PATH + "returnButton" + IMG_EXTENSION;
-		GImage returnButtonImage = new GImage(filename);
-		int returnButtonX = (int)(MainApplication.getResolutionWidth() * 0.90);
-		int returnButtonY = (int)(MainApplication.getResolutionHeight() * 0.02);
-		this.returnButton = new GButton(returnButtonImage,returnButtonX,returnButtonY);
-		addElement(returnButton);
-		returnButton.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				returnButton.onClick();
-				// trigger return to main menu
-				System.out.println("Return Button clicked!");
-				// mainApp.switchSceneTo(mainApp.getPreviousScene());
-				mainApp.returnToPreviousScene();
-			}
-			public void mouseEntered (MouseEvent e) {
-				returnButton.onHover();
-			}
-		});
-	}
-	
 	public void showContents()
 	{
 		System.out.println("Show contents from this point..");
 		addElement(new GLabel(labelText, MainApplication.getResolutionWidth() / 2, MainApplication.getResolutionHeight() / 2));
-		drawReturnButton();
 	}
 	
 	public void hideContents()
