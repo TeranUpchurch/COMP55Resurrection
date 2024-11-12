@@ -5,7 +5,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
 
-
+// this class handles creating the player unit, or the units that the player will use to defeat enemies
 public class Unit {
 	private GImage image;
 	private int health;
@@ -43,11 +43,12 @@ public class Unit {
 	            routineTimer.stop();
 	        }
 	    }
-	
+	// checks if a player unit is upgradable to a stronger unit
 	public boolean isItUpgradable(boolean upgrade) {
 		return this.upgradable && upgrade && unitToUpgradeTo != null;
 	}
 	
+	// checks if an enemy is in the same lane as the player unit. If it is, the player unit starts attacking the enemy
 	public boolean checkForEnemy(boolean robotLocation) {
 		return robotLocation;
 	}
@@ -56,9 +57,10 @@ public class Unit {
 		System.out.println("Unit attacking robot in lane " + lane);
 	}
 	
+	// handles enemies dealing damage to the player unit
 	public int takeDamage(int damage) {
 		health -= damage;
-        if (health <= 0) {
+        if (health <= 0) { 
             health = 0;
             System.out.println("Unit destroyed");
         } 
@@ -67,7 +69,7 @@ public class Unit {
         }
         return health;
 	}
-	
+	// if the player unit's health hits zero
 	public boolean isDeath() {
 		return health <= 0; 
 	}
