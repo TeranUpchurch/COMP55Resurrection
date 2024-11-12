@@ -47,7 +47,7 @@ public class GameScene extends Scene{
 			}
 		});
 	}
-	
+	// when clicking certain buttons, a new screen will pop up. showContents makes the screens pop up, while hideContents makes them disappear
 	public void showContents()
 	{
 		System.out.println("Show contents from this point..");
