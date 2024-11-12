@@ -57,7 +57,7 @@ public class GameScene extends Scene{
 		
 		for (int i = 0; i < unitsImages.length; i++) {
 			GImage unit = new GImage(IMG_FILENAME_PATH + unitsImages[i] + IMG_EXTENSION);
-			unit.setLocation(xStart, yStart);
+			unit.setLocation(xStart + unit.getWidth()*(i), yStart );
 			unitBar.add(unit); // Add to unitBar list for tracking
 			addElement(unit); // Add to display so it appears on screen
 		}
@@ -87,7 +87,7 @@ public class GameScene extends Scene{
 		for (int i = 0; i < unitBar.size(); i++) {
 			GImage itemUnitBar = unitBar.get(i);
 			if (itemUnitBar.contains(e.getX(), e.getY())) {
-				String[] unit = {"soldier"};
+				String[] unit = {"soldier", "machineGun"};
 				selectedUnit = new GImage(IMG_FILENAME_PATH + unit[i] + IMG_EXTENSION);
 				selectedUnit.setLocation(e.getX() - selectedUnit.getWidth() / 2, e.getY() - selectedUnit.getHeight() / 2);
 				addElement(selectedUnit);
@@ -101,7 +101,7 @@ public class GameScene extends Scene{
 		System.out.println("Mouse released.");
 		// When mouse is released, print out the coordinates and placed unit
 		if (selectedUnit != null) {
-			System.out.println("Item placed at x: " + selectedUnit.getX() + "; y: " + selectedUnit.getY());
+			System.out.println("Unit placed at x: " + selectedUnit.getX() + "; y: " + selectedUnit.getY());
 			selectedUnit = null;
 		}
 	}
