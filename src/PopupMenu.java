@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+// this class handles the different pop ups the game uses, such as the pause menu and its restart and exit confirmations
 public class PopupMenu {
 	protected List<GObject> menuElements = new ArrayList<>();
 	protected GCompound overlay = new GCompound();
