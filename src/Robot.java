@@ -5,6 +5,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
 
+// this class handles the enemy units in the game and their attributes, such as how fast they move and how much health they have
 public class Robot {
 	private GImage image;
 	private int health;
@@ -43,6 +44,7 @@ public class Robot {
 		return 0;
 	}
 	
+	// how much damage the enemy deals to the player unit it is attacking
 	public void damageUnit() {
 		
 	}
@@ -51,14 +53,17 @@ public class Robot {
 		
 	}
 	
+	// how much damage the enemy unit takes from a player unit
 	public int takeDamage() {
 		return 0;
 	}
 	
+	// if an enemy's health reaches zero, it is defeated and disappears from the grid
 	public boolean isDeath(int health) {
 		return true;
 	}
 	
+	// determines if an enemy unit is close enough to a player unit to start attacking and dealing damage to it
 	public boolean hasReachUnit() {
 		return true;
 	}
