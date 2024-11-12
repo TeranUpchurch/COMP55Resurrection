@@ -2,6 +2,7 @@ import acm.graphics.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+// this class handles the player restarting the level after hitting the pause button
 public class RestartConfirmation extends PopupMenu{
 	private static final double Y_RATIO = 0.60;
 	private static final int BUTTON_DISTANCE = 305;
