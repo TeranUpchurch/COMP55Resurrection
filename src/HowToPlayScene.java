@@ -12,7 +12,6 @@ public class HowToPlayScene extends Scene{
 	private GLabel label = new GLabel("HowToPlayScene", MainApplication.getResolutionWidth() / 2, MainApplication.getResolutionHeight() / 2);
 	
 	private GButton returnButton;
-	private GButton pauseButton;
 
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
@@ -43,33 +42,11 @@ public class HowToPlayScene extends Scene{
 		});
 	}
 	
-	private void drawPauseButton() {
-		String filename = IMG_FILENAME_PATH + "pauseButton" + IMG_EXTENSION;
-		GImage pauseButtonImage = new GImage(filename);
-		int pauseButtonX = (int)(0);
-		int pauseButtonY = (int)(0);
-		this.pauseButton = new GButton(pauseButtonImage,pauseButtonX,pauseButtonY);
-		addElement(pauseButton);
-		pauseButton.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				pauseButton.onClick();
-				// trigger return to main menu
-				System.out.println("Pause Button clicked!");
-				PauseMenu pauseMenu = new PauseMenu ("media/pauseMenu.png", mainApp);
-				pauseMenu.showPopup(mainApp); // Display the pause menu
-			}
-			public void mouseEntered (MouseEvent e) {
-				pauseButton.onHover();
-			}
-		});
-	}
-	
 	public void showContents()
 	{
 		System.out.println("Show contents from this point..");
 		addElement(label);
 		drawReturnButton();
-		drawPauseButton();
 
 	}
 	

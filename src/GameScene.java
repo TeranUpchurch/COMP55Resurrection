@@ -10,11 +10,15 @@ import java.util.List;
 // and a button to return to main menu scene..
 
 public class GameScene extends Scene{
+	private static final int Y_UNIT_BAR = 20;
+	private static final int X_UNIT_BAR = 20;
 	private String labelText;
 	private GLabel label;
 	
 	private List<GImage> unitBar = new ArrayList<>();
 	private GImage selectedUnit = null;
+	
+	private GButton pauseButton;
 	
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
@@ -25,10 +29,31 @@ public class GameScene extends Scene{
 		labelText = difficulty;
 	}
 	
+	private void drawPauseButton() {
+		String filename = IMG_FILENAME_PATH + "pauseButton" + IMG_EXTENSION;
+		GImage pauseButtonImage = new GImage(filename);
+		int pauseButtonX = (int)(MainApplication.getResolutionWidth() * 0.90);
+		int pauseButtonY = (int)(MainApplication.getResolutionHeight() * 0.02);
+		this.pauseButton = new GButton(pauseButtonImage,pauseButtonX,pauseButtonY);
+		addElement(pauseButton);
+		pauseButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				pauseButton.onClick();
+				// trigger return to main menu
+				System.out.println("Pause Button clicked!");
+				PauseMenu pauseMenu = new PauseMenu ("media/pauseMenu.png", mainApp);
+				pauseMenu.showPopup(mainApp); // Display the pause menu
+			}
+			public void mouseEntered (MouseEvent e) {
+				pauseButton.onHover();
+			}
+		});
+	}
+	
 	public void drawUnitBar() {
-		String[] unitsImages = {"soldierUnitBar"};
-		double xStart = 20;
-		double yStart = 20;
+		String[] unitsImages = {"soldierUnitBar", "machineGunUnitBar"};
+		double xStart = X_UNIT_BAR;
+		double yStart = Y_UNIT_BAR;
 		
 		for (int i = 0; i < unitsImages.length; i++) {
 			GImage unit = new GImage(IMG_FILENAME_PATH + unitsImages[i] + IMG_EXTENSION);
@@ -42,6 +67,7 @@ public class GameScene extends Scene{
 	{
 		System.out.println("Show contents from this point..");
 		addElement(new GLabel(labelText, MainApplication.getResolutionWidth() / 2, MainApplication.getResolutionHeight() / 2));
+		drawPauseButton();
 		drawUnitBar();
 	}
 	
