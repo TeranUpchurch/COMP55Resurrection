@@ -5,6 +5,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
 
+// this class handles the wave system the game uses to spawn enemies and progress the level the user is playing
 public class Wave {
 	private ArrayList<Robot> robots;
 	private ArrayList<Integer> intervals;
@@ -34,6 +35,7 @@ public class Wave {
 		waveTimer = new GameTimer(MS, "Wave");
 		waveTimer.start();
 		
+		// timer mechanisms for how a wave works
 		ActionListener listener = new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		    	System.out.println("Tick. " + numTimes +  " Current robot: " + robots.get(enemyNum));
