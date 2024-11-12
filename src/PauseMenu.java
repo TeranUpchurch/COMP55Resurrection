@@ -4,6 +4,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+// this class handles the pause menu and when the player wants to pause the game any time while playing
+
 public class PauseMenu extends PopupMenu{
 	private static final double Y_RATIO = 0.4;
 	private static final double Y_RATIO_RESUME_BUTTON = 0.65;
@@ -114,7 +116,7 @@ public class PauseMenu extends PopupMenu{
 			}
 		});
 	}
-	
+	// handles when the player wants to restart the level they are playing
 	private void handleRestart() {
 		System.out.println("Restart button clicked: Showing confirmation dialog.");
 		hidePopup(this.mainApp);
@@ -123,7 +125,7 @@ public class PauseMenu extends PopupMenu{
 		this.restartConfirmation = new RestartConfirmation(filename, mainApp, this);
 		this.restartConfirmation.showPopup(mainApp); // Display the confirmation menu
 	}
-	
+	// handles when the player wants to exit the level
 	private void handleExit() {
 		System.out.println("Exit button clicked: Showing confirmation dialog.");
 		hidePopup(this.mainApp);
@@ -132,7 +134,7 @@ public class PauseMenu extends PopupMenu{
 		this.exitConfirmation = new ExitConfirmation(filename, mainApp, this);
 		this.exitConfirmation.showPopup(mainApp); // Display the confirmation menu
 	}
-	
+
 	private void handleLevelSelect() {
 		System.out.println("LevelSelect button clicked: Showing confirmation dialog.");
 		hidePopup(this.mainApp);
@@ -141,7 +143,7 @@ public class PauseMenu extends PopupMenu{
 		this.levelMenuConfirmation = new LevelMenuConfirmation(filename, mainApp, this);
 		this.levelMenuConfirmation.showPopup(mainApp); // Display the confirmation menu
 	}
-	
+	// resumes the game after clicking the resume button on the pause menu
 	private void handleResume() {
 		System.out.println("Resuming game...");
 		hidePopup(this.mainApp);
