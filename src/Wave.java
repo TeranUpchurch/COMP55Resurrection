@@ -38,13 +38,15 @@ public class Wave {
 		// timer mechanisms for how a wave works
 		ActionListener listener = new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
+		    	numTimes = numTimes + 1;
+		    	 
 		    	System.out.println("Tick. " + numTimes +  " Current robot: " + robots.get(enemyNum));
 		        if (numTimes >= intervals.get(enemyNum))
 		        {
 		        	numTimes = 0;
 		        	enemyNum = enemyNum + 1;
 		        }
-		        numTimes = numTimes + 1;
+		        
 		        if (enemyNum == arraySize)
 		        {
 		        	enemyNum = numTimes - 1;
