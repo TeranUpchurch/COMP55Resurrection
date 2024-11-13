@@ -13,6 +13,7 @@ public class GameScene extends Scene{
 	private String labelText;
 	private GLabel label;
 	private GImage selectedUnit = null;
+	private GImage currencyBackground;
 	
 	private GButton pauseButton;
 	private UnitBar unitBar;
@@ -31,7 +32,7 @@ public class GameScene extends Scene{
 		String filename = IMG_FILENAME_PATH + "pauseButton" + IMG_EXTENSION;
 		GImage pauseButtonImage = new GImage(filename);
 		int pauseButtonX = (int)(MainApplication.getResolutionWidth() * 0.90);
-		int pauseButtonY = (int)(MainApplication.getResolutionHeight() * 0.02);
+		int pauseButtonY = (int)((MainApplication.getResolutionHeight() * 0.02) + 20);
 		this.pauseButton = new GButton(pauseButtonImage,pauseButtonX,pauseButtonY);
 		addElement(pauseButton);
 		pauseButton.addMouseListener(new MouseAdapter() {
@@ -47,6 +48,16 @@ public class GameScene extends Scene{
 			}
 		});
 	}
+	
+	private void drawCurrencyBackground() {
+		String filename = IMG_FILENAME_PATH + "currencyBackground" + IMG_EXTENSION;
+		currencyBackground = new GImage(filename);
+		int currencyBackgroundX = (int)(MainApplication.getResolutionWidth() * 0.70);
+		int currencyBackgroundY = (int)((MainApplication.getResolutionHeight() * 0.02) + 20);
+		this.currencyBackground.setLocation(currencyBackgroundX, currencyBackgroundY);
+		addElement(currencyBackground);
+	}
+	
 	// when clicking certain buttons, a new screen will pop up. showContents makes the screens pop up, while hideContents makes them disappear
 	public void showContents()
 	{
@@ -54,6 +65,7 @@ public class GameScene extends Scene{
 		addElement(new GLabel(labelText, MainApplication.getResolutionWidth() / 2, MainApplication.getResolutionHeight() / 2));
 		drawPauseButton();
 		unitBar.drawUnitBar(this);
+		drawCurrencyBackground();
 	}
 	
 	public void hideContents()
