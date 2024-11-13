@@ -16,12 +16,12 @@ public class GameTimer implements ActionListener{
 
 	  public void start(){
 	     timer.start();
-	     System.out.println(name + "started.");
+	     System.out.println(name + " started.");
 	  }
 
 	  public void stop(){
 	     timer.stop();
-	     System.out.println(name + "stopped.");
+	     System.out.println(name + " stopped.");
 	  }
 	  
 	  public void createActionListener(ActionListener l)
