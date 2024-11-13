@@ -31,7 +31,7 @@ public class MainApplication extends GraphicsApplication{
 	{
 		if (currentScene != null)
 		{
-			if (!isSubScene(scene)) {
+			if (!isSubScene(scene) && currentScene != GameScene) {
 				sceneHistory.push(currentScene); // // Only push non-sub-scenes to history
 			}
 			System.out.println("Switching scene.");

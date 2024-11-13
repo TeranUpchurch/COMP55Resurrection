@@ -19,7 +19,7 @@ public class UnitBar {
 	public static final String IMG_EXTENSION = ".png";
 	
 	public void drawUnitBar(GameScene scene) {
-		String[] unitsImages = {"soldierUnitBar", "machineGunUnitBar"};
+		String[] unitsImages = {"soldierUnitBar", "machineGunUnitBar", "grenadeUnitBar", "rockUnitBar"};
 		double xStart = X_UNIT_BAR;
 		double yStart = Y_UNIT_BAR;
 		
@@ -32,7 +32,7 @@ public class UnitBar {
 	}
 	// handles how many units are in the unit bar
 	public GImage handleMousePressed(double x, double y) {
-		String[] unit = {"soldier", "machineGun"};
+		String[] unit = {"soldier", "machineGun", "grenade", "rock"};
 		for (int i = 0; i < unitBar.size(); i++) {
 			GImage itemUnitBar = unitBar.get(i);
 			if (itemUnitBar.contains(x, y)) {
