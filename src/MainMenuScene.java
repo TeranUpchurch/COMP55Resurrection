@@ -79,7 +79,7 @@ public class MainMenuScene extends Scene {
 				mainApp.exitApplication();
 			}
 			public void mouseEntered (MouseEvent e) {
-				helpButton.onHover();
+				exitButton.onHover();
 			}
 		});
 	}
