@@ -3,6 +3,8 @@ import acm.program.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.HashSet;
+
 import javax.swing.*;
 import java.util.List;
 import java.util.Set;
@@ -18,8 +20,8 @@ public class GameScene extends Scene{
 	private GImage currencyBackground;
 	
 	private Game game;
-	private Set<Projectile> projectileCache;
-	private Set<Robot> robotCache;
+	private ArrayList<Projectile> projectileCache = new ArrayList<>();;
+	private ArrayList<Robot> robotCache = new ArrayList<>();;
 	private GameTimer gameTimer;
 	private int numTimes;
 	
@@ -86,13 +88,13 @@ public class GameScene extends Scene{
 	{
 		System.out.println("Starting game.");
 		game = new Game();
-		gameTimer = new GameTimer(5, "Game");
+		gameTimer = new GameTimer(50, "Game");
 		
 		ActionListener listener = new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		    	for (Projectile item : projectileCache)
 		    	{
-		    		item.move();
+		    		item.step();
 		    	}
 		    }};
 		   
@@ -112,9 +114,13 @@ public class GameScene extends Scene{
 		System.out.println("Instantiated unit:" + unit);
 	}
 	
-	public void createProjectile(Projectile projectile)
+	public void instantiateProjectile(Projectile projectile, double x, double y)
 	{
+		GImage projImage = projectile.getImage();
+		projectile.setLocation(x, y);
+		addElement(projImage);
 		projectileCache.add(projectile);
+		System.out.println("Added projectile " + projectile + " to cache");
 	}
 	
 	@Override
@@ -122,6 +128,10 @@ public class GameScene extends Scene{
 		System.out.println("Mouse pressed.");
 		// Check if the mouse click is on one of the squares in unit bar
 		chosenUnitName = unitBar.handleMousePressed(e.getX(), e.getY());
+		if (chosenUnitName == "n/a")
+		{
+			return;
+		}
 		selectedUnit = new GImage(IMG_FILENAME_PATH + chosenUnitName + IMG_EXTENSION); 
 		addElement(selectedUnit);
 	}

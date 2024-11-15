@@ -28,7 +28,7 @@ public class Unit {
 	
 	public Unit(GameScene gameScene)
 	{
-		
+		this.gameScene = gameScene;
 	}
 	
 	public Unit(GImage image, int health, int cost, int lane, int frequency) {

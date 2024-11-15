@@ -27,7 +27,6 @@ public class Projectile {
 		this.damage = damage;
 		this.speed = speed;
 		this.scene = scene;
-		image.setLocation(xPos, yPos);
 	}
 	
 	public GImage getImage()
@@ -35,7 +34,12 @@ public class Projectile {
 		return image;
 	}
 	
-	public void move() {
-		image.move(speed, 0);
+	public void setLocation(double x, double y)
+	{
+		image.setLocation(x, y);
+	}
+	
+	public void step() {
+		image.setLocation(image.getX() + speed, image.getY());
 	}
 }

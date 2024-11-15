@@ -41,7 +41,7 @@ public class UnitBar {
 				return unit[i];
 			}
 		}
-		return null;
+		return "n/a";
 	}
 	
 	public GImage getSelectedUnit() {
