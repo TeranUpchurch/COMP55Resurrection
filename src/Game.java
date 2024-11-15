@@ -32,6 +32,11 @@ public class Game {
 		return imageToUnitMap.get(image);
 	}
 	
+	public Robot getRobotFromImage(GImage image)
+	{
+		return imageToRobotMap.get(image);
+	}
+	
 	public static void main(String[] args) {
 		
 	}
