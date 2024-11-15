@@ -13,6 +13,7 @@ public class GameScene extends Scene{
 	private String labelText;
 	private GLabel label;
 	private GImage selectedUnit = null;
+	private String chosenUnitName;
 	private GImage currencyBackground;
 	
 	private Game game;
@@ -98,8 +99,9 @@ public class GameScene extends Scene{
 	public void mousePressed(MouseEvent e) {
 		System.out.println("Mouse pressed.");
 		// Check if the mouse click is on one of the squares in unit bar
-		String chosenUnitName = unitBar.handleMousePressed(e.getX(), e.getY());
-		instantiateUnit(chosenUnitName, e.getX(), e.getY());
+		chosenUnitName = unitBar.handleMousePressed(e.getX(), e.getY());
+		selectedUnit = new GImage(IMG_FILENAME_PATH + chosenUnitName + IMG_EXTENSION); 
+		addElement(selectedUnit);
 	}
 	
 	@Override
@@ -109,6 +111,9 @@ public class GameScene extends Scene{
 		if (selectedUnit != null) {
 			System.out.println("Unit placed at x: " + selectedUnit.getX() + "; y: " + selectedUnit.getY());
 			unitBar.clearSelectedUnit();
+			instantiateUnit(chosenUnitName, e.getX(), e.getY());
+			chosenUnitName = null;
+			removeElement(selectedUnit);
 			selectedUnit = null;
 		}
 	}
