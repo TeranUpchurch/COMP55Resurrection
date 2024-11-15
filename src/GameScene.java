@@ -5,6 +5,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
 import java.util.List;
+import java.util.Set;
 
 // The how to play scene that contains instructions on how to play
 // and a button to return to main menu scene..
@@ -17,6 +18,10 @@ public class GameScene extends Scene{
 	private GImage currencyBackground;
 	
 	private Game game;
+	private Set<Projectile> projectileCache;
+	private Set<Robot> robotCache;
+	private GameTimer gameTimer;
+	private int numTimes;
 	
 	private GButton pauseButton;
 	private UnitBar unitBar;
@@ -81,6 +86,17 @@ public class GameScene extends Scene{
 	{
 		System.out.println("Starting game.");
 		game = new Game();
+		gameTimer = new GameTimer(5, "Game");
+		
+		ActionListener listener = new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		    	for (Projectile item : projectileCache)
+		    	{
+		    		item.move();
+		    	}
+		    }};
+		   
+	    gameTimer.createActionListener(listener);
 	}
 	
 	public void instantiateUnit(String unitName, int x, int y)
@@ -90,9 +106,15 @@ public class GameScene extends Scene{
 		if (unit != null)
 		{
 			unit.setImagePos(x, y);
+			unit.startTimer();
 			addElement(unit.getImageFromUnit());
 		}
 		System.out.println("Instantiated unit:" + unit);
+	}
+	
+	public void createProjectile(Projectile projectile)
+	{
+		projectileCache.add(projectile);
 	}
 	
 	@Override

@@ -24,6 +24,8 @@ public class Unit {
 	public boolean enemyDetected;
 	private int lane;
 	
+	protected GameScene gameScene;
+	
 	public Unit(GameScene gameScene)
 	{
 		
@@ -56,7 +58,7 @@ public class Unit {
 		    routineTimer.createActionListener(listener);
 	}
 	
-	public void routine (ActionEvent e) {
+	public void routine () {
 		
 	}
 	
