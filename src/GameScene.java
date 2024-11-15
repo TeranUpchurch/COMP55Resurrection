@@ -37,14 +37,10 @@ public class GameScene extends Scene{
 		addElement(pauseButton);
 		pauseButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				pauseButton.onClick();
 				// trigger return to main menu
 				System.out.println("Pause Button clicked!");
 				PauseMenu pauseMenu = new PauseMenu ("media/pauseMenu.png", mainApp);
 				pauseMenu.showPopup(mainApp); // Display the pause menu
-			}
-			public void mouseEntered (MouseEvent e) {
-				pauseButton.onHover();
 			}
 		});
 	}

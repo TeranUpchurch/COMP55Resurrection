@@ -33,13 +33,9 @@ public class LevelSelectScene extends Scene{
 		addElement(easyLevelButton);
 		easyLevelButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				easyLevelButton.onClick();
 				// trigger return to main menu
 				System.out.println("Easy Level Button clicked!");
 				mainApp.switchSceneToGame("Easy"); // for now switch to main menu scene
-			}
-			public void mouseEntered (MouseEvent e) {
-				easyLevelButton.onHover();
 			}
 		});
 	}
@@ -52,13 +48,9 @@ public class LevelSelectScene extends Scene{
 		addElement(mediumLevelButton);
 		mediumLevelButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				mediumLevelButton.onClick();
 				// trigger return to main menu
 				System.out.println("Return Button clicked!");
 				mainApp.switchSceneToGame("Medium");
-			}
-			public void mouseEntered (MouseEvent e) {
-				mediumLevelButton.onHover();
 			}
 		});
 	}
@@ -71,13 +63,9 @@ public class LevelSelectScene extends Scene{
 		addElement(hardLevelButton);
 		hardLevelButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				hardLevelButton.onClick();
 				// trigger return to main menu
 				System.out.println("Return Button clicked!");
 				mainApp.switchSceneToGame("Hard");
-			}
-			public void mouseEntered (MouseEvent e) {
-				hardLevelButton.onHover();
 			}
 		});
 	}
@@ -91,14 +79,9 @@ public class LevelSelectScene extends Scene{
 		addElement(returnButton);
 		returnButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				returnButton.onClick();
 				// trigger return to main menu
 				System.out.println("Return Button clicked!");
-				// mainApp.switchSceneTo(mainApp.getPreviousScene());
 				mainApp.returnToPreviousScene();
-			}
-			public void mouseEntered (MouseEvent e) {
-				returnButton.onHover();
 			}
 		});
 	}
@@ -112,13 +95,9 @@ public class LevelSelectScene extends Scene{
 		addElement(helpButton);
 		this.helpButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				helpButton.onClick();
 				// trigger action to start the game
 				System.out.println("Help Button clicked!");
 				mainApp.switchSceneTo(mainApp.HowToPlayScene);
-			}
-			public void mouseEntered (MouseEvent e) {
-				helpButton.onHover();
 			}
 		});
 	}
