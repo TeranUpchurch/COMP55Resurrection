@@ -19,6 +19,19 @@ public class Game {
 		
 	}
 	
+	public Game(Level chosenLevel, ArrayList<Unit> chosenUnits)
+	{
+		unitOptions = chosenUnits;
+		level = chosenLevel;
+		imageToUnitMap = new ImageToUnitMap();
+		imageToRobotMap = new ImageToRobotMap();
+	}
+	
+	public Unit getUnitFromImage(GImage image)
+	{
+		return imageToUnitMap.get(image);
+	}
+	
 	public static void main(String[] args) {
 		
 	}

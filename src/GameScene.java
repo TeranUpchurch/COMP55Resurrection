@@ -15,6 +15,8 @@ public class GameScene extends Scene{
 	private GImage selectedUnit = null;
 	private GImage currencyBackground;
 	
+	private Game game;
+	
 	private GButton pauseButton;
 	private UnitBar unitBar;
 	
@@ -62,6 +64,7 @@ public class GameScene extends Scene{
 		drawPauseButton();
 		unitBar.drawUnitBar(this);
 		drawCurrencyBackground();
+		startGame();
 	}
 	
 	public void hideContents()
@@ -73,6 +76,11 @@ public class GameScene extends Scene{
 		}
 	}
 	
+	public void startGame()
+	{
+		game = new Game();
+	}
+	
 	@Override
 	public void mousePressed(MouseEvent e) {
 		System.out.println("Mouse pressed.");
@@ -80,6 +88,7 @@ public class GameScene extends Scene{
 		selectedUnit = unitBar.handleMousePressed(e.getX(), e.getY());
 		if (selectedUnit != null) {
 			addElement(selectedUnit);
+			
 		}
 	}
 	
