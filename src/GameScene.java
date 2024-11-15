@@ -99,6 +99,7 @@ public class GameScene extends Scene{
 		    }};
 		   
 	    gameTimer.createActionListener(listener);
+	    gameTimer.start();
 	}
 	
 	public void instantiateUnit(String unitName, int x, int y)
