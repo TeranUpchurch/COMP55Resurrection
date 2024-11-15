@@ -7,19 +7,27 @@ import javax.swing.*;
 
 // this class handles creating the player unit, or the units that the player will use to defeat enemies
 public class Unit {
-	private GImage image;
-	private int health;
-	private int cost;
-	private int lane;
-	private int placementCooldown;
-	private boolean upgradable;
-	private int upgradeCost;
-	private Unit unitToUpgradeTo;
+	public static final String IMG_FILENAME_PATH = "media/";
+	public static final String IMG_EXTENSION = ".png";
+	
+	private GImage image = new GImage(IMG_FILENAME_PATH + "soldier" + IMG_EXTENSION);
+	private int health = 100;
+	private int cost = 50;
+	private int placementCooldown = 5;
+	private boolean upgradable = true;
+	private int upgradeCost = 50;
+	private String unitToUpgradeTo = "unitSoldier";
 	
 	private GameTimer routineTimer;
 	private int frequency;
 	private int numTimes;
 	public boolean enemyDetected;
+	private int lane;
+	
+	public Unit(GameScene gameScene)
+	{
+		
+	}
 	
 	public Unit(GImage image, int health, int cost, int lane, int frequency) {
         this.image = image;
@@ -31,19 +39,41 @@ public class Unit {
         this.enemyDetected = false;
     }
 	
+	public void startTimer()
+	{
+		routineTimer = new GameTimer(100, "Soldier");
+		routineTimer.start();
+		
+		ActionListener listener = new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		    	numTimes = numTimes + 1;
+		    	 
+		    	if (numTimes > 20) {
+		    		
+		    	}
+		    }};
+		    
+		    routineTimer.createActionListener(listener);
+	}
+	
 	public void routine (ActionEvent e) {
 		
 	}
 	
 	public void stopRoutine() {
-	        if (routineTimer != null) {
+	   if (routineTimer != null) {
 	            routineTimer.stop();
-	        }
-	    }
+	   }
+	}
 	
-	public void instantiateTimer()
+	public GImage getImageFromUnit()
 	{
-		
+		return image;
+	}
+	
+	public void setImagePos(int x, int y)
+	{
+		image.setLocation(x, y);
 	}
 	
 	// checks if a player unit is upgradable to a stronger unit

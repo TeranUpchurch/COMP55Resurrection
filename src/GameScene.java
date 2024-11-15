@@ -82,20 +82,29 @@ public class GameScene extends Scene{
 		game = new Game();
 	}
 	
+	public void instantiateUnit(String unitName, int x, int y)
+	{
+		Unit unit = null;
+		if (unitName == "soldier") {unit = new UnitSoldier(this);}
+		if (unit != null)
+		{
+			unit.setImagePos(x, y);
+			addElement(unit.getImageFromUnit());
+		}
+		System.out.println("Instantiated unit:" + unit);
+	}
+	
 	@Override
 	public void mousePressed(MouseEvent e) {
 		System.out.println("Mouse pressed.");
 		// Check if the mouse click is on one of the squares in unit bar
-		selectedUnit = unitBar.handleMousePressed(e.getX(), e.getY());
-		if (selectedUnit != null) {
-			addElement(selectedUnit);
-			
-		}
+		String chosenUnitName = unitBar.handleMousePressed(e.getX(), e.getY());
+		instantiateUnit(chosenUnitName, e.getX(), e.getY());
 	}
 	
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		System.out.println("Mouse released.");
+		//System.out.println("Mouse released.");
 		// When mouse is released, print out the coordinates and placed unit
 		if (selectedUnit != null) {
 			System.out.println("Unit placed at x: " + selectedUnit.getX() + "; y: " + selectedUnit.getY());
@@ -105,12 +114,12 @@ public class GameScene extends Scene{
 	}
 	
 	public void mouseClicked(MouseEvent e) {
-		System.out.println("Mouse clicked.");
+		//System.out.println("Mouse clicked.");
 	}
 	
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		System.out.println("Mouse dragged.");
+		//System.out.println("Mouse dragged.");
 		// Move the selected unit with the mouse
 		if (selectedUnit != null) {
 			selectedUnit.setLocation(e.getX() - selectedUnit.getWidth() / 2, e.getY() - selectedUnit.getHeight() / 2);

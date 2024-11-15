@@ -31,14 +31,14 @@ public class UnitBar {
 		}
 	}
 	// handles how many units are in the unit bar
-	public GImage handleMousePressed(double x, double y) {
+	public String handleMousePressed(double x, double y) {
 		String[] unit = {"soldier", "machineGun", "grenade", "rock"};
 		for (int i = 0; i < unitBar.size(); i++) {
 			GImage itemUnitBar = unitBar.get(i);
 			if (itemUnitBar.contains(x, y)) {
 				selectedUnit = new GImage(IMG_FILENAME_PATH + unit[i] + IMG_EXTENSION);
 				selectedUnit.setLocation(x - selectedUnit.getWidth() / 2, y - selectedUnit.getHeight() / 2);
-				return selectedUnit;
+				return unit[i];
 			}
 		}
 		return null;
