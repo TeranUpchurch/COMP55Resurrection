@@ -30,6 +30,11 @@ public class Projectile {
 		image.setLocation(xPos, yPos);
 	}
 	
+	public GImage getImage()
+	{
+		return image;
+	}
+	
 	public void move() {
 		image.move(speed, 0);
 	}
