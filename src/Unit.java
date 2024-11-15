@@ -14,11 +14,12 @@ public class Unit {
 	private int placementCooldown;
 	private boolean upgradable;
 	private int upgradeCost;
-	Unit unitToUpgradeTo;
-	Timer routineTimer;
+	private Unit unitToUpgradeTo;
+	
+	private GameTimer routineTimer;
 	private int frequency;
 	private int numTimes;
-	public boolean flag;
+	public boolean enemyDetected;
 	
 	public Unit(GImage image, int health, int cost, int lane, int frequency) {
         this.image = image;
@@ -27,22 +28,24 @@ public class Unit {
         this.lane = lane;
         this.frequency = frequency;
         this.numTimes = 0;
-        this.flag = false;
-
-        // Initializes the timer to call the routine periodically
-        this.routineTimer = new Timer(frequency, this::routine);
-        this.routineTimer.start();
+        this.enemyDetected = false;
     }
 	
 	public void routine (ActionEvent e) {
 		
 	}
 	
-	 public void stopRoutine() {
+	public void stopRoutine() {
 	        if (routineTimer != null) {
 	            routineTimer.stop();
 	        }
 	    }
+	
+	public void instantiateTimer()
+	{
+		
+	}
+	
 	// checks if a player unit is upgradable to a stronger unit
 	public boolean isItUpgradable(boolean upgrade) {
 		return this.upgradable && upgrade && unitToUpgradeTo != null;
@@ -51,10 +54,6 @@ public class Unit {
 	// checks if an enemy is in the same lane as the player unit. If it is, the player unit starts attacking the enemy
 	public boolean checkForEnemy(boolean robotLocation) {
 		return robotLocation;
-	}
-	
-	public void attackRobot() {
-		System.out.println("Unit attacking robot in lane " + lane);
 	}
 	
 	// handles enemies dealing damage to the player unit
@@ -72,5 +71,9 @@ public class Unit {
 	// if the player unit's health hits zero
 	public boolean isDeath() {
 		return health <= 0; 
+	}
+	
+	public static void main(String[] args) {
+		
 	}
 }

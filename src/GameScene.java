@@ -78,6 +78,7 @@ public class GameScene extends Scene{
 	
 	public void startGame()
 	{
+		System.out.println("Starting game.");
 		game = new Game();
 	}
 	
