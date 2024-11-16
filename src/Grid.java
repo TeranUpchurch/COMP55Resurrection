@@ -19,4 +19,14 @@ public class Grid {
             }
         }
 	}
+	
+	 public Space getSpace(int row, int col) {
+	        if (row >= 0 && row < rows && col >= 0 && col < cols) {
+	            return gameGrid[row][col];
+	        } 
+	        else {
+	            return null;  
+	        }
+	    }
+	 
 }
