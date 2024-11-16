@@ -50,8 +50,8 @@ public class UnitSoldier extends Unit{
 	public void routine () {
 		Projectile projectile = new Projectile(
 				new GImage(IMG_FILENAME_PATH + "paintball" + IMG_EXTENSION),
-				20,
-				20,
+				10,
+				10,
 				10,
 				10,
 				image.getX(),
@@ -59,6 +59,7 @@ public class UnitSoldier extends Unit{
 				gameScene
 				);
 		gameScene.instantiateProjectile(projectile, image.getX(), image.getY());
+		System.out.println("IMAGE SOLDIER x: " + image.getX() + " y: " + image.getY());
 		System.out.println("Instantiated projectile from " + this);
 	}
 	

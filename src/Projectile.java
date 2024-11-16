@@ -24,6 +24,7 @@ public class Projectile {
 		this.image = image;
 		this.width = width;
 		this.height = height;
+		image.setSize(width, height);
 		this.damage = damage;
 		this.speed = speed;
 		this.scene = scene;
