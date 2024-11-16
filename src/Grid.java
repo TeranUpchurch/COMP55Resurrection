@@ -29,4 +29,25 @@ public class Grid {
 	        }
 	    }
 	 
+	 public void printAsciiGrid() {
+	        for (int row = 0; row < rows; row++) {
+	            // this loop prints the top border of each row
+	            for (int col = 0; col < cols; col++) {
+	                System.out.print("+---");
+	            }
+	            System.out.println("+");
+
+	          
+	            for (int col = 0; col < cols; col++) {
+	                System.out.print("|   ");
+	            }
+	            System.out.println("|");
+	        }
+
+	        // this loop prints the bottom border of the last row
+	        for (int col = 0; col < cols; col++) {
+	            System.out.print("+---");
+	        }
+	        System.out.println("+");
+	 }
 }
