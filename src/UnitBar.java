@@ -12,8 +12,8 @@ public class UnitBar {
 	private static final int Y_UNIT_BAR = 20;
 	private static final int X_UNIT_BAR = 20;
 	
-	private List<GImage> unitBar = new ArrayList<>();
-	private GImage selectedUnit = null;
+	private List<GImage> unitBarImages = new ArrayList<>();
+	private UnitType selectedUnit = null;
 	
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
@@ -26,25 +26,25 @@ public class UnitBar {
 		for (int i = 0; i < unitsImages.length; i++) {
 			GImage unit = new GImage(IMG_FILENAME_PATH + unitsImages[i] + IMG_EXTENSION);
 			unit.setLocation(xStart + unit.getWidth()*(i), yStart );
-			unitBar.add(unit); // Add to unitBar list for tracking
+			unitBarImages.add(unit); // Add to unitBar list for tracking
 			scene.addElement(unit); // Add to display so it appears on screen
 		}
 	}
+	
 	// handles how many units are in the unit bar
-	public String handleMousePressed(double x, double y) {
-		String[] unit = {"soldier", "machineGun", "grenade", "rock"};
-		for (int i = 0; i < unitBar.size(); i++) {
-			GImage itemUnitBar = unitBar.get(i);
+	public UnitType handleMousePressed(double x, double y) {
+		for (int i = 0; i < unitBarImages.size(); i++) {
+			GImage itemUnitBar = unitBarImages.get(i);
 			if (itemUnitBar.contains(x, y)) {
-				selectedUnit = new GImage(IMG_FILENAME_PATH + unit[i] + IMG_EXTENSION);
-				selectedUnit.setLocation(x - selectedUnit.getWidth() / 2, y - selectedUnit.getHeight() / 2);
-				return unit[i];
+				selectedUnit = UnitType.values()[i];
+				// selectedUnit.setLocation(x - selectedUnit.getWidth() / 2, y - selectedUnit.getHeight() / 2);
+				return selectedUnit;
 			}
 		}
-		return "n/a";
+		return null;
 	}
 	
-	public GImage getSelectedUnit() {
+	public UnitType getSelectedUnit() {
 		return selectedUnit;
 	}
 	

@@ -10,7 +10,9 @@ public class UnitSoldier extends Unit{
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
 	
-	private GImage image = new GImage(IMG_FILENAME_PATH + "soldier" + IMG_EXTENSION);
+	// private GImage image = new GImage(IMG_FILENAME_PATH + "soldier" + IMG_EXTENSION);
+	private UnitType unitType = UnitType.SOLDIER;
+	private GImage image;
 	private int health = 100;
 	private int cost = 50;
 	private int placementCooldown = 5;
@@ -24,9 +26,11 @@ public class UnitSoldier extends Unit{
 	public boolean enemyDetected;
 	private int lane;
 	
-	public UnitSoldier(GameScene gameScene)
+	public UnitSoldier(GameScene gameScene, double x, double y)
 	{
 		super(gameScene);
+		this.image = new GImage(unitType.getImagePath());
+		this.image.setLocation(x, y);
 	}
 	
 	public void startTimer()
@@ -48,18 +52,19 @@ public class UnitSoldier extends Unit{
 	}
 	
 	public void routine () {
+		double projectileStartX = image.getX() + image.getWidth(); // Right edge of the soldier
+        double projectileStartY = image.getY() + 0.15 * image.getHeight(); // Slightly below the top
 		Projectile projectile = new Projectile(
 				new GImage(IMG_FILENAME_PATH + "paintball" + IMG_EXTENSION),
 				10,
 				10,
 				10,
 				10,
-				image.getX(),
-				image.getY(),
+				projectileStartX,
+				projectileStartY,
 				gameScene
 				);
-		gameScene.instantiateProjectile(projectile, image.getX(), image.getY());
-		System.out.println("IMAGE SOLDIER x: " + image.getX() + " y: " + image.getY());
+		gameScene.instantiateProjectile(projectile, projectileStartX, projectileStartY);
 		System.out.println("Instantiated projectile from " + this);
 	}
 	

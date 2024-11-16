@@ -16,7 +16,7 @@ public class GameScene extends Scene{
 	private String labelText;
 	private GLabel label;
 	private GImage selectedUnit = null;
-	private String chosenUnitName;
+	private UnitType chosenUnitName;
 	private GImage currencyBackground;
 	
 	private Game game;
@@ -102,17 +102,22 @@ public class GameScene extends Scene{
 	    gameTimer.start();
 	}
 	
-	public void instantiateUnit(String unitName, int x, int y)
+	public void instantiateUnit(UnitType unitName, int x, int y)
 	{
 		Unit unit = null;
-		if (unitName == "soldier") {unit = new UnitSoldier(this);}
+		switch (unitName) {
+			case SOLDIER -> unit = new UnitSoldier(this, x, y);
+			// case MACHINE_GUNE;
+			// case GRENADE;
+			// case ROCK;
+		}
 		if (unit != null)
 		{
 			unit.setImagePos(x, y);
 			unit.startTimer();
 			addElement(unit.getImageFromUnit());
 		}
-		System.out.println("Instantiated unit:" + unit);
+		System.out.println("Instantiated unit:" + unitName.getName());
 	}
 	
 	public void instantiateProjectile(Projectile projectile, double x, double y)
@@ -129,11 +134,12 @@ public class GameScene extends Scene{
 		System.out.println("Mouse pressed.");
 		// Check if the mouse click is on one of the squares in unit bar
 		chosenUnitName = unitBar.handleMousePressed(e.getX(), e.getY());
-		if (chosenUnitName == "n/a")
+		if (chosenUnitName == null)
 		{
 			return;
 		}
-		selectedUnit = new GImage(IMG_FILENAME_PATH + chosenUnitName + IMG_EXTENSION); 
+		selectedUnit = new GImage(chosenUnitName.getImagePath()); 
+		selectedUnit.setLocation(e.getX() - selectedUnit.getWidth() / 2, e.getY() - selectedUnit.getHeight() / 2);
 		addElement(selectedUnit);
 	}
 	
@@ -143,8 +149,14 @@ public class GameScene extends Scene{
 		// When mouse is released, print out the coordinates and placed unit
 		if (selectedUnit != null) {
 			System.out.println("Unit placed at x: " + selectedUnit.getX() + "; y: " + selectedUnit.getY());
+			
+			
+			UnitType chosenUnitType = unitBar.getSelectedUnit();
+			if (chosenUnitType != null) {
+				instantiateUnit(chosenUnitType, e.getX(), e.getY());
+			}
+			
 			unitBar.clearSelectedUnit();
-			instantiateUnit(chosenUnitName, e.getX(), e.getY());
 			chosenUnitName = null;
 			removeElement(selectedUnit);
 			selectedUnit = null;
