@@ -149,15 +149,12 @@ public class GameScene extends Scene{
 	
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		//System.out.println("Mouse released.");
-		// When mouse is released, print out the coordinates and placed unit
 		if (selectedUnit != null) {
-			System.out.println("Unit placed at x: " + selectedUnit.getX() + "; y: " + selectedUnit.getY());
-			
-			
 			UnitType chosenUnitType = unitBar.getSelectedUnit();
+			// Make sure instantiateUnit() method will not cause an unexpected behavior
 			if (chosenUnitType != null) {
-				instantiateUnit(chosenUnitType, e.getX(), e.getY());
+				instantiateUnit(chosenUnitType, (int)selectedUnit.getX(), (int)selectedUnit.getY());
+				System.out.println("Unit placed at x: " + selectedUnit.getX() + "; y: " + selectedUnit.getY());
 			}
 			
 			unitBar.clearSelectedUnit();
@@ -173,7 +170,6 @@ public class GameScene extends Scene{
 	
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		//System.out.println("Mouse dragged.");
 		// Move the selected unit with the mouse
 		if (selectedUnit != null) {
 			selectedUnit.setLocation(e.getX() - selectedUnit.getWidth() / 2, e.getY() - selectedUnit.getHeight() / 2);
