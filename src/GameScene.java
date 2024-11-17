@@ -20,8 +20,10 @@ public class GameScene extends Scene{
 	private GImage currencyBackground;
 	
 	private Game game;
-	private ArrayList<Projectile> projectileCache = new ArrayList<>();;
-	private ArrayList<Robot> robotCache = new ArrayList<>();;
+	private ArrayList<Projectile> projectileCache = new ArrayList<>();
+	private ArrayList<Robot> robotCache = new ArrayList<>();
+	private ImageToUnitMap imageToUnitMap = new ImageToUnitMap();
+	private ImageToRobotMap imageToRobotMap = new ImageToRobotMap();
 	private GameTimer gameTimer;
 	private int numTimes;
 	
@@ -113,9 +115,11 @@ public class GameScene extends Scene{
 		}
 		if (unit != null)
 		{
+			GImage unitImage = unit.getImageFromUnit();
 			unit.setImagePos(x, y);
 			unit.startTimer();
-			addElement(unit.getImageFromUnit());
+			imageToUnitMap.addPair(unitImage, unit);
+			addElement(unitImage);
 		}
 		System.out.println("Instantiated unit:" + unitName.getName());
 	}
