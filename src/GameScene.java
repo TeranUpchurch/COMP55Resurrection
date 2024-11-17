@@ -13,8 +13,9 @@ import java.util.Set;
 // and a button to return to main menu scene..
 
 public class GameScene extends Scene{
+	private static final int CURRENCY_START = 100;
 	private String labelText;
-	private GLabel label;
+	private GLabel currencyLabel;
 	private GImage selectedUnit = null;
 	private UnitType chosenUnitName;
 	private GImage currencyBackground;
@@ -26,6 +27,7 @@ public class GameScene extends Scene{
 	private ImageToRobotMap imageToRobotMap = new ImageToRobotMap();
 	private GameTimer gameTimer;
 	private int numTimes;
+	private int currency;
 	
 	private GButton pauseButton;
 	private UnitBar unitBar;
@@ -66,6 +68,33 @@ public class GameScene extends Scene{
 		addElement(currencyBackground);
 	}
 	
+	private void drawCurrencyCounter() {
+		this.currency = CURRENCY_START;
+		this.currencyLabel = new GLabel("" + currency);
+		this.currencyLabel.setFont("Arial-Bold-50");
+		this.currencyLabel.setColor(Color.BLACK);
+		this.currencyLabel.setLocation(currencyBackground.getX() + 0.8 * (currencyBackground.getWidth() / 2), currencyBackground.getY() + 1.3 * (currencyBackground.getHeight() / 2));
+		addElement(currencyLabel);
+	}
+	
+	public void addCurrency(int amount) {
+		this.currency += amount;
+		updateCurrencyLabel();
+	}
+	
+	public boolean spendMoney(int amount) {
+		if (this.currency >= amount) {
+			currency -= amount;
+			updateCurrencyLabel();
+			return true;
+		}
+		// should show notification to player when they do not have enough money. DO IT LATER
+		return false;
+	}
+	private void updateCurrencyLabel() {
+		this.currencyLabel.setLabel("" + currency);
+	}
+	
 	// when clicking certain buttons, a new screen will pop up. showContents makes the screens pop up, while hideContents makes them disappear
 	public void showContents()
 	{
@@ -74,6 +103,7 @@ public class GameScene extends Scene{
 		drawPauseButton();
 		unitBar.drawUnitBar(this);
 		drawCurrencyBackground();
+		drawCurrencyCounter();
 		startGame();
 	}
 	
@@ -133,6 +163,26 @@ public class GameScene extends Scene{
 		System.out.println("Added projectile " + projectile + " to cache");
 	}
 	
+	public void handlePlaceUnit() {
+		if (selectedUnit != null) {
+			UnitType chosenUnitType = unitBar.getSelectedUnit();
+			// Make sure instantiateUnit() method will not cause an unexpected behavior
+			if (chosenUnitType != null) {
+				if (spendMoney(chosenUnitType.getCost())) {
+					instantiateUnit(chosenUnitType, (int)selectedUnit.getX(), (int)selectedUnit.getY());
+					System.out.println("Unit placed at x: " + selectedUnit.getX() + "; y: " + selectedUnit.getY());
+				} else {
+					System.out.println("NOT ENOUGH MONEY");
+				}
+			}
+
+			unitBar.clearSelectedUnit();
+			chosenUnitName = null;
+			removeElement(selectedUnit);
+			selectedUnit = null;
+		}
+	}
+	
 	@Override
 	public void mousePressed(MouseEvent e) {
 		System.out.println("Mouse pressed.");
@@ -149,19 +199,7 @@ public class GameScene extends Scene{
 	
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		if (selectedUnit != null) {
-			UnitType chosenUnitType = unitBar.getSelectedUnit();
-			// Make sure instantiateUnit() method will not cause an unexpected behavior
-			if (chosenUnitType != null) {
-				instantiateUnit(chosenUnitType, (int)selectedUnit.getX(), (int)selectedUnit.getY());
-				System.out.println("Unit placed at x: " + selectedUnit.getX() + "; y: " + selectedUnit.getY());
-			}
-			
-			unitBar.clearSelectedUnit();
-			chosenUnitName = null;
-			removeElement(selectedUnit);
-			selectedUnit = null;
-		}
+		handlePlaceUnit();
 	}
 	
 	public void mouseClicked(MouseEvent e) {

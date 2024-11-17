@@ -37,7 +37,6 @@ public class UnitBar {
 			GImage itemUnitBar = unitBarImages.get(i);
 			if (itemUnitBar.contains(x, y)) {
 				selectedUnit = UnitType.values()[i];
-				// selectedUnit.setLocation(x - selectedUnit.getWidth() / 2, y - selectedUnit.getHeight() / 2);
 				return selectedUnit;
 			}
 		}
