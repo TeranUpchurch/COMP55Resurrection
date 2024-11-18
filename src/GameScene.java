@@ -161,7 +161,7 @@ public class GameScene extends Scene{
 	public void startGame()
 	{
 		System.out.println("Starting game.");
-		game = new Game();
+		game = new Game();	// default game constructor
 		drawGrid(game.grid.getRows(), game.grid.getCols());
 		gameTimer = new GameTimer(50, "Game");
 		
@@ -217,28 +217,6 @@ public class GameScene extends Scene{
 		System.out.println("Instantiated unit:" + unitName.getName());
 	}
 	
-	/*public void instantiateUnit(UnitType unitName, int x, int y) {
-	    int row = y / 50; // Assumes each cell is 50px in height
-	    int col = x / 50; // Assumes each cell is 50px in width
-	    
-	    if (grid.getSpace(row, col) != null && !grid.getSpace(row, col).isOccupied()) {
-	        Unit unit = null;
-	        switch (unitName) {
-	            case SOLDIER -> unit = new UnitSoldier(this, x, y);
-	            // Other unit types...
-	        }
-	        if (unit != null && spendMoney(unitName.getCost())) {
-	            grid.placeUnit(row, col, unit);
-	            System.out.println("Placed unit " + unitName.getName() + " at row: " + row + ", col: " + col);
-	        } 
-	        else {
-	            System.out.println("Failed to place unit, either not enough currency or invalid space.");
-	        }
-	    } 
-	    else {
-	        System.out.println("Space is occupied or out of bounds.");
-	    }
-	} */
 	
 	public void instantiateProjectile(Projectile projectile, double x, double y)
 	{

@@ -17,12 +17,15 @@ public class Game {
 	public Game()
 	{
 		grid = new Grid(5, 9);
+		imageToUnitMap = new ImageToUnitMap();
+		imageToRobotMap = new ImageToRobotMap();
 	}
 	
 	public Game(Level chosenLevel, ArrayList<Unit> chosenUnits)
 	{
 		unitOptions = chosenUnits;
 		level = chosenLevel;
+		grid = new Grid(5, 9);
 		imageToUnitMap = new ImageToUnitMap();
 		imageToRobotMap = new ImageToRobotMap();
 	}
