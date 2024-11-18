@@ -95,7 +95,7 @@ public class GameScene extends Scene{
 		updateCurrencyLabel();
 	}
 	
-	public boolean spendMoney(int amount) {
+	public boolean canAfford(int amount) {
 		if (this.currency >= amount) {
 			currency -= amount;
 			updateCurrencyLabel();
@@ -206,12 +206,14 @@ public class GameScene extends Scene{
 			
 			int row = (y - gridStartY) / tileHeight;
 			int col = (x - gridStartX) / tileWidth;
-			System.out.println(row + " " + col);
 			
-			if (game.grid.getUnitAtSpace(row, col) != null)
+			if (isOccupied(row, col))
 			{
+				System.out.println("Invalid space");
 				return;
 			}
+			
+			System.out.println(row + " " + col);
 				
 			int calculatedImageX = gridStartX + col * tileWidth;
 			int calculatedImageY = gridStartY + row * tileHeight;
@@ -224,6 +226,15 @@ public class GameScene extends Scene{
 		}
 		System.out.println("Instantiated unit:" + unitName.getName());
 	}
+	
+	public boolean isOccupied (int row, int col) {
+		if (game.grid.getUnitAtSpace(row, col) != null)
+		{
+			return true;
+		}
+		return false;
+	}
+	
 
 	
 	public void instantiateProjectile(Projectile projectile, double x, double y)
@@ -240,7 +251,7 @@ public class GameScene extends Scene{
 			UnitType chosenUnitType = unitBar.getSelectedUnit();
 			// Make sure instantiateUnit() method will not cause an unexpected behavior
 			if (chosenUnitType != null) {
-				if (spendMoney(chosenUnitType.getCost())) {
+				if (canAfford(chosenUnitType.getCost())) {
 					instantiateUnit(chosenUnitType, (int)selectedUnit.getX(), (int)selectedUnit.getY());
 					System.out.println("Unit placed at x: " + selectedUnit.getX() + "; y: " + selectedUnit.getY());
 				} else {
@@ -276,16 +287,35 @@ public class GameScene extends Scene{
 	
 	@Override
 	public void mouseReleased(MouseEvent e) {
-	    if (selectedUnit != null) {
-	        UnitType chosenUnitType = unitBar.getSelectedUnit();
-	        if (chosenUnitType != null) {
-	            instantiateUnit(chosenUnitType, e.getX(), e.getY());
-	        }
-
-	        unitBar.clearSelectedUnit();
+		if (selectedUnit == null) {
+			unitBar.clearSelectedUnit();
 	        removeElement(selectedUnit);
 	        selectedUnit = null;
+	       
+	        return;
+		}
+		
+		UnitType chosenUnitType = unitBar.getSelectedUnit();
+	    if (chosenUnitType != null) {
+	    	int row = (e.getY() - gridStartY) / tileHeight;
+			int col = (e.getX() - gridStartX) / tileWidth;
+	    	if (isOccupied(row, col)) {
+	    		unitBar.clearSelectedUnit();
+		        removeElement(selectedUnit);
+		        selectedUnit = null;
+		       
+		        return;
+		    }
+	    	
+	    	if (canAfford(chosenUnitType.getCost())) {
+   			instantiateUnit(chosenUnitType, e.getX(), e.getY());
+   		} else {
+   			System.out.println("NOT ENOUGH MONEY");
+   		}
 	    }
+	    unitBar.clearSelectedUnit();
+	    removeElement(selectedUnit);
+	    selectedUnit = null;
 	}
 	
 	public void mouseClicked(MouseEvent e) {
