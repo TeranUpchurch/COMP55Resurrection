@@ -35,6 +35,7 @@ public class GameScene extends Scene{
 	private Game game;
 	private ArrayList<Projectile> projectileCache = new ArrayList<>();
 	private ArrayList<Robot> robotCache = new ArrayList<>();
+	private Set<Unit> unitContainer = new HashSet<>();
 	private ImageToUnitMap imageToUnitMap = new ImageToUnitMap();
 	private ImageToRobotMap imageToRobotMap = new ImageToRobotMap();
 	private GameTimer gameTimer;
@@ -125,6 +126,7 @@ public class GameScene extends Scene{
 		for (GObject obj : new ArrayList<>(activeContents)) // create a copy to avoid modification
 		{
 			removeElement(obj);
+			game = null;
 		}
 	}
 	
@@ -194,15 +196,20 @@ public class GameScene extends Scene{
 		{
 			GImage unitImage = unit.getImageFromUnit();
 			
-			int calculatedRow = (y - gridStartY) / tileHeight;
-			int calculatedCol = (x - gridStartX) / tileWidth;
-			System.out.println(calculatedRow + " " + calculatedCol);
+			int row = (y - gridStartY) / tileHeight;
+			int col = (x - gridStartX) / tileWidth;
+			System.out.println(row + " " + col);
 			
-			int calculatedImageX = gridStartX + calculatedCol * tileWidth;
-			int calculatedImageY = gridStartY + calculatedRow * tileHeight;
+			if (game.grid.getUnitAtSpace(row, col) != null)
+			{
+				return;
+			}
+				
+			int calculatedImageX = gridStartX + col * tileWidth;
+			int calculatedImageY = gridStartY + row * tileHeight;
 			
 			unit.setImagePos(calculatedImageX, calculatedImageY);
-			//game.grid.setSpace(unit, x, y);
+			game.grid.setSpace(unit, row, col);
 			unit.startTimer();
 			imageToUnitMap.addPair(unitImage, unit);
 			addElement(unitImage);

@@ -11,21 +11,11 @@ public class Grid {
 		this.rows = rows;
 		this.cols = cols;
 
-		for (int row = 0; row < rows; row++) {
-            for (int col = 0; col < cols; col++) {
-                
-            }
-        }
+		gameGrid = new Unit[rows][cols];
 	}
 	
-	 public Space getSpace(int row, int col) {
-	        if (row >= 0 && row < rows && col >= 0 && col < cols) {
-	            
-	        } 
-	        else {
-	            return null;  
-	        }
-	        return new Space(1, 2);
+	 public Unit getUnitAtSpace(int row, int col) {
+	        return gameGrid[row][col];
 	    }
 	 
 	 public void setSpace(Unit unit, int row, int col)
