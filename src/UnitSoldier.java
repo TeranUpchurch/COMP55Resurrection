@@ -12,20 +12,7 @@ public class UnitSoldier extends Unit{
 	
 	// private GImage image = new GImage(IMG_FILENAME_PATH + "soldier" + IMG_EXTENSION);
 	private UnitType unitType = UnitType.SOLDIER;
-	private GImage image;
-	private int health = 100;
-	private int cost = 50;
-	private int placementCooldown = 5;
-	private boolean upgradable = true;
-	private int upgradeCost = 50;
-	private String unitToUpgradeTo = "unitSoldier";
-	
-	private GameTimer routineTimer;
-	private int frequency = 2; // 2 seconds
-	private int numTimes;
-	public boolean enemyDetected;
-	private int lane;
-	
+
 	public UnitSoldier(GameScene gameScene, double x, double y)
 	{
 		super(gameScene);

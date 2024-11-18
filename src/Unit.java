@@ -7,22 +7,23 @@ import javax.swing.*;
 
 // this class handles creating the player unit, or the units that the player will use to defeat enemies
 public class Unit {
-	public static final String IMG_FILENAME_PATH = "media/";
-	public static final String IMG_EXTENSION = ".png";
+	protected static final String IMG_FILENAME_PATH = "media/";
+	protected static final String IMG_EXTENSION = ".png";
 	
-	private GImage image = new GImage(IMG_FILENAME_PATH + "soldier" + IMG_EXTENSION);
-	private int health = 100;
-	private int cost = 50;
-	private int placementCooldown = 5;
-	private boolean upgradable = true;
-	private int upgradeCost = 50;
-	private String unitToUpgradeTo = "unitSoldier";
+	protected UnitType unitType = UnitType.SOLDIER;
+	protected GImage image;
+	protected int health;
+	protected int cost;
+	protected int placementCooldown;
+	protected boolean upgradable;
+	protected int upgradeCost;
+	protected String unitToUpgradeTo;
 	
-	private GameTimer routineTimer;
-	private int frequency;
-	private int numTimes;
-	public boolean enemyDetected;
-	private int lane;
+	protected GameTimer routineTimer;
+	protected int frequency;
+	protected int numTimes;
+	protected boolean enemyDetected;
+	protected int lane;
 	
 	protected GameScene gameScene;
 	
