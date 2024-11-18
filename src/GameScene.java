@@ -198,7 +198,7 @@ public class GameScene extends Scene{
 			case MACHINE_GUN -> unit = new UnitMachineGun(this, x, y);
 			
 			// case GRENADE;
-			// case ROCK;
+			case ROCK -> unit = new UnitRock(this, x, y);
 		}
 		if (unit != null)
 		{
