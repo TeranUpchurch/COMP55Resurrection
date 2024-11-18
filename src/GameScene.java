@@ -223,9 +223,26 @@ public class GameScene extends Scene{
 		addElement(selectedUnit);
 	}
 	
-	@Override
+	/*@Override
 	public void mouseReleased(MouseEvent e) {
 		handlePlaceUnit();
+	} */
+	
+	@Override
+	public void mouseReleased(MouseEvent e) {
+	    if (selectedUnit != null) {
+	        int gridX = (int)(selectedUnit.getX() + selectedUnit.getWidth() / 2);
+	        int gridY = (int)(selectedUnit.getY() + selectedUnit.getHeight() / 2);
+	        
+	        UnitType chosenUnitType = unitBar.getSelectedUnit();
+	        if (chosenUnitType != null) {
+	            instantiateUnit(chosenUnitType, gridX, gridY);
+	        }
+
+	        unitBar.clearSelectedUnit();
+	        removeElement(selectedUnit);
+	        selectedUnit = null;
+	    }
 	}
 	
 	public void mouseClicked(MouseEvent e) {
