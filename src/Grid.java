@@ -28,6 +28,11 @@ public class Grid {
 	        return new Space(1, 2);
 	    }
 	 
+	 public void setSpace(Unit unit, int row, int col)
+	 {
+		 gameGrid[row][col] = unit;
+	 }
+	 
 	 public int getRows()
 	 {
 		 return rows;

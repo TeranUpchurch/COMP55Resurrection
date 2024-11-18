@@ -20,6 +20,18 @@ public class GameScene extends Scene{
 	private UnitType chosenUnitName;
 	private GImage currencyBackground;
 	
+	private int resX = MainApplication.getResolutionWidth();
+	private int resY = MainApplication.getResolutionHeight();
+	
+	private int gridStartX = (int)(resX * 0.05);
+	private int gridStartY = (int)(resY * 0.23);
+	
+	private int gridWidth = (int)(resX * 0.9);
+	private int gridHeight = (int)(resY * 0.75);
+	
+	private int tileWidth;
+	private int tileHeight;
+	
 	private Game game;
 	private ArrayList<Projectile> projectileCache = new ArrayList<>();
 	private ArrayList<Robot> robotCache = new ArrayList<>();
@@ -120,17 +132,8 @@ public class GameScene extends Scene{
 	{
 		String filename = IMG_FILENAME_PATH + "tile" + IMG_EXTENSION;
 		
-		int resX = MainApplication.getResolutionWidth();
-		int resY = MainApplication.getResolutionHeight();
-		
-		int startPosX = (int)(resX * 0.05);
-		int startPosY = (int)(resY * 0.23);
-		
-		int gridWidth = (int)(resX * 0.9);
-		int gridHeight = (int)(resY * 0.75);
-		
-		int tileWidth = gridWidth / cols;
-		int tileHeight = gridHeight / rows;
+		tileWidth = gridWidth / cols;
+		tileHeight = gridHeight / rows;
 		
 		int yOffset = 0;
 		for (int i = 0; i < rows; i++)
@@ -140,12 +143,17 @@ public class GameScene extends Scene{
 			{
 				GImage tile = new GImage(filename);
 				tile.setSize(tileWidth, tileHeight);
-				tile.setLocation(startPosX + xOffset, startPosY + yOffset);
+				tile.setLocation(gridStartX + xOffset, gridStartY + yOffset);
 				addElement(tile);
 				xOffset = xOffset + tileWidth;
 			}
 			yOffset = yOffset + tileHeight;
 		}
+	}
+	
+	public void getSpaceFromCursorPosition(int x, int y)
+	{
+		
 	}
 	
 	public void startGame()
@@ -170,6 +178,12 @@ public class GameScene extends Scene{
 	public void instantiateUnit(UnitType unitName, int x, int y)
 	{
 		Unit unit = null;
+		
+		if (x < gridStartX || y < gridStartY)
+		{
+			return;
+		}
+		
 		switch (unitName) {
 			case SOLDIER -> unit = new UnitSoldier(this, x, y);
 			// case MACHINE_GUNE;
@@ -179,7 +193,16 @@ public class GameScene extends Scene{
 		if (unit != null)
 		{
 			GImage unitImage = unit.getImageFromUnit();
-			unit.setImagePos(x, y);
+			
+			int calculatedRow = (y - gridStartY) / tileHeight;
+			int calculatedCol = (x - gridStartX) / tileWidth;
+			System.out.println(calculatedRow + " " + calculatedCol);
+			
+			int calculatedImageX = gridStartX + calculatedCol * tileWidth;
+			int calculatedImageY = gridStartY + calculatedRow * tileHeight;
+			
+			unit.setImagePos(calculatedImageX, calculatedImageY);
+			//game.grid.setSpace(unit, x, y);
 			unit.startTimer();
 			imageToUnitMap.addPair(unitImage, unit);
 			addElement(unitImage);
@@ -261,12 +284,9 @@ public class GameScene extends Scene{
 	@Override
 	public void mouseReleased(MouseEvent e) {
 	    if (selectedUnit != null) {
-	        int gridX = (int)(selectedUnit.getX() + selectedUnit.getWidth() / 2);
-	        int gridY = (int)(selectedUnit.getY() + selectedUnit.getHeight() / 2);
-	        
 	        UnitType chosenUnitType = unitBar.getSelectedUnit();
 	        if (chosenUnitType != null) {
-	            instantiateUnit(chosenUnitType, gridX, gridY);
+	            instantiateUnit(chosenUnitType, e.getX(), e.getY());
 	        }
 
 	        unitBar.clearSelectedUnit();
