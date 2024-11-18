@@ -10,8 +10,8 @@ public class UnitMachineGun extends Unit{
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
 	
-	// private GImage image = new GImage(IMG_FILENAME_PATH + "soldier" + IMG_EXTENSION);
-	private UnitType unitType = UnitType.SOLDIER;
+	//private GImage image = new GImage(IMG_FILENAME_PATH + "machineGun" + IMG_EXTENSION);
+	private UnitType unitType = UnitType.MACHINE_GUN;
 
 	public UnitMachineGun(GameScene gameScene, double x, double y)
 	{
@@ -22,7 +22,7 @@ public class UnitMachineGun extends Unit{
 	
 	public void startTimer()
 	{
-		routineTimer = new GameTimer(100, "Soldier");
+		routineTimer = new GameTimer(20, "MachineGun");
 		routineTimer.start();
 		
 		ActionListener listener = new ActionListener() {
@@ -39,10 +39,10 @@ public class UnitMachineGun extends Unit{
 	}
 	
 	public void routine () {
-		double projectileStartX = image.getX() + image.getWidth(); // Right edge of the soldier
+		double projectileStartX = image.getX() + image.getWidth(); // Right edge of the machine gun
         double projectileStartY = image.getY() + 0.15 * image.getHeight(); // Slightly below the top
 		Projectile projectile = new Projectile(
-				new GImage(IMG_FILENAME_PATH + "paintball" + IMG_EXTENSION),
+				new GImage(IMG_FILENAME_PATH + "machineGun" + IMG_EXTENSION),
 				10,
 				10,
 				10,
