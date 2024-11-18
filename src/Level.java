@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 public class Level {
+	private ArrayList<Wave> waves;
+	private String difficulty;
+	
 	
 	public Level()
 	{

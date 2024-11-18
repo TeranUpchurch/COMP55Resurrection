@@ -58,6 +58,11 @@ public class Robot {
 		return 0;
 	}
 	
+	public void step()
+	{
+		
+	}
+	
 	// if an enemy's health reaches zero, it is defeated and disappears from the grid
 	public boolean isDeath(int health) {
 		if (health == 0) {
