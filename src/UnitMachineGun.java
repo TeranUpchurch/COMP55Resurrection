@@ -10,7 +10,6 @@ public class UnitMachineGun extends Unit{
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
 	
-	//private GImage image = new GImage(IMG_FILENAME_PATH + "machineGun" + IMG_EXTENSION);
 	private UnitType unitType = UnitType.MACHINE_GUN;
 
 	public UnitMachineGun(GameScene gameScene, double x, double y)
