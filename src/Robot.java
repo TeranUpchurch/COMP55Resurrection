@@ -60,7 +60,10 @@ public class Robot {
 	
 	// if an enemy's health reaches zero, it is defeated and disappears from the grid
 	public boolean isDeath(int health) {
-		return true;
+		if (health == 0) {
+			return true;
+		}
+		return false;
 	}
 	
 	// determines if an enemy unit is close enough to a player unit to start attacking and dealing damage to it
