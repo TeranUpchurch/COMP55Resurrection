@@ -171,10 +171,17 @@ public class GameScene extends Scene{
 		    	{
 		    		item.step();
 		    	}
+		    	
+		    	for (Robot robot : robotCache)
+		    	{
+		    		robot.step();
+		    	}
 		    }};
 		   
 	    gameTimer.createActionListener(listener);
 	    gameTimer.start();
+	    
+	    
 	}
 	
 	public void instantiateUnit(UnitType unitName, int x, int y)
@@ -216,7 +223,7 @@ public class GameScene extends Scene{
 		}
 		System.out.println("Instantiated unit:" + unitName.getName());
 	}
-	
+
 	
 	public void instantiateProjectile(Projectile projectile, double x, double y)
 	{

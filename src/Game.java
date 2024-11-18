@@ -9,6 +9,7 @@ public class Game {
 	private ArrayList<Unit> unitOptions;
 	private Level level;
 	public Grid grid;
+	private int enemyCount = 0;
 	private int currency;
 	private ImageToUnitMap imageToUnitMap;
 	private ImageToRobotMap imageToRobotMap;
@@ -17,6 +18,7 @@ public class Game {
 	public Game()
 	{
 		grid = new Grid(5, 9);
+		level = new Level();
 		imageToUnitMap = new ImageToUnitMap();
 		imageToRobotMap = new ImageToRobotMap();
 	}
