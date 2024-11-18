@@ -8,7 +8,7 @@ import javax.swing.*;
 public class Game {
 	private ArrayList<Unit> unitOptions;
 	private Level level;
-	private Grid grid;
+	public Grid grid;
 	private int currency;
 	private ImageToUnitMap imageToUnitMap;
 	private ImageToRobotMap imageToRobotMap;
@@ -16,7 +16,7 @@ public class Game {
 	
 	public Game()
 	{
-		
+		grid = new Grid(5, 9);
 	}
 	
 	public Game(Level chosenLevel, ArrayList<Unit> chosenUnits)

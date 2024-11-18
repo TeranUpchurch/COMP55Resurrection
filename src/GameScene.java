@@ -32,8 +32,6 @@ public class GameScene extends Scene{
 	private GButton pauseButton;
 	private UnitBar unitBar;
 	
-	private Grid grid;
-	
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
 	
@@ -42,7 +40,6 @@ public class GameScene extends Scene{
 		super(mainApp);
 		labelText = difficulty;
 		unitBar = new UnitBar();
-		grid = new Grid(5, 9);
 	}
 	
 	private void drawPauseButton() {
@@ -119,10 +116,17 @@ public class GameScene extends Scene{
 		}
 	}
 	
+	public void drawGrid(int rows, int cols)
+	{
+		String filename = IMG_FILENAME_PATH + "tile" + IMG_EXTENSION;
+		GImage tile = new GImage(filename);
+	}
+	
 	public void startGame()
 	{
 		System.out.println("Starting game.");
 		game = new Game();
+		drawGrid(game.grid.getRows(), game.grid.getCols());
 		gameTimer = new GameTimer(50, "Game");
 		
 		ActionListener listener = new ActionListener() {
