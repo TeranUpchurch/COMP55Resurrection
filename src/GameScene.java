@@ -119,7 +119,33 @@ public class GameScene extends Scene{
 	public void drawGrid(int rows, int cols)
 	{
 		String filename = IMG_FILENAME_PATH + "tile" + IMG_EXTENSION;
-		GImage tile = new GImage(filename);
+		
+		int resX = MainApplication.getResolutionWidth();
+		int resY = MainApplication.getResolutionHeight();
+		
+		int startPosX = (int)(resX * 0.05);
+		int startPosY = (int)(resY * 0.23);
+		
+		int gridWidth = (int)(resX * 0.9);
+		int gridHeight = (int)(resY * 0.75);
+		
+		int tileWidth = gridWidth / cols;
+		int tileHeight = gridHeight / rows;
+		
+		int yOffset = 0;
+		for (int i = 0; i < rows; i++)
+		{
+			int xOffset = 0;
+			for (int j = 0; j < cols; j++)
+			{
+				GImage tile = new GImage(filename);
+				tile.setSize(tileWidth, tileHeight);
+				tile.setLocation(startPosX + xOffset, startPosY + yOffset);
+				addElement(tile);
+				xOffset = xOffset + tileWidth;
+			}
+			yOffset = yOffset + tileHeight;
+		}
 	}
 	
 	public void startGame()
