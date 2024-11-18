@@ -32,6 +32,8 @@ public class GameScene extends Scene{
 	private GButton pauseButton;
 	private UnitBar unitBar;
 	
+	private Grid grid;
+	
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
 	
@@ -40,6 +42,7 @@ public class GameScene extends Scene{
 		super(mainApp);
 		labelText = difficulty;
 		unitBar = new UnitBar();
+		grid = new Grid(5, 9);
 	}
 	
 	private void drawPauseButton() {
