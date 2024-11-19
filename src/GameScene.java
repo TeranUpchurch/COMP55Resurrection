@@ -25,7 +25,7 @@ public class GameScene extends Scene{
 	private int resY = MainApplication.getResolutionHeight();
 	
 	private int gridStartX = (int)(resX * 0.05);
-	private int gridStartY = (int)(resY * 0.23);
+	private int gridStartY = (int)(resY * 0.252);
 	
 	private int gridWidth = (int)(resX * 0.9);
 	private int gridHeight = (int)(resY * 0.75);
@@ -135,15 +135,22 @@ public class GameScene extends Scene{
 	public void drawBackground() {
 		String fence = IMG_FILENAME_PATH + "fence" + IMG_EXTENSION;
 		String background = IMG_FILENAME_PATH + "backgroundGameScene" + IMG_EXTENSION;
+		String ground = IMG_FILENAME_PATH + "ground" + IMG_EXTENSION;
 		
 		this.backgroundGameScene = new GImage(background);
 		GImage fenceImage = new GImage(fence);
+		GImage groundImage = new GImage(ground);
+		
+		int x = gridStartX + gridWidth;
+		System.out.println("CHECK " + x);
 		
 		backgroundGameScene.setLocation(0, 0);
-		fenceImage.setLocation(0, 0);
+		fenceImage.setLocation(0, gridStartY - fenceImage.getHeight());
+		groundImage.setLocation(0, gridStartY);
 		
 		addElement(backgroundGameScene);
 		addElement(fenceImage);
+		addElement(groundImage);
 	}
 	
 	public void drawGrid(int rows, int cols)
