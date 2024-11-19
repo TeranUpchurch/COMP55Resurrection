@@ -13,18 +13,19 @@ import java.util.Set;
 // and a button to return to main menu scene..
 
 public class GameScene extends Scene{
-	private static final int CURRENCY_START = 100;
+	private static final int CURRENCY_START = 200;
 	private String labelText;
 	private GLabel currencyLabel;
 	private GImage selectedUnit = null;
 	private UnitType chosenUnitName;
 	private GImage currencyBackground;
+	private GImage backgroundGameScene;
 	
 	private int resX = MainApplication.getResolutionWidth();
 	private int resY = MainApplication.getResolutionHeight();
 	
 	private int gridStartX = (int)(resX * 0.05);
-	private int gridStartY = (int)(resY * 0.23);
+	private int gridStartY = (int)(resY * 0.252);
 	
 	private int gridWidth = (int)(resX * 0.9);
 	private int gridHeight = (int)(resY * 0.75);
@@ -95,7 +96,7 @@ public class GameScene extends Scene{
 		updateCurrencyLabel();
 	}
 	
-	public boolean spendMoney(int amount) {
+	public boolean canAfford(int amount) {
 		if (this.currency >= amount) {
 			currency -= amount;
 			updateCurrencyLabel();
@@ -113,6 +114,7 @@ public class GameScene extends Scene{
 	{
 		System.out.println("Show contents from this point..");
 		addElement(new GLabel(labelText, MainApplication.getResolutionWidth() / 2, MainApplication.getResolutionHeight() / 2));
+		drawBackground();
 		drawPauseButton();
 		unitBar.drawUnitBar(this);
 		drawCurrencyBackground();
@@ -130,9 +132,33 @@ public class GameScene extends Scene{
 		}
 	}
 	
+	public void drawBackground() {
+		String fence = IMG_FILENAME_PATH + "fence" + IMG_EXTENSION;
+		String background = IMG_FILENAME_PATH + "backgroundGameScene" + IMG_EXTENSION;
+		String ground = IMG_FILENAME_PATH + "ground" + IMG_EXTENSION;
+		
+		this.backgroundGameScene = new GImage(background);
+		GImage fenceImage = new GImage(fence);
+		GImage groundImage = new GImage(ground);
+		
+		int x = gridStartX + gridWidth;
+		System.out.println("CHECK " + x);
+		
+		backgroundGameScene.setLocation(0, 0);
+		fenceImage.setLocation(0, gridStartY - fenceImage.getHeight());
+		groundImage.setLocation(0, gridStartY);
+		
+		addElement(backgroundGameScene);
+		addElement(fenceImage);
+		addElement(groundImage);
+	}
+	
 	public void drawGrid(int rows, int cols)
 	{
-		String filename = IMG_FILENAME_PATH + "tile" + IMG_EXTENSION;
+		String darkTileFilename = IMG_FILENAME_PATH + "darkTile" + IMG_EXTENSION;
+		String lightTileFilename = IMG_FILENAME_PATH + "lightTile" + IMG_EXTENSION;
+		
+		System.out.println("Grid startX: " + gridStartX + " starY: " + gridStartY);
 		
 		tileWidth = gridWidth / cols;
 		tileHeight = gridHeight / rows;
@@ -143,6 +169,7 @@ public class GameScene extends Scene{
 			int xOffset = 0;
 			for (int j = 0; j < cols; j++)
 			{
+				String filename = ((i + j) % 2 == 0) ? lightTileFilename : darkTileFilename;
 				GImage tile = new GImage(filename);
 				tile.setSize(tileWidth, tileHeight);
 				tile.setLocation(gridStartX + xOffset, gridStartY + yOffset);
@@ -210,9 +237,10 @@ public class GameScene extends Scene{
 		
 		switch (unitName) {
 			case SOLDIER -> unit = new UnitSoldier(this, x, y);
-			// case MACHINE_GUNE;
+			case MACHINE_GUN -> unit = new UnitMachineGun(this, x, y);
+			
 			// case GRENADE;
-			// case ROCK;
+			case ROCK -> unit = new UnitRock(this, x, y);
 		}
 		if (unit != null)
 		{
@@ -220,12 +248,14 @@ public class GameScene extends Scene{
 			
 			int row = (y - gridStartY) / tileHeight;
 			int col = (x - gridStartX) / tileWidth;
-			System.out.println(row + " " + col);
 			
-			if (game.grid.getUnitAtSpace(row, col) != null)
+			if (isOccupied(row, col))
 			{
+				System.out.println("Invalid space");
 				return;
 			}
+			
+			System.out.println(row + " " + col);
 				
 			int calculatedImageX = gridStartX + col * tileWidth;
 			int calculatedImageY = gridStartY + row * tileHeight;
@@ -238,7 +268,14 @@ public class GameScene extends Scene{
 		}
 		System.out.println("Instantiated unit:" + unitName.getName());
 	}
-
+	
+	public boolean isOccupied (int row, int col) {
+		if (game.grid.getUnitAtSpace(row, col) != null)
+		{
+			return true;
+		}
+		return false;
+	}
 	
 	public void instantiateProjectile(Projectile projectile, double x, double y)
 	{
@@ -247,26 +284,6 @@ public class GameScene extends Scene{
 		addElement(projImage);
 		projectileCache.add(projectile);
 		System.out.println("Added projectile " + projectile + " to cache");
-	}
-	
-	public void handlePlaceUnit() {
-		if (selectedUnit != null) {
-			UnitType chosenUnitType = unitBar.getSelectedUnit();
-			// Make sure instantiateUnit() method will not cause an unexpected behavior
-			if (chosenUnitType != null) {
-				if (spendMoney(chosenUnitType.getCost())) {
-					instantiateUnit(chosenUnitType, (int)selectedUnit.getX(), (int)selectedUnit.getY());
-					System.out.println("Unit placed at x: " + selectedUnit.getX() + "; y: " + selectedUnit.getY());
-				} else {
-					System.out.println("NOT ENOUGH MONEY");
-				}
-			}
-
-			unitBar.clearSelectedUnit();
-			chosenUnitName = null;
-			removeElement(selectedUnit);
-			selectedUnit = null;
-		}
 	}
 	
 	@Override
@@ -283,23 +300,38 @@ public class GameScene extends Scene{
 		addElement(selectedUnit);
 	}
 	
-	/*@Override
-	public void mouseReleased(MouseEvent e) {
-		handlePlaceUnit();
-	} */
+	public void clearSelection() {
+		unitBar.clearSelectedUnit();
+        removeElement(selectedUnit);
+        selectedUnit = null;
+	}
 	
 	@Override
 	public void mouseReleased(MouseEvent e) {
-	    if (selectedUnit != null) {
-	        UnitType chosenUnitType = unitBar.getSelectedUnit();
-	        if (chosenUnitType != null) {
-	            instantiateUnit(chosenUnitType, e.getX(), e.getY());
-	        }
-
-	        unitBar.clearSelectedUnit();
-	        removeElement(selectedUnit);
-	        selectedUnit = null;
+		if (selectedUnit == null) {
+			clearSelection();
+	        return;
+		}
+		
+		UnitType chosenUnitType = unitBar.getSelectedUnit();
+	    if (chosenUnitType != null) {
+	    	int row = (e.getY() - gridStartY) / tileHeight;
+			int col = (e.getX() - gridStartX) / tileWidth;
+			
+	    	if (isOccupied(row, col)) {
+	    		clearSelection();
+		        return;
+		    }
+	    	
+	    	if (canAfford(chosenUnitType.getCost())) {
+	    		instantiateUnit(chosenUnitType, e.getX(), e.getY());
+	    	} else {
+	    		System.out.println("NOT ENOUGH MONEY");
+	    	}
 	    }
+	    unitBar.clearSelectedUnit();
+	    removeElement(selectedUnit);
+	    selectedUnit = null;
 	}
 	
 	public void mouseClicked(MouseEvent e) {
