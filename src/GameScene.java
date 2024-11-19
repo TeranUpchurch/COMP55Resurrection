@@ -19,6 +19,7 @@ public class GameScene extends Scene{
 	private GImage selectedUnit = null;
 	private UnitType chosenUnitName;
 	private GImage currencyBackground;
+	private GImage backgroundGameScene;
 	
 	private int resX = MainApplication.getResolutionWidth();
 	private int resY = MainApplication.getResolutionHeight();
@@ -113,6 +114,7 @@ public class GameScene extends Scene{
 	{
 		System.out.println("Show contents from this point..");
 		addElement(new GLabel(labelText, MainApplication.getResolutionWidth() / 2, MainApplication.getResolutionHeight() / 2));
+		drawBackground();
 		drawPauseButton();
 		unitBar.drawUnitBar(this);
 		drawCurrencyBackground();
@@ -130,10 +132,26 @@ public class GameScene extends Scene{
 		}
 	}
 	
+	public void drawBackground() {
+		String fence = IMG_FILENAME_PATH + "fence" + IMG_EXTENSION;
+		String background = IMG_FILENAME_PATH + "backgroundGameScene" + IMG_EXTENSION;
+		
+		this.backgroundGameScene = new GImage(background);
+		GImage fenceImage = new GImage(fence);
+		
+		backgroundGameScene.setLocation(0, 0);
+		fenceImage.setLocation(0, 0);
+		
+		addElement(backgroundGameScene);
+		addElement(fenceImage);
+	}
+	
 	public void drawGrid(int rows, int cols)
 	{
 		String darkTileFilename = IMG_FILENAME_PATH + "darkTile" + IMG_EXTENSION;
 		String lightTileFilename = IMG_FILENAME_PATH + "lightTile" + IMG_EXTENSION;
+		
+		System.out.println("Grid startX: " + gridStartX + " starY: " + gridStartY);
 		
 		tileWidth = gridWidth / cols;
 		tileHeight = gridHeight / rows;
