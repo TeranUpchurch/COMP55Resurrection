@@ -13,7 +13,7 @@ import java.util.Set;
 // and a button to return to main menu scene..
 
 public class GameScene extends Scene{
-	private static final int CURRENCY_START = 100;
+	private static final int CURRENCY_START = 200;
 	private String labelText;
 	private GLabel currencyLabel;
 	private GImage selectedUnit = null;
@@ -235,8 +235,6 @@ public class GameScene extends Scene{
 		return false;
 	}
 	
-
-	
 	public void instantiateProjectile(Projectile projectile, double x, double y)
 	{
 		GImage projImage = projectile.getImage();
@@ -244,26 +242,6 @@ public class GameScene extends Scene{
 		addElement(projImage);
 		projectileCache.add(projectile);
 		System.out.println("Added projectile " + projectile + " to cache");
-	}
-	
-	public void handlePlaceUnit() {
-		if (selectedUnit != null) {
-			UnitType chosenUnitType = unitBar.getSelectedUnit();
-			// Make sure instantiateUnit() method will not cause an unexpected behavior
-			if (chosenUnitType != null) {
-				if (canAfford(chosenUnitType.getCost())) {
-					instantiateUnit(chosenUnitType, (int)selectedUnit.getX(), (int)selectedUnit.getY());
-					System.out.println("Unit placed at x: " + selectedUnit.getX() + "; y: " + selectedUnit.getY());
-				} else {
-					System.out.println("NOT ENOUGH MONEY");
-				}
-			}
-
-			unitBar.clearSelectedUnit();
-			chosenUnitName = null;
-			removeElement(selectedUnit);
-			selectedUnit = null;
-		}
 	}
 	
 	@Override
@@ -280,18 +258,16 @@ public class GameScene extends Scene{
 		addElement(selectedUnit);
 	}
 	
-	/*@Override
-	public void mouseReleased(MouseEvent e) {
-		handlePlaceUnit();
-	} */
+	public void clearSelection() {
+		unitBar.clearSelectedUnit();
+        removeElement(selectedUnit);
+        selectedUnit = null;
+	}
 	
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		if (selectedUnit == null) {
-			unitBar.clearSelectedUnit();
-	        removeElement(selectedUnit);
-	        selectedUnit = null;
-	       
+			clearSelection();
 	        return;
 		}
 		
@@ -299,19 +275,17 @@ public class GameScene extends Scene{
 	    if (chosenUnitType != null) {
 	    	int row = (e.getY() - gridStartY) / tileHeight;
 			int col = (e.getX() - gridStartX) / tileWidth;
+			
 	    	if (isOccupied(row, col)) {
-	    		unitBar.clearSelectedUnit();
-		        removeElement(selectedUnit);
-		        selectedUnit = null;
-		       
+	    		clearSelection();
 		        return;
 		    }
 	    	
 	    	if (canAfford(chosenUnitType.getCost())) {
-   			instantiateUnit(chosenUnitType, e.getX(), e.getY());
-   		} else {
-   			System.out.println("NOT ENOUGH MONEY");
-   		}
+	    		instantiateUnit(chosenUnitType, e.getX(), e.getY());
+	    	} else {
+	    		System.out.println("NOT ENOUGH MONEY");
+	    	}
 	    }
 	    unitBar.clearSelectedUnit();
 	    removeElement(selectedUnit);

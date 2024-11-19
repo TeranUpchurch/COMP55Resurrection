@@ -41,7 +41,7 @@ public class UnitMachineGun extends Unit{
 		double projectileStartX = image.getX() + image.getWidth(); // Right edge of the machine gun
         double projectileStartY = image.getY() + 0.15 * image.getHeight(); // Slightly below the top
 		Projectile projectile = new Projectile(
-				new GImage(IMG_FILENAME_PATH + "machineGun" + IMG_EXTENSION),
+				new GImage(IMG_FILENAME_PATH + "paintball_Red" + IMG_EXTENSION),
 				10,
 				10,
 				10,

@@ -42,7 +42,7 @@ public class UnitSoldier extends Unit{
 		double projectileStartX = image.getX() + image.getWidth(); // Right edge of the soldier
         double projectileStartY = image.getY() + 0.15 * image.getHeight(); // Slightly below the top
 		Projectile projectile = new Projectile(
-				new GImage(IMG_FILENAME_PATH + "paintball" + IMG_EXTENSION),
+				new GImage(IMG_FILENAME_PATH + "paintball_Yellow" + IMG_EXTENSION),
 				10,
 				10,
 				10,
