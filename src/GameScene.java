@@ -132,7 +132,8 @@ public class GameScene extends Scene{
 	
 	public void drawGrid(int rows, int cols)
 	{
-		String filename = IMG_FILENAME_PATH + "tile" + IMG_EXTENSION;
+		String darkTileFilename = IMG_FILENAME_PATH + "darkTile" + IMG_EXTENSION;
+		String lightTileFilename = IMG_FILENAME_PATH + "lightTile" + IMG_EXTENSION;
 		
 		tileWidth = gridWidth / cols;
 		tileHeight = gridHeight / rows;
@@ -143,6 +144,7 @@ public class GameScene extends Scene{
 			int xOffset = 0;
 			for (int j = 0; j < cols; j++)
 			{
+				String filename = ((i + j) % 2 == 0) ? lightTileFilename : darkTileFilename;
 				GImage tile = new GImage(filename);
 				tile.setSize(tileWidth, tileHeight);
 				tile.setLocation(gridStartX + xOffset, gridStartY + yOffset);
