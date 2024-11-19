@@ -39,7 +39,7 @@ public class GameScene extends Scene{
 	private ImageToUnitMap imageToUnitMap = new ImageToUnitMap();
 	private ImageToRobotMap imageToRobotMap = new ImageToRobotMap();
 	private GameTimer gameTimer;
-	private int numTimes;
+	private int numTimes = 0;
 	private int currency;
 	
 	private GButton pauseButton;
@@ -161,20 +161,30 @@ public class GameScene extends Scene{
 	public void startGame()
 	{
 		System.out.println("Starting game.");
-		game = new Game();	// default game constructor
+		game = new Game(this);	// default game constructor, this will change when level selection is added
+		game.startCurrentWave();
+		System.out.println("Starting first wave");
 		drawGrid(game.grid.getRows(), game.grid.getCols());
 		gameTimer = new GameTimer(50, "Game");
 		
 		ActionListener listener = new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
+		    	// Move all projectiles in cache.
 		    	for (Projectile item : projectileCache)
 		    	{
 		    		item.step();
 		    	}
-		    	
+		    	// Move all robots in cache.
 		    	for (Robot robot : robotCache)
 		    	{
 		    		robot.step();
+		    	}
+		    	// Check the enemy counter - if 0, go to next wave.
+		    	if (game.getActiveEnemyCount() <= 0)
+		    	{
+		    		System.out.println("Starting next wave");
+		    		game.incrementWaveNum();
+		    		game.startCurrentWave();
 		    	}
 		    }};
 		   
@@ -182,6 +192,11 @@ public class GameScene extends Scene{
 	    gameTimer.start();
 	    
 	    
+	}
+	
+	public void instantiateRobot(Robot robot)
+	{
+		System.out.println("Spawn robot" + robot + "at this point.");
 	}
 	
 	public void instantiateUnit(UnitType unitName, int x, int y)
