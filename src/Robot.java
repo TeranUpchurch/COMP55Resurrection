@@ -45,8 +45,8 @@ public class Robot {
 	}
 	
 	// how much damage the enemy deals to the player unit it is attacking
-	public void damageUnit() {
-		
+	public void damageUnit(int d) {
+		damage = d;
 	}
 	
 	public void attackUnit() {
@@ -54,7 +54,7 @@ public class Robot {
 	}
 	
 	// how much damage the enemy unit takes from a player unit
-	public int takeDamage() {
+	public int takeDamage(int d) {
 		return 0;
 	}
 	
@@ -72,7 +72,10 @@ public class Robot {
 	}
 	
 	// determines if an enemy unit is close enough to a player unit to start attacking and dealing damage to it
-	public boolean hasReachUnit() {
+	public boolean hasReachUnit(boolean isMoving) {
+		if (isMoving == false) {
+			return false;
+		}
 		return true;
 	}
 }
