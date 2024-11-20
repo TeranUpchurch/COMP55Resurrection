@@ -17,6 +17,8 @@ public class Robot {
 	public boolean isMoving;
 	public boolean hasTakenDamage;
 	
+	
+	
 	public Robot() {
 		image = new GImage("robot.png");
 		health = 100;
@@ -72,24 +74,15 @@ public class Robot {
             System.out.println("Robot took " + damage + " damage. Health: " + health);
         }
         return health;
-		/*temp = 
-		health -= damage;
-		hasReachedUnit(hasTakenDamage);
-		return 0; */
 	}
 	
-	public void step()
+	public void step() // kind of similar to projectile, 
 	{
 		image.move(-1 * moveSpeed, 0);
 	}
 	
 	// if an enemy's health reaches zero, it is defeated and disappears from the grid
 	public boolean isDeath(int health, int currencyEarned) {
-		/*if (health == 0) {
-			System.out.println(currencyEarned + "currency awarded");
-			return true;
-		}
-		return false; */
 		return health <= 0;
 	}
 	
