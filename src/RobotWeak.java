@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 	// this class handles the enemy units in the game and their attributes, such as how fast they move and how much health they have
-	public class weakRobot extends Robot {
+	public class RobotWeak extends Robot {
 		private GImage image;
 		private int health;
 		private int damage;
@@ -18,7 +18,7 @@ import javax.swing.*;
 		public boolean isMoving;
 		public boolean hasTakenDamage;
 		
-		public weakRobot() {
+		public RobotWeak() {
 			image = new GImage("robot.png");
 			health = 100;
 			damage = 20;
@@ -29,7 +29,7 @@ import javax.swing.*;
 			isMoving = true;
 			hasTakenDamage = false;
 		}
-		public weakRobot(GImage image, int health, int damage, int lane, int moveSpeed, int currencyEarned) {
+		public RobotWeak(GImage image, int health, int damage, int lane, int moveSpeed, int currencyEarned) {
 			super(image, health, damage, lane, moveSpeed, currencyEarned);
 		}
 		

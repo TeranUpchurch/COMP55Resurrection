@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 // this class handles the enemy units in the game and their attributes, such as how fast they move and how much health they have
-public class strongRobot extends Robot {
+public class RobotStrong extends Robot {
 	private GImage image;
 	private int health;
 	private int damage;
@@ -17,7 +17,7 @@ public class strongRobot extends Robot {
 	public boolean isMoving;
 	public boolean hasTakenDamage;
 	
-	public strongRobot() {
+	public RobotStrong() {
 		image = new GImage("robot.png");
 		health = 100;
 		damage = 20;
@@ -29,7 +29,7 @@ public class strongRobot extends Robot {
 		hasTakenDamage = false;
 	}
 	
-	public strongRobot(GImage image, int health, int damage, int lane, int moveSpeed, int currencyEarned) {
+	public RobotStrong(GImage image, int health, int damage, int lane, int moveSpeed, int currencyEarned) {
 		super(image, health, damage, lane, moveSpeed, currencyEarned);
 	}
 	
