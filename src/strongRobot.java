@@ -30,12 +30,7 @@ public class strongRobot extends Robot {
 	}
 	
 	public strongRobot(GImage image, int health, int damage, int lane, int moveSpeed, int currencyEarned) {
-		this.image = image;
-		this.health = health;
-		this.damage = damage;
-		this.lane = lane;
-		this.moveSpeed = moveSpeed;
-		this.currencyEarned = currencyEarned;
+		super(image, health, damage, lane, moveSpeed, currencyEarned);
 	}
 	
 	public int getImageX() {
