@@ -14,40 +14,41 @@ import java.util.Set;
 
 public class GameScene extends Scene{
 	private static final int CURRENCY_START = 200;
-	private String labelText;
-	private GLabel currencyLabel;
-	private GImage selectedUnit = null;
-	private UnitType chosenUnitName;
-	private GImage currencyBackground;
-	private GImage backgroundGameScene;
+	public static final String IMG_FILENAME_PATH = "media/";
+	public static final String IMG_EXTENSION = ".png";
 	
+	// Display properties
 	private int resX = MainApplication.getResolutionWidth();
 	private int resY = MainApplication.getResolutionHeight();
-	
 	private int gridStartX = (int)(this.resX * 0.05);
 	private int gridStartY = (int)(this.resY * 0.252);
-	
 	private int gridWidth = (int)(this.resX * 0.9);
 	private int gridHeight = (int)(this.resY * 0.75);
-	
 	private int tileWidth;
 	private int tileHeight;
 	
+	// UI elements
+	private GLabel currencyLabel;
+	private GButton pauseButton;
+	private UnitBar unitBar;
+	private GImage currencyBackground;
+	private GImage backgroundGameScene;
+	
+	// Game state
+	private String labelText;
 	private Game game;
-	private ArrayList<Projectile> projectileCache = new ArrayList<>();
-	private ArrayList<Robot> robotCache = new ArrayList<>();
-	private Set<Unit> unitContainer = new HashSet<>();
-	private ImageToUnitMap imageToUnitMap = new ImageToUnitMap();
-	private ImageToRobotMap imageToRobotMap = new ImageToRobotMap();
 	private GameTimer gameTimer;
 	private int numTimes = 0;
 	private int currency;
 	
-	private GButton pauseButton;
-	private UnitBar unitBar;
-	
-	public static final String IMG_FILENAME_PATH = "media/";
-	public static final String IMG_EXTENSION = ".png";
+	// Unit management
+	private UnitType chosenUnitName;
+	private GImage selectedUnit = null;
+	private Set<Unit> unitContainer = new HashSet<>();
+	private ImageToUnitMap imageToUnitMap = new ImageToUnitMap();
+	private ImageToRobotMap imageToRobotMap = new ImageToRobotMap();
+	private ArrayList<Projectile> projectileCache = new ArrayList<>();
+	private ArrayList<Robot> robotCache = new ArrayList<>();
 	
 	public GameScene(MainApplication mainApp, String difficulty)
 	{
@@ -56,60 +57,7 @@ public class GameScene extends Scene{
 		unitBar = new UnitBar();
 	}
 	
-	private void drawPauseButton() {
-		String filename = IMG_FILENAME_PATH + "pauseButton" + IMG_EXTENSION;
-		GImage pauseButtonImage = new GImage(filename);
-		int pauseButtonX = (int)(MainApplication.getResolutionWidth() * 0.90);
-		int pauseButtonY = (int)((MainApplication.getResolutionHeight() * 0.02) + 20);
-		this.pauseButton = new GButton(pauseButtonImage,pauseButtonX,pauseButtonY);
-		addElement(pauseButton);
-		pauseButton.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				// trigger return to main menu
-				System.out.println("Pause Button clicked!");
-				PauseMenu pauseMenu = new PauseMenu ("media/pauseMenu.png", mainApp);
-				pauseMenu.showPopup(mainApp); // Display the pause menu
-			}
-		});
-	}
-	
-	private void drawCurrencyBackground() {
-		String filename = IMG_FILENAME_PATH + "currencyBackground" + IMG_EXTENSION;
-		this.currencyBackground = new GImage(filename);
-		int currencyBackgroundX = (int)(MainApplication.getResolutionWidth() * 0.70);
-		int currencyBackgroundY = (int)((MainApplication.getResolutionHeight() * 0.02) + 20);
-		this.currencyBackground.setLocation(currencyBackgroundX, currencyBackgroundY);
-		addElement(this.currencyBackground);
-	}
-	
-	private void drawCurrencyCounter() {
-		this.currency = CURRENCY_START;
-		this.currencyLabel = new GLabel("" + currency);
-		this.currencyLabel.setFont("Arial-Bold-50");
-		this.currencyLabel.setColor(Color.BLACK);
-		this.currencyLabel.setLocation(this.currencyBackground.getX() + 0.8 * (this.currencyBackground.getWidth() / 2), this.currencyBackground.getY() + 1.3 * (this.currencyBackground.getHeight() / 2));
-		addElement(currencyLabel);
-	}
-	
-	public void addCurrency(int amount) {
-		this.currency += amount;
-		updateCurrencyLabel();
-	}
-	
-	public boolean canAfford(int amount) {
-		if (this.currency >= amount) {
-			currency -= amount;
-			updateCurrencyLabel();
-			return true;
-		}
-		// should show notification to player when they do not have enough money. DO IT LATER
-		return false;
-	}
-	private void updateCurrencyLabel() {
-		this.currencyLabel.setLabel("" + currency);
-	}
-	
-	// when clicking certain buttons, a new screen will pop up. showContents makes the screens pop up, while hideContents makes them disappear
+	@Override
 	public void showContents()
 	{
 		System.out.println("Show contents from this point..");
@@ -122,6 +70,7 @@ public class GameScene extends Scene{
 		startGame();
 	}
 	
+	@Override
 	public void hideContents()
 	{
 		System.out.println("Hide contents from this point..");
@@ -132,6 +81,7 @@ public class GameScene extends Scene{
 		}
 	}
 	
+	// UI drawing methods
 	public void drawBackground() {
 		String fence = IMG_FILENAME_PATH + "fence" + IMG_EXTENSION;
 		String background = IMG_FILENAME_PATH + "backgroundGameScene" + IMG_EXTENSION;
@@ -175,11 +125,66 @@ public class GameScene extends Scene{
 		}
 	}
 	
+	private void drawPauseButton() {
+		String filename = IMG_FILENAME_PATH + "pauseButton" + IMG_EXTENSION;
+		GImage pauseButtonImage = new GImage(filename);
+		int pauseButtonX = (int)(MainApplication.getResolutionWidth() * 0.90);
+		int pauseButtonY = (int)((MainApplication.getResolutionHeight() * 0.02) + 20);
+		this.pauseButton = new GButton(pauseButtonImage,pauseButtonX,pauseButtonY);
+		addElement(pauseButton);
+		pauseButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				// trigger return to main menu
+				System.out.println("Pause Button clicked!");
+				PauseMenu pauseMenu = new PauseMenu ("media/pauseMenu.png", mainApp);
+				pauseMenu.showPopup(mainApp); // Display the pause menu
+			}
+		});
+	}
+	
+	private void drawCurrencyBackground() {
+		String filename = IMG_FILENAME_PATH + "currencyBackground" + IMG_EXTENSION;
+		this.currencyBackground = new GImage(filename);
+		int currencyBackgroundX = (int)(MainApplication.getResolutionWidth() * 0.70);
+		int currencyBackgroundY = (int)((MainApplication.getResolutionHeight() * 0.02) + 20);
+		this.currencyBackground.setLocation(currencyBackgroundX, currencyBackgroundY);
+		addElement(this.currencyBackground);
+	}
+	
+	private void drawCurrencyCounter() {
+		this.currency = CURRENCY_START;
+		this.currencyLabel = new GLabel("" + currency);
+		this.currencyLabel.setFont("Arial-Bold-50");
+		this.currencyLabel.setColor(Color.BLACK);
+		this.currencyLabel.setLocation(this.currencyBackground.getX() + 0.8 * (this.currencyBackground.getWidth() / 2), this.currencyBackground.getY() + 1.3 * (this.currencyBackground.getHeight() / 2));
+		addElement(currencyLabel);
+	}
+	
+	// Currency management methods
+	public void addCurrency(int amount) {
+		this.currency += amount;
+		updateCurrencyLabel();
+	}
+	
+	public boolean canAfford(int amount) {
+		if (this.currency >= amount) {
+			currency -= amount;
+			updateCurrencyLabel();
+			return true;
+		}
+		// should show notification to player when they do not have enough money. DO IT LATER
+		return false;
+	}
+	private void updateCurrencyLabel() {
+		this.currencyLabel.setLabel("" + currency);
+	}
+	
 	public void getSpaceFromCursorPosition(int x, int y)
 	{
 		
 	}
 	
+	// Game Logic
 	public void startGame()
 	{
 		System.out.println("Starting game.");
@@ -216,6 +221,7 @@ public class GameScene extends Scene{
 	    
 	}
 	
+	// Unit and Robot management methods
 	public void instantiateRobot(Robot robot)
 	{
 		System.out.println("Spawn robot" + robot + "at this point.");
@@ -233,38 +239,50 @@ public class GameScene extends Scene{
 		switch (unitName) {
 			case SOLDIER -> unit = new UnitSoldier(this, x, y);
 			case MACHINE_GUN -> unit = new UnitMachineGun(this, x, y);
-			
 			// case GRENADE;
 			case ROCK -> unit = new UnitRock(this, x, y);
 		}
 		if (unit != null)
 		{
-			GImage unitImage = unit.getImageFromUnit();
-			
-			int row = (y - this.gridStartY) / this.tileHeight;
-			int col = (x - this.gridStartX) / this.tileWidth;
-			
-			if (isOccupied(row, col))
-			{
-				System.out.println("Invalid space");
-				return;
-			}
-			
-			System.out.println(row + " " + col);
-				
-			int calculatedImageX = this.gridStartX + col * this.tileWidth;
-			int calculatedImageY = this.gridStartY + row * this.tileHeight;
-			
-			unit.setImagePos(calculatedImageX, calculatedImageY);
-			game.grid.setSpace(unit, row, col);
-			unit.startTimer();
-			imageToUnitMap.addPair(unitImage, unit);
-			addElement(unitImage);
+			placeUnit(unit, x, y);
 		}
 		System.out.println("Instantiated unit:" + unitName.getName());
 	}
 	
-	public boolean isOccupied (int row, int col) {
+	private void placeUnit(Unit unit, int x, int y) {
+		GImage unitImage = unit.getImageFromUnit();
+		
+		int row = (y - this.gridStartY) / this.tileHeight;
+		int col = (x - this.gridStartX) / this.tileWidth;
+		
+		if (isOccupied(row, col))
+		{
+			return;
+		}
+		
+		System.out.println(row + " " + col);
+			
+		int calculatedImageX = this.gridStartX + col * this.tileWidth;
+		int calculatedImageY = this.gridStartY + row * this.tileHeight;
+		
+		unit.setImagePos(calculatedImageX, calculatedImageY);
+		game.grid.setSpace(unit, row, col);
+		unit.startTimer();
+		imageToUnitMap.addPair(unitImage, unit);
+		addElement(unitImage);
+	}
+	
+	public void instantiateProjectile(Projectile projectile, double x, double y)
+	{
+		GImage projImage = projectile.getImage();
+		projectile.setLocation(x, y);
+		addElement(projImage);
+		projectileCache.add(projectile);
+		System.out.println("Added projectile " + projectile + " to cache");
+	}
+	
+	// Helper methods
+	private boolean isOccupied (int row, int col) {
 		if (game.grid.getUnitAtSpace(row, col) != null)
 		{
 			return true;
@@ -276,13 +294,10 @@ public class GameScene extends Scene{
 		return x < this.gridStartX || y < this.gridStartY;
 	}
 	
-	public void instantiateProjectile(Projectile projectile, double x, double y)
-	{
-		GImage projImage = projectile.getImage();
-		projectile.setLocation(x, y);
-		addElement(projImage);
-		projectileCache.add(projectile);
-		System.out.println("Added projectile " + projectile + " to cache");
+	private void clearSelection() {
+		unitBar.clearSelectedUnit();
+        removeElement(this.selectedUnit);
+        this.selectedUnit = null;
 	}
 	
 	@Override
@@ -297,12 +312,6 @@ public class GameScene extends Scene{
 		this.selectedUnit = new GImage(this.chosenUnitName.getImagePath()); 
 		this.selectedUnit.setLocation(e.getX() - this.selectedUnit.getWidth() / 2, e.getY() - this.selectedUnit.getHeight() / 2);
 		addElement(this.selectedUnit);
-	}
-	
-	public void clearSelection() {
-		unitBar.clearSelectedUnit();
-        removeElement(this.selectedUnit);
-        this.selectedUnit = null;
 	}
 	
 	@Override
