@@ -64,8 +64,9 @@ public class Robot {
 	}
 	
 	// if an enemy's health reaches zero, it is defeated and disappears from the grid
-	public boolean isDeath(int health) {
+	public boolean isDeath(int health, int currencyEarned) {
 		if (health == 0) {
+			System.out.println(currencyEarned + "currency awarded");
 			return true;
 		}
 		return false;
