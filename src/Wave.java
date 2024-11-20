@@ -79,26 +79,29 @@ public class Wave {
 		
 		waveTimer = new GameTimer(MS, "Wave");
 		waveTimer.start();
+		System.out.println("Starting the timer for wave " + this);
 		
-		gameScene.instantiateRobot(robots.get(enemyNum));
 		// timer mechanisms for how a wave works
 		ActionListener listener = new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		    	numTimes = numTimes + 1;
-		    	 
-		    	System.out.println("Tick. " + numTimes +  " Current robot: " + robots.get(enemyNum));
+
+		        if (enemyNum >= arraySize)
+		        {
+		        	numTimes = 0;
+		        	enemyNum = 0;
+		        	waveTimer.stop();
+		        	waveTimer.removeActionListener(this);
+		        	return;
+		        }
+		    	//System.out.println("Tick. " + numTimes +  " Current robot: " + robots.get(enemyNum));
 		        if (numTimes >= intervals.get(enemyNum))
 		        {
 		        	numTimes = 0;
-		        	enemyNum = enemyNum + 1;
 		        	gameScene.instantiateRobot(robots.get(enemyNum));
+		        	enemyNum = enemyNum + 1;
 		        }
 		        
-		        if (enemyNum == arraySize)
-		        {
-		        	enemyNum = numTimes - 1;
-		        	waveTimer.stop();
-		        }
+		        numTimes = numTimes + 1;
 		    }};
 		    
 		waveTimer.createActionListener(listener);

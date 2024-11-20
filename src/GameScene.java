@@ -190,7 +190,6 @@ public class GameScene extends Scene{
 		System.out.println("Starting game.");
 		game = new Game(this);	// default game constructor, this will change when level selection is added
 		game.startCurrentWave();
-		System.out.println("Starting first wave");
 		drawGrid(game.grid.getRows(), game.grid.getCols());
 		gameTimer = new GameTimer(50, "Game");
 		

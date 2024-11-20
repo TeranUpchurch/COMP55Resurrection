@@ -27,7 +27,7 @@ public class Game {
 		level = new Level(gameScene);
 		waveNum = 0;
 		currentWave = level.getWave(waveNum);
-		activeEnemyCount = currentWave.getTotalEnemyCount();
+		this.gameScene = gameScene;
 		imageToUnitMap = new ImageToUnitMap();
 		imageToRobotMap = new ImageToRobotMap();
 	}
@@ -43,6 +43,8 @@ public class Game {
 	
 	public void startCurrentWave()
 	{
+		System.out.println("Starting the wave " + this.currentWave);
+		activeEnemyCount = currentWave.getTotalEnemyCount();
 		currentWave.stepThrough(gameScene);
 	}
 	
