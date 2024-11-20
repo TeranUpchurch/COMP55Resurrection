@@ -192,7 +192,7 @@ public class GameScene extends Scene{
 		game = new Game(this);	// default game constructor, this will change when level selection is added
 		game.startCurrentWave();
 		drawGrid(game.grid.getRows(), game.grid.getCols());
-		gameTimer = new GameTimer(50, "Game");
+		gameTimer = new GameTimer(25, "Game");
 		
 		ActionListener listener = new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
@@ -224,7 +224,11 @@ public class GameScene extends Scene{
 	// Unit and Robot management methods
 	public void instantiateRobot(Robot robot)
 	{
-		System.out.println("Spawn robot" + robot + "at this point.");
+		GImage robotImage = robot.getImage();
+		addElement(robotImage);
+		imageToRobotMap.addPair(robotImage, robot);
+		robotCache.add(robot);
+		System.out.println("Added robot " + robot + " to screen.");
 	}
 	
 	public void instantiateUnit(UnitType unitName, int x, int y)

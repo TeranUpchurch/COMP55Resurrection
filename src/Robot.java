@@ -22,7 +22,7 @@ public class Robot {
 		health = 100;
 		damage = 20;
 		lane = 1;
-		moveSpeed = 5;
+		moveSpeed = 2;
 		currencyEarned = 25;
 		unitAttacking = null;
 		isMoving = true;
@@ -36,6 +36,11 @@ public class Robot {
 		this.lane = lane;
 		this.moveSpeed = moveSpeed;
 		this.currencyEarned = currencyEarned;
+	}
+	
+	public GImage getImage()
+	{
+		return image;
 	}
 	
 	public int getImageX() {
@@ -75,7 +80,7 @@ public class Robot {
 	
 	public void step()
 	{
-		
+		image.move(-1 * moveSpeed, 0);
 	}
 	
 	// if an enemy's health reaches zero, it is defeated and disappears from the grid
