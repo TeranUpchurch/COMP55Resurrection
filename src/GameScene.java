@@ -24,11 +24,11 @@ public class GameScene extends Scene{
 	private int resX = MainApplication.getResolutionWidth();
 	private int resY = MainApplication.getResolutionHeight();
 	
-	private int gridStartX = (int)(resX * 0.05);
-	private int gridStartY = (int)(resY * 0.252);
+	private int gridStartX = (int)(this.resX * 0.05);
+	private int gridStartY = (int)(this.resY * 0.252);
 	
-	private int gridWidth = (int)(resX * 0.9);
-	private int gridHeight = (int)(resY * 0.75);
+	private int gridWidth = (int)(this.resX * 0.9);
+	private int gridHeight = (int)(this.resY * 0.75);
 	
 	private int tileWidth;
 	private int tileHeight;
@@ -75,11 +75,11 @@ public class GameScene extends Scene{
 	
 	private void drawCurrencyBackground() {
 		String filename = IMG_FILENAME_PATH + "currencyBackground" + IMG_EXTENSION;
-		currencyBackground = new GImage(filename);
+		this.currencyBackground = new GImage(filename);
 		int currencyBackgroundX = (int)(MainApplication.getResolutionWidth() * 0.70);
 		int currencyBackgroundY = (int)((MainApplication.getResolutionHeight() * 0.02) + 20);
 		this.currencyBackground.setLocation(currencyBackgroundX, currencyBackgroundY);
-		addElement(currencyBackground);
+		addElement(this.currencyBackground);
 	}
 	
 	private void drawCurrencyCounter() {
@@ -87,7 +87,7 @@ public class GameScene extends Scene{
 		this.currencyLabel = new GLabel("" + currency);
 		this.currencyLabel.setFont("Arial-Bold-50");
 		this.currencyLabel.setColor(Color.BLACK);
-		this.currencyLabel.setLocation(currencyBackground.getX() + 0.8 * (currencyBackground.getWidth() / 2), currencyBackground.getY() + 1.3 * (currencyBackground.getHeight() / 2));
+		this.currencyLabel.setLocation(this.currencyBackground.getX() + 0.8 * (this.currencyBackground.getWidth() / 2), this.currencyBackground.getY() + 1.3 * (this.currencyBackground.getHeight() / 2));
 		addElement(currencyLabel);
 	}
 	
@@ -141,14 +141,11 @@ public class GameScene extends Scene{
 		GImage fenceImage = new GImage(fence);
 		GImage groundImage = new GImage(ground);
 		
-		int x = gridStartX + gridWidth;
-		System.out.println("CHECK " + x);
-		
-		backgroundGameScene.setLocation(0, 0);
+		this.backgroundGameScene.setLocation(0, 0);
 		fenceImage.setLocation(0, gridStartY - fenceImage.getHeight());
 		groundImage.setLocation(0, gridStartY);
 		
-		addElement(backgroundGameScene);
+		addElement(this.backgroundGameScene);
 		addElement(fenceImage);
 		addElement(groundImage);
 	}
@@ -158,10 +155,8 @@ public class GameScene extends Scene{
 		String darkTileFilename = IMG_FILENAME_PATH + "darkTile" + IMG_EXTENSION;
 		String lightTileFilename = IMG_FILENAME_PATH + "lightTile" + IMG_EXTENSION;
 		
-		System.out.println("Grid startX: " + gridStartX + " starY: " + gridStartY);
-		
-		tileWidth = gridWidth / cols;
-		tileHeight = gridHeight / rows;
+		this.tileWidth = this.gridWidth / cols;
+		this.tileHeight = this.gridHeight / rows;
 		
 		int yOffset = 0;
 		for (int i = 0; i < rows; i++)
@@ -171,12 +166,12 @@ public class GameScene extends Scene{
 			{
 				String filename = ((i + j) % 2 == 0) ? lightTileFilename : darkTileFilename;
 				GImage tile = new GImage(filename);
-				tile.setSize(tileWidth, tileHeight);
-				tile.setLocation(gridStartX + xOffset, gridStartY + yOffset);
+				tile.setSize(this.tileWidth, this.tileHeight);
+				tile.setLocation(this.gridStartX + xOffset, this.gridStartY + yOffset);
 				addElement(tile);
-				xOffset = xOffset + tileWidth;
+				xOffset = xOffset + this.tileWidth;
 			}
-			yOffset = yOffset + tileHeight;
+			yOffset = yOffset + this.tileHeight;
 		}
 	}
 	
@@ -246,8 +241,8 @@ public class GameScene extends Scene{
 		{
 			GImage unitImage = unit.getImageFromUnit();
 			
-			int row = (y - gridStartY) / tileHeight;
-			int col = (x - gridStartX) / tileWidth;
+			int row = (y - this.gridStartY) / this.tileHeight;
+			int col = (x - this.gridStartX) / this.tileWidth;
 			
 			if (isOccupied(row, col))
 			{
@@ -257,8 +252,8 @@ public class GameScene extends Scene{
 			
 			System.out.println(row + " " + col);
 				
-			int calculatedImageX = gridStartX + col * tileWidth;
-			int calculatedImageY = gridStartY + row * tileHeight;
+			int calculatedImageX = this.gridStartX + col * this.tileWidth;
+			int calculatedImageY = this.gridStartY + row * this.tileHeight;
 			
 			unit.setImagePos(calculatedImageX, calculatedImageY);
 			game.grid.setSpace(unit, row, col);
@@ -278,7 +273,7 @@ public class GameScene extends Scene{
 	}
 	
 	private boolean isOutOfBound(int x, int y) {
-		return x < gridStartX || y < gridStartY;
+		return x < this.gridStartX || y < this.gridStartY;
 	}
 	
 	public void instantiateProjectile(Projectile projectile, double x, double y)
@@ -294,33 +289,33 @@ public class GameScene extends Scene{
 	public void mousePressed(MouseEvent e) {
 		System.out.println("Mouse pressed.");
 		// Check if the mouse click is on one of the squares in unit bar
-		chosenUnitName = unitBar.handleMousePressed(e.getX(), e.getY());
-		if (chosenUnitName == null)
+		this.chosenUnitName = unitBar.handleMousePressed(e.getX(), e.getY());
+		if (this.chosenUnitName == null)
 		{
 			return;
 		}
-		selectedUnit = new GImage(chosenUnitName.getImagePath()); 
-		selectedUnit.setLocation(e.getX() - selectedUnit.getWidth() / 2, e.getY() - selectedUnit.getHeight() / 2);
-		addElement(selectedUnit);
+		this.selectedUnit = new GImage(this.chosenUnitName.getImagePath()); 
+		this.selectedUnit.setLocation(e.getX() - this.selectedUnit.getWidth() / 2, e.getY() - this.selectedUnit.getHeight() / 2);
+		addElement(this.selectedUnit);
 	}
 	
 	public void clearSelection() {
 		unitBar.clearSelectedUnit();
-        removeElement(selectedUnit);
-        selectedUnit = null;
+        removeElement(this.selectedUnit);
+        this.selectedUnit = null;
 	}
 	
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		if (selectedUnit == null) {
+		if (this.selectedUnit == null) {
 			clearSelection();
 	        return;
 		}
 		
 		UnitType chosenUnitType = unitBar.getSelectedUnit();
 	    if (chosenUnitType != null) {
-	    	int row = (e.getY() - gridStartY) / tileHeight;
-			int col = (e.getX() - gridStartX) / tileWidth;
+	    	int row = (e.getY() - this.gridStartY) / tileHeight;
+			int col = (e.getX() - this.gridStartX) / tileWidth;
 			
 			if (isOutOfBound(e.getX(), e.getY())) {
 				System.out.println("OUT OF BOUND");
@@ -341,8 +336,8 @@ public class GameScene extends Scene{
 	    	}
 	    }
 	    unitBar.clearSelectedUnit();
-	    removeElement(selectedUnit);
-	    selectedUnit = null;
+	    removeElement(this.selectedUnit);
+	    this.selectedUnit = null;
 	}
 	
 	public void mouseClicked(MouseEvent e) {
@@ -352,8 +347,8 @@ public class GameScene extends Scene{
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		// Move the selected unit with the mouse
-		if (selectedUnit != null) {
-			selectedUnit.setLocation(e.getX() - selectedUnit.getWidth() / 2, e.getY() - selectedUnit.getHeight() / 2);
+		if (this.selectedUnit != null) {
+			this.selectedUnit.setLocation(e.getX() - this.selectedUnit.getWidth() / 2, e.getY() - this.selectedUnit.getHeight() / 2);
 		}
 	}
 
