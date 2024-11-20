@@ -230,7 +230,7 @@ public class GameScene extends Scene{
 	{
 		Unit unit = null;
 		
-		if (x < gridStartX || y < gridStartY)
+		if (isOutOfBound(x, y))
 		{
 			return;
 		}
@@ -277,6 +277,10 @@ public class GameScene extends Scene{
 		return false;
 	}
 	
+	private boolean isOutOfBound(int x, int y) {
+		return x < gridStartX || y < gridStartY;
+	}
+	
 	public void instantiateProjectile(Projectile projectile, double x, double y)
 	{
 		GImage projImage = projectile.getImage();
@@ -318,6 +322,12 @@ public class GameScene extends Scene{
 	    	int row = (e.getY() - gridStartY) / tileHeight;
 			int col = (e.getX() - gridStartX) / tileWidth;
 			
+			if (isOutOfBound(e.getX(), e.getY())) {
+				System.out.println("OUT OF BOUND");
+				clearSelection();
+				return;
+			}
+			
 	    	if (isOccupied(row, col)) {
 	    		clearSelection();
 		        return;
@@ -325,6 +335,7 @@ public class GameScene extends Scene{
 	    	
 	    	if (canAfford(chosenUnitType.getCost())) {
 	    		instantiateUnit(chosenUnitType, e.getX(), e.getY());
+	   
 	    	} else {
 	    		System.out.println("NOT ENOUGH MONEY");
 	    	}
