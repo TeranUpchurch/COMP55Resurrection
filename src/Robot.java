@@ -58,8 +58,19 @@ public class Robot {
 	// how much damage the enemy unit takes from a player unit
 	public int takeDamage() {
 		health -= damage;
+        if (health <= 0) { 
+            health = 0;
+            System.out.println("Robot destroyed");
+            System.out.println(currencyEarned + "currency awarded");
+        } 
+        else {
+            System.out.println("Robot took " + damage + " damage. Health: " + health);
+        }
+        return health;
+		/*temp = 
+		health -= damage;
 		hasReachedUnit(hasTakenDamage);
-		return 0;
+		return 0; */
 	}
 	
 	public void step()
@@ -69,11 +80,12 @@ public class Robot {
 	
 	// if an enemy's health reaches zero, it is defeated and disappears from the grid
 	public boolean isDeath(int health, int currencyEarned) {
-		if (health == 0) {
+		/*if (health == 0) {
 			System.out.println(currencyEarned + "currency awarded");
 			return true;
 		}
-		return false;
+		return false; */
+		return health <= 0;
 	}
 	
 	// determines if an enemy unit is close enough to a player unit to start attacking and dealing damage to it
