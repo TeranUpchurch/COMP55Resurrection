@@ -15,6 +15,7 @@ public class Robot {
 	private int currencyEarned;
 	private Unit unitAttacking;
 	public boolean isMoving;
+	public boolean hasTakenDamage;
 	
 	public Robot() {
 		image = new GImage("robot.png");
@@ -25,6 +26,7 @@ public class Robot {
 		currencyEarned = 25;
 		unitAttacking = null;
 		isMoving = true;
+		hasTakenDamage = false;
 	}
 	
 	public Robot(GImage image, int health, int damage, int lane, int moveSpeed, int currencyEarned) {
@@ -49,12 +51,14 @@ public class Robot {
 		damage = d;
 	}
 	
-	public void attackUnit() {
+	public void attackUnit() { // GameScene related
 		
 	}
 	
 	// how much damage the enemy unit takes from a player unit
-	public int takeDamage(int d) {
+	public int takeDamage() {
+		health -= damage;
+		hasReachedUnit(hasTakenDamage);
 		return 0;
 	}
 	
@@ -73,7 +77,7 @@ public class Robot {
 	}
 	
 	// determines if an enemy unit is close enough to a player unit to start attacking and dealing damage to it
-	public boolean hasReachUnit(boolean isMoving) {
+	public boolean hasReachedUnit(boolean isMoving) {
 		if (isMoving == false) {
 			return false;
 		}
