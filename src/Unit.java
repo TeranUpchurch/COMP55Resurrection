@@ -19,7 +19,10 @@ public class Unit {
 	protected int upgradeCost;
 	protected String unitToUpgradeTo;
 	
-	protected GameTimer routineTimer;
+	protected GameTimer routineTimerSoldier;
+	protected GameTimer routineTimerMachineGun;
+	protected GameTimer routineTimerGrenade;
+	protected GameTimer routineTimerRock;
 	protected int frequency;
 	protected int numTimes;
 	protected boolean enemyDetected;
@@ -44,8 +47,14 @@ public class Unit {
 	
 	public void startTimer()
 	{
-		routineTimer = new GameTimer(100, "Soldier");
-		routineTimer.start();
+		this.routineTimerSoldier = new GameTimer(100, "Soldier");
+		this.routineTimerSoldier.start();
+		
+		this.routineTimerMachineGun = new GameTimer(20, "MachinGun");
+		this.routineTimerMachineGun.start();
+		
+		this.routineTimerRock = new GameTimer(0, "Rock");
+		this.routineTimerRock.start();
 		
 		ActionListener listener = new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
@@ -56,7 +65,9 @@ public class Unit {
 		    	}
 		    }};
 		    
-		    routineTimer.createActionListener(listener);
+		    this.routineTimerSoldier.createActionListener(listener);
+		    this.routineTimerMachineGun.createActionListener(listener);
+		    this.routineTimerRock.createActionListener(listener);
 	}
 	
 	public void routine () {
@@ -64,8 +75,8 @@ public class Unit {
 	}
 	
 	public void stopRoutine() {
-	   if (routineTimer != null) {
-	            routineTimer.stop();
+	   if (routineTimerSoldier != null) {
+	            routineTimerSoldier.stop();
 	   }
 	}
 	

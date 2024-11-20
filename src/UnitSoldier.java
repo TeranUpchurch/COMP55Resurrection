@@ -22,8 +22,8 @@ public class UnitSoldier extends Unit{
 	
 	public void startTimer()
 	{
-		routineTimer = new GameTimer(100, "Soldier");
-		routineTimer.start();
+		routineTimerSoldier = new GameTimer(100, "Soldier");
+		routineTimerSoldier.start();
 		
 		ActionListener listener = new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
@@ -35,7 +35,7 @@ public class UnitSoldier extends Unit{
 		    	}
 		    }};
 		    
-		    routineTimer.createActionListener(listener);
+		    routineTimerSoldier.createActionListener(listener);
 	}
 	
 	public void routine () {

@@ -22,8 +22,8 @@ public class UnitRock extends Unit{
 	 
 	public void startTimer()
 	{
-		routineTimer = new GameTimer(100, "Rock");
-		routineTimer.start();
+		routineTimerRock = new GameTimer(0, "Rock");
+		routineTimerRock.start();
 		
 		ActionListener listener = new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
@@ -35,7 +35,7 @@ public class UnitRock extends Unit{
 		    	}
 		    }};
 		    
-		    routineTimer.createActionListener(listener);
+		    routineTimerRock.createActionListener(listener);
 	}
 	
 	public void routine () {

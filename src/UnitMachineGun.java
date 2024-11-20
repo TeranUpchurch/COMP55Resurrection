@@ -21,8 +21,8 @@ public class UnitMachineGun extends Unit{
 	
 	public void startTimer()
 	{
-		routineTimer = new GameTimer(20, "MachineGun");
-		routineTimer.start();
+		routineTimerMachineGun = new GameTimer(20, "MachineGun");
+		routineTimerMachineGun.start();
 		
 		ActionListener listener = new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
@@ -34,7 +34,7 @@ public class UnitMachineGun extends Unit{
 		    	}
 		    }};
 		    
-		    routineTimer.createActionListener(listener);
+		    routineTimerMachineGun.createActionListener(listener);
 	}
 	
 	public void routine () {
