@@ -74,6 +74,7 @@ public class GameScene extends Scene{
 	public void hideContents()
 	{
 		System.out.println("Hide contents from this point..");
+		gameTimer.stop();
 		for (GObject obj : new ArrayList<>(activeContents)) // create a copy to avoid modification
 		{
 			removeElement(obj);
