@@ -30,6 +30,7 @@ public class GButton extends GCompound {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				onClick();
+				onMouseExit();
 			}
 			@Override
             public void mouseEntered(MouseEvent e) {

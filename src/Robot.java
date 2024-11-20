@@ -15,6 +15,7 @@ public class Robot {
 	private int currencyEarned;
 	private Unit unitAttacking;
 	public boolean isMoving;
+	public boolean hasTakenDamage;
 	
 	public Robot() {
 		image = new GImage("robot.png");
@@ -25,6 +26,7 @@ public class Robot {
 		currencyEarned = 25;
 		unitAttacking = null;
 		isMoving = true;
+		hasTakenDamage = false;
 	}
 	
 	public Robot(GImage image, int health, int damage, int lane, int moveSpeed, int currencyEarned) {
@@ -45,17 +47,30 @@ public class Robot {
 	}
 	
 	// how much damage the enemy deals to the player unit it is attacking
-	public void damageUnit() {
-		
+	public void damageUnit(int d) {
+		damage = d;
 	}
 	
-	public void attackUnit() {
+	public void attackUnit() { // GameScene related
 		
 	}
 	
 	// how much damage the enemy unit takes from a player unit
 	public int takeDamage() {
-		return 0;
+		health -= damage;
+        if (health <= 0) { 
+            health = 0;
+            System.out.println("Robot destroyed");
+            System.out.println(currencyEarned + "currency awarded");
+        } 
+        else {
+            System.out.println("Robot took " + damage + " damage. Health: " + health);
+        }
+        return health;
+		/*temp = 
+		health -= damage;
+		hasReachedUnit(hasTakenDamage);
+		return 0; */
 	}
 	
 	public void step()
@@ -64,15 +79,20 @@ public class Robot {
 	}
 	
 	// if an enemy's health reaches zero, it is defeated and disappears from the grid
-	public boolean isDeath(int health) {
-		if (health == 0) {
+	public boolean isDeath(int health, int currencyEarned) {
+		/*if (health == 0) {
+			System.out.println(currencyEarned + "currency awarded");
 			return true;
 		}
-		return false;
+		return false; */
+		return health <= 0;
 	}
 	
 	// determines if an enemy unit is close enough to a player unit to start attacking and dealing damage to it
-	public boolean hasReachUnit() {
+	public boolean hasReachedUnit(boolean isMoving) {
+		if (isMoving == false) {
+			return false;
+		}
 		return true;
 	}
 }
