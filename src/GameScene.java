@@ -243,7 +243,7 @@ public class GameScene extends Scene{
 		switch (unitName) {
 			case SOLDIER -> unit = new UnitSoldier(this, x, y);
 			case MACHINE_GUN -> unit = new UnitMachineGun(this, x, y);
-			// case GRENADE;
+			case GRENADE -> unit = new UnitGrenade(this, x, y);
 			case ROCK -> unit = new UnitRock(this, x, y);
 		}
 		if (unit != null)
