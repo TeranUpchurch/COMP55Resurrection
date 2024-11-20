@@ -13,11 +13,15 @@ public class UnitSoldier extends Unit{
 	// private GImage image = new GImage(IMG_FILENAME_PATH + "soldier" + IMG_EXTENSION);
 	private UnitType unitType = UnitType.SOLDIER;
 
-	public UnitSoldier(GameScene gameScene, double x, double y)
+	public UnitSoldier(GameScene gameScene)
 	{
 		super(gameScene);
 		this.image = new GImage(unitType.getImagePath());
-		this.image.setLocation(x, y);
+        this.health = 100;
+        this.cost = 50;
+        this.frequency = 20;
+        this.numTimes = 0;
+        this.enemyDetected = false;
 	}
 	
 	public void startTimer()
@@ -29,7 +33,7 @@ public class UnitSoldier extends Unit{
 		    public void actionPerformed(ActionEvent e) {
 		    	numTimes = numTimes + 1;
 		    	 
-		    	if (numTimes > 20) {
+		    	if (numTimes > frequency) {
 		    		routine();
 		    		numTimes = 0;
 		    	}

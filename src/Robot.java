@@ -17,8 +17,6 @@ public class Robot {
 	public boolean isMoving;
 	public boolean hasTakenDamage;
 	
-	
-	
 	public Robot() {
 		image = new GImage("robot.png");
 		health = 100;

@@ -13,11 +13,15 @@ public class UnitGrenade extends Unit{
 	// private GImage image = new GImage(IMG_FILENAME_PATH + "grenade" + IMG_EXTENSION);
 	private UnitType unitType = UnitType.GRENADE;
 
-	public UnitGrenade(GameScene gameScene, double x, double y)
-	{
+	public UnitGrenade(GameScene gameScene)
+	{	// TO DO CHANGE ATTRIBUTES - NOT FINAL
 		super(gameScene);
 		this.image = new GImage(unitType.getImagePath());
-		this.image.setLocation(x, y);
+		this.health = 100;
+        this.cost = 100;
+        this.frequency = 10;
+        this.numTimes = 0;
+        this.enemyDetected = false;
 	}
 	
 	public void startTimer()

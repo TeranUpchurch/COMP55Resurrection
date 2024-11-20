@@ -13,11 +13,15 @@ public class UnitRock extends Unit{
 	// private GImage image = new GImage(IMG_FILENAME_PATH + "soldier" + IMG_EXTENSION);
 	private UnitType unitType = UnitType.ROCK;
 
-	public UnitRock(GameScene gameScene, double x, double y)
+	public UnitRock(GameScene gameScene)
 	{
 		super(gameScene);
 		this.image = new GImage(unitType.getImagePath());
-		this.image.setLocation(x, y);
+		this.health = 100;
+        this.cost = 100;
+        this.frequency = 10;
+        this.numTimes = 0;
+        this.enemyDetected = false;
 	}
 	 
 	public void startTimer()
@@ -39,7 +43,6 @@ public class UnitRock extends Unit{
 	}
 	
 	public void routine () {
-		System.out.println("instantiated rock");
 	}
 		/*double projectileStartX = image.getX() + image.getWidth(); // Right edge of the soldier
         double projectileStartY = image.getY() + 0.15 * image.getHeight(); // Slightly below the top

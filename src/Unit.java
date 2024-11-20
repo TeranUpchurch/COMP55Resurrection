@@ -47,27 +47,7 @@ public class Unit {
 	
 	public void startTimer()
 	{
-		this.routineTimerSoldier = new GameTimer(100, "Soldier");
-		this.routineTimerSoldier.start();
 		
-		this.routineTimerMachineGun = new GameTimer(20, "MachinGun");
-		this.routineTimerMachineGun.start();
-		
-		this.routineTimerRock = new GameTimer(0, "Rock");
-		this.routineTimerRock.start();
-		
-		ActionListener listener = new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		    	numTimes = numTimes + 1;
-		    	 
-		    	if (numTimes > 20) {
-		    		
-		    	}
-		    }};
-		    
-		    this.routineTimerSoldier.createActionListener(listener);
-		    this.routineTimerMachineGun.createActionListener(listener);
-		    this.routineTimerRock.createActionListener(listener);
 	}
 	
 	public void routine () {

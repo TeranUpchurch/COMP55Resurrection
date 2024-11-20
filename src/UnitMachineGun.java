@@ -12,11 +12,15 @@ public class UnitMachineGun extends Unit{
 	
 	private UnitType unitType = UnitType.MACHINE_GUN;
 
-	public UnitMachineGun(GameScene gameScene, double x, double y)
+	public UnitMachineGun(GameScene gameScene)
 	{
 		super(gameScene);
 		this.image = new GImage(unitType.getImagePath());
-		this.image.setLocation(x, y);
+		this.health = 100;
+        this.cost = 100;
+        this.frequency = 10;
+        this.numTimes = 0;
+        this.enemyDetected = false;
 	}
 	
 	public void startTimer()
