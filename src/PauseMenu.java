@@ -9,6 +9,8 @@ import java.awt.event.MouseEvent;
 public class PauseMenu extends PopupMenu{
 	private static final double Y_RATIO = 0.4;
 	private static final double Y_RATIO_RESUME_BUTTON = 0.65;
+	
+	private GameTimer gameTimer;
 
 	private GLabel label = new GLabel("pauseMenu", MainApplication.getResolutionWidth() / 2, MainApplication.getResolutionHeight() / 4);
 	
@@ -26,10 +28,11 @@ public class PauseMenu extends PopupMenu{
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
 	
-	public PauseMenu(String imagePath, MainApplication mainApp)
+	public PauseMenu(String imagePath, MainApplication mainApp, GameTimer gameTimer)
 	{
 		super(imagePath);  // Use the image as the background for the popup
 		this.mainApp = mainApp;
+		this.gameTimer = gameTimer;
 		
 		String filename1 = IMG_FILENAME_PATH + "pauseMenu" + IMG_EXTENSION;
 		this.pauseMenu = new GImage(filename1);
@@ -149,5 +152,19 @@ public class PauseMenu extends PopupMenu{
 		hidePopup(this.mainApp);
 	}
 	
-
+	@Override
+	protected void pauseGame(GraphicsApplication mainApp) {
+		super.pauseGame(mainApp);
+		if (gameTimer != null) {
+			gameTimer.stop();
+		}
+	}
+	
+	@Override
+	protected void resumeGame(GraphicsApplication mainApp) {
+	    super.resumeGame(mainApp);
+	    if (gameTimer != null) {
+	        gameTimer.start();
+	    }
+	}
 }
