@@ -43,20 +43,7 @@ public class UnitGrenade extends Unit{
 	}
 	
 	public void routine () {
-		double projectileStartX = image.getX() + image.getWidth(); // Right edge of the Grenade
-        double projectileStartY = image.getY() + 0.15 * image.getHeight(); // Slightly below the top
-		Projectile projectile = new Projectile(
-				new GImage(IMG_FILENAME_PATH + "paintball_Yellow" + IMG_EXTENSION),
-				10,
-				10,
-				10,
-				10,
-				projectileStartX,
-				projectileStartY,
-				gameScene
-				);
-		gameScene.instantiateProjectile(projectile, projectileStartX, projectileStartY);
-		System.out.println("Instantiated projectile from " + this);
+		
 	}
 	
 	// checks if a player unit is upgradable to a stronger unit

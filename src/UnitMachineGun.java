@@ -42,6 +42,10 @@ public class UnitMachineGun extends Unit{
 	}
 	
 	public void routine () {
+		if (gameScene.isPaused()) {
+			return;
+		}
+
 		double projectileStartX = image.getX() + image.getWidth(); // Right edge of the machine gun
         double projectileStartY = image.getY() + 0.15 * image.getHeight(); // Slightly below the top
 		Projectile projectile = new Projectile(
