@@ -40,6 +40,7 @@ public class GameScene extends Scene{
 	private GameTimer gameTimer;
 	private int numTimes = 0;
 	private int currency;
+	private boolean isPaused = false;
 	
 	// Unit management
 	private UnitType chosenUnitName;
@@ -133,11 +134,11 @@ public class GameScene extends Scene{
 		int pauseButtonY = (int)((MainApplication.getResolutionHeight() * 0.02) + 20);
 		this.pauseButton = new GButton(pauseButtonImage,pauseButtonX,pauseButtonY);
 		addElement(pauseButton);
+		PauseMenu pauseMenu = new PauseMenu ("media/pauseMenu.png", mainApp, gameTimer, this);
 		pauseButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				// trigger return to main menu
 				System.out.println("Pause Button clicked!");
-				PauseMenu pauseMenu = new PauseMenu ("media/pauseMenu.png", mainApp, gameTimer);
 				pauseMenu.showPopup(mainApp); // Display the pause menu
 			}
 		});
@@ -283,6 +284,14 @@ public class GameScene extends Scene{
 		addElement(projImage);
 		projectileCache.add(projectile);
 		System.out.println("Added projectile " + projectile + " to cache");
+	}
+	
+	public boolean isPaused() {
+		return isPaused;
+	}
+	
+	public void setPaused (boolean paused) {
+		this.isPaused = paused;
 	}
 	
 	// Helper methods

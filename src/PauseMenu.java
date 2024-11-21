@@ -11,6 +11,7 @@ public class PauseMenu extends PopupMenu{
 	private static final double Y_RATIO_RESUME_BUTTON = 0.65;
 	
 	private GameTimer gameTimer;
+	private GameScene gameScene;
 
 	private GLabel label = new GLabel("pauseMenu", MainApplication.getResolutionWidth() / 2, MainApplication.getResolutionHeight() / 4);
 	
@@ -28,11 +29,12 @@ public class PauseMenu extends PopupMenu{
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
 	
-	public PauseMenu(String imagePath, MainApplication mainApp, GameTimer gameTimer)
+	public PauseMenu(String imagePath, MainApplication mainApp, GameTimer gameTimer, GameScene gameScene)
 	{
 		super(imagePath);  // Use the image as the background for the popup
 		this.mainApp = mainApp;
 		this.gameTimer = gameTimer;
+		this.gameScene = gameScene;
 		
 		String filename1 = IMG_FILENAME_PATH + "pauseMenu" + IMG_EXTENSION;
 		this.pauseMenu = new GImage(filename1);
@@ -155,6 +157,7 @@ public class PauseMenu extends PopupMenu{
 	@Override
 	protected void pauseGame(GraphicsApplication mainApp) {
 		super.pauseGame(mainApp);
+		gameScene.setPaused(true);
 		if (gameTimer != null) {
 			gameTimer.stop();
 		}
@@ -163,6 +166,7 @@ public class PauseMenu extends PopupMenu{
 	@Override
 	protected void resumeGame(GraphicsApplication mainApp) {
 	    super.resumeGame(mainApp);
+	    gameScene.setPaused(false);
 	    if (gameTimer != null) {
 	        gameTimer.start();
 	    }
