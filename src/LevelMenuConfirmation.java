@@ -65,13 +65,13 @@ public class LevelMenuConfirmation extends PopupMenu{
 	// if the player wants to go back to the main menu
 	private void handleConfirm() {
 		System.out.println("Exiting to level select scene...");
-		hidePopup(mainApp);
+		hidePopup(mainApp, false);
 		mainApp.switchSceneTo(mainApp.LevelSelectScene);
 	}
 	
 	private void handleCancel() {
 		System.out.println("Cancel");
-		hidePopup(mainApp);
+		hidePopup(mainApp, false);
 		pauseMenu.showPopup(mainApp);
 	}
 	

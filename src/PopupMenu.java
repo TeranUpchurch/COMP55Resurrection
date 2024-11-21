@@ -32,14 +32,16 @@ public class PopupMenu {
 		}
 	}
 	
-	public void hidePopup(GraphicsApplication mainApp) {
+	public void hidePopup(GraphicsApplication mainApp, boolean resume) {
         if (isVisible) {
             for (GObject obj : menuElements) {
                 mainApp.remove(obj);
             }
             mainApp.remove(overlay);
             isVisible = false;
-            resumeGame(mainApp);
+            if (resume) {
+            	resumeGame(mainApp);
+            }
         }
     }
 	
