@@ -60,6 +60,7 @@ public class UnitSoldier extends Unit{
 				);
 		gameScene.instantiateProjectile(projectile, projectileStartX, projectileStartY);
 		System.out.println("Instantiated projectile from " + this);
+		
 	}
 	
 	// checks if a player unit is upgradable to a stronger unit

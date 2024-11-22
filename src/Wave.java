@@ -37,6 +37,15 @@ public class Wave {
 		arraySize = robots.size();
 	}
 	
+	public void resetWave() {
+		if (waveTimer != null) {
+			waveTimer.stop(); // Stop any running timers
+		}
+		
+		enemyNum = 0; // Reset enemy counter
+	    numTimes = 0; // Reset the timer tick counter
+	}
+	
 	public Robot returnRobot() {
 		return null;
 	}

@@ -40,7 +40,7 @@ public class GameScene extends Scene{
 	private GameTimer gameTimer;
 	private int numTimes = 0;
 	private int currency;
-	private boolean isPaused = false;
+	private boolean isPaused;
 	
 	// Unit management
 	private UnitType chosenUnitName;
@@ -194,6 +194,7 @@ public class GameScene extends Scene{
 		game.startCurrentWave();
 		drawGrid(game.grid.getRows(), game.grid.getCols());
 		gameTimer = new GameTimer(25, "Game");
+		setPaused(false);
 		
 		ActionListener listener = new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
@@ -218,9 +219,33 @@ public class GameScene extends Scene{
 		   
 	    gameTimer.createActionListener(listener);
 	    gameTimer.start();
-	    
-	    
 	}
+	
+	public void restartLevel() {
+		gameTimer.stop();
+		
+		for (Unit unit : unitContainer) {
+			unit.stopRoutine();
+		}
+		
+		clearProjectiles();
+		clearUnits();
+		clearRobots();
+		initializeGameScene();
+		game = new Game (this);
+		game.resetGame();
+		startGame();
+		System.out.println("Level restarted.");
+	}
+	
+	public void initializeGameScene() {
+		drawBackground();
+		drawPauseButton();
+		unitBar.drawUnitBar(this);
+		drawCurrencyBackground();
+		drawCurrencyCounter();
+	}
+
 	
 	// Unit and Robot management methods
 	public void instantiateRobot(Robot robot)
@@ -250,6 +275,7 @@ public class GameScene extends Scene{
 		if (unit != null)
 		{
 			placeUnit(unit, x, y);
+			unitContainer.add(unit);
 		}
 		System.out.println("Instantiated unit:" + unitName.getName());
 	}
@@ -284,10 +310,11 @@ public class GameScene extends Scene{
 		addElement(projImage);
 		projectileCache.add(projectile);
 		System.out.println("Added projectile " + projectile + " to cache");
+		System.out.println("Current number of projectiles: " + projectileCache.size());
 	}
 	
 	public boolean isPaused() {
-		return isPaused;
+		return this.isPaused;
 	}
 	
 	public void setPaused (boolean paused) {
@@ -311,6 +338,35 @@ public class GameScene extends Scene{
 		unitBar.clearSelectedUnit();
         removeElement(this.selectedUnit);
         this.selectedUnit = null;
+	}
+	
+	private void clearProjectiles() {
+		for (Projectile projectile : projectileCache) {
+			System.out.println("Cleared projectile: " + projectile);
+	        removeElement(projectile.getImage()); // Remove the graphical element
+	    }
+		projectileCache.clear();
+		System.out.println("All projectiles cleared");
+	}
+	
+	private void clearUnits() {
+		for (Unit unit : unitContainer) {
+			System.out.println("Cleared unit: " + unit);
+	        removeElement(unit.getImageFromUnit()); // Remove the graphical element
+	    }
+	    
+	    unitContainer.clear();
+	    
+		System.out.println("All units are cleared.");
+	}
+	
+	private void clearRobots() {
+		for (Robot robot : robotCache) {
+			System.out.println("Cleared robot: " + robot);
+	        removeElement(robot.getImage()); // Remove the graphical element
+	    }
+		robotCache.clear();
+		System.out.println("All robots are cleared.");
 	}
 	
 	@Override

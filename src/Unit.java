@@ -56,7 +56,16 @@ public class Unit {
 	
 	public void stopRoutine() {
 	   if (routineTimerSoldier != null) {
-	            routineTimerSoldier.stop();
+		   routineTimerSoldier.stop();
+	   }
+	   if (routineTimerMachineGun != null) {
+		   routineTimerMachineGun.stop();
+	   }
+	   if (routineTimerGrenade != null) {
+		   routineTimerGrenade.stop();
+	   }
+	   if (routineTimerRock != null) {
+		   routineTimerRock.stop();
 	   }
 	}
 	
