@@ -17,9 +17,9 @@ public class UnitGrenade extends Unit{
 	{	// TO DO CHANGE ATTRIBUTES - NOT FINAL
 		super(gameScene);
 		this.image = new GImage(unitType.getImagePath());
-		this.health = 100;
-        this.cost = 100;
-        this.frequency = 10;
+		this.health = unitType.getHealth();
+        this.cost = unitType.getCost();
+        this.frequency = unitType.getFrequency();
         this.numTimes = 0;
         this.enemyDetected = false;
 	}

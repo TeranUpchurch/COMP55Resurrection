@@ -10,7 +10,6 @@ public class Unit {
 	protected static final String IMG_FILENAME_PATH = "media/";
 	protected static final String IMG_EXTENSION = ".png";
 	
-	protected UnitType unitType = UnitType.SOLDIER;
 	protected GImage image;
 	protected int health;
 	protected int cost;
