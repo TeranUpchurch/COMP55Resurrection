@@ -66,12 +66,12 @@ public class Robot {
         if (health <= 0) { 
             health = 0;
             System.out.println("Robot destroyed");
-            System.out.println(currencyEarned + "currency awarded");
+            System.out.println(currencyEarned + " currency awarded");
         } 
         else {
-            System.out.println("Robot took " + damage + " damage. Health: " + health);
+            System.out.println("Robot took " + damage + " damage. Health remaining: " + health);
         }
-        return health;
+        return damage;
 	}
 	
 	public void step() // kind of similar to projectile, 
