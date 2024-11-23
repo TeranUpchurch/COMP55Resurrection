@@ -61,7 +61,7 @@ public class Robot {
 	}
 	
 	// how much damage the enemy unit takes from a player unit
-	public int takeDamage() {
+	public int takeDamage(int damage) {
 		health -= damage;
         if (health <= 0) { 
             health = 0;
