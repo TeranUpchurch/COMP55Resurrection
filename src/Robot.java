@@ -86,7 +86,7 @@ public class Robot {
 	
 	// determines if an enemy unit is close enough to a player unit to start attacking and dealing damage to it
 	public boolean hasReachedUnit(boolean isMoving) {
-		if (isMoving == false) {
+		if (isMoving == true) {
 			return false;
 		}
 		return true;
