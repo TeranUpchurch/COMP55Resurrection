@@ -19,7 +19,7 @@ import javax.swing.*;
 		public boolean hasTakenDamage;
 		
 		public RobotWeak() {
-			image = new GImage("robot.png");
+			image = new GImage("robotWeak.png");
 			health = 100;
 			damage = 20;
 			lane = 1;
@@ -28,9 +28,6 @@ import javax.swing.*;
 			unitAttacking = null;
 			isMoving = true;
 			hasTakenDamage = false;
-		}
-		public RobotWeak(GImage image, int health, int damage, int lane, int moveSpeed, int currencyEarned) {
-			super(image, health, damage, lane, moveSpeed, currencyEarned);
 		}
 		
 		public int getImageX() {

@@ -18,19 +18,15 @@ public class RobotStrong extends Robot {
 	public boolean hasTakenDamage;
 	
 	public RobotStrong() {
-		image = new GImage("robot.png");
-		health = 100;
+		image = new GImage("robotStrong.png");
+		health = 200;
 		damage = 20;
 		lane = 1;
-		moveSpeed = 5;
-		currencyEarned = 25;
+		moveSpeed = 3;
+		currencyEarned = 50;
 		unitAttacking = null;
 		isMoving = true;
 		hasTakenDamage = false;
-	}
-	
-	public RobotStrong(GImage image, int health, int damage, int lane, int moveSpeed, int currencyEarned) {
-		super(image, health, damage, lane, moveSpeed, currencyEarned);
 	}
 	
 	public int getImageX() {
