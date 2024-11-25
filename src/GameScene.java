@@ -138,7 +138,6 @@ public class GameScene extends Scene{
 		PauseMenu pauseMenu = new PauseMenu ("media/pauseMenu.png", mainApp, gameTimer, this);
 		pauseButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// trigger return to main menu
 				System.out.println("Pause Button clicked!");
 				pauseMenu.showPopup(mainApp); // Display the pause menu
 			}
@@ -167,15 +166,13 @@ public class GameScene extends Scene{
 		Notification noti = new Notification (image, x, y, duration);
 		notifications.add(noti);
 		addElement(noti.getImage());
-		// noti.showNoti(mainApp);
 		System.out.println("Showed notification");
 	}
 	
-	private void update() {
+	private void updateNotification() {
 		notifications.removeIf(notification -> {
 			if (notification.isExpired()) {
 				mainApp.remove(notification.getImage());
-				// notification.hideNoti(mainApp);
 				return true;
 			}
 			return false;
@@ -200,7 +197,6 @@ public class GameScene extends Scene{
 			double imageX = (resX - notEnoughMoney.getWidth()) / 2;
 			double imageY = (resY - notEnoughMoney.getHeight()) / 2;
 			drawNotification(notEnoughMoney, imageX, imageY, 2000);
-			// update();
 		}
 		return false;
 	}
@@ -243,7 +239,8 @@ public class GameScene extends Scene{
 		    		game.incrementWaveNum();
 		    		game.startCurrentWave();
 		    	}
-		    	update();
+		    	
+		    	updateNotification();
 		    }};
 		   
 	    gameTimer.createActionListener(listener);
