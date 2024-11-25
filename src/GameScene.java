@@ -190,13 +190,6 @@ public class GameScene extends Scene{
 			currency -= amount;
 			updateCurrencyLabel();
 			return true;
-		} else {
-			String filename = IMG_FILENAME_PATH + "notification_notEnoughMoney" + IMG_EXTENSION;
-			GImage notEnoughMoney = new GImage(filename);
-			notEnoughMoney.setSize(notEnoughMoney.getWidth() * 0.8, notEnoughMoney.getHeight() * 0.8);
-			double imageX = (resX - notEnoughMoney.getWidth()) / 2;
-			double imageY = (resY - notEnoughMoney.getHeight()) / 2;
-			drawNotification(notEnoughMoney, imageX, imageY, 2000);
 		}
 		return false;
 	}
@@ -420,28 +413,26 @@ public class GameScene extends Scene{
 	    if (chosenUnitType != null) {
 	    	int row = (e.getY() - this.gridStartY) / tileHeight;
 			int col = (e.getX() - this.gridStartX) / tileWidth;
-			
-			if (isOutOfBound(e.getX(), e.getY())) {
-				System.out.println("OUT OF BOUND");
-				clearSelection();
-				return;
-			}
-			
-	    	if (isOccupied(row, col)) {
+	    	
+	    	if (isOutOfBound(e.getX(), e.getY()) || isOccupied(row, col)) {
 	    		clearSelection();
-		        return;
-		    }
+				return;
+	    	}
 	    	
 	    	if (canAfford(chosenUnitType.getCost())) {
 	    		instantiateUnit(chosenUnitType, e.getX(), e.getY());
 	   
 	    	} else {
-	    		System.out.println("NOT ENOUGH MONEY");
+	    		String filename = IMG_FILENAME_PATH + "notification_notEnoughMoney" + IMG_EXTENSION;
+				GImage notEnoughMoney = new GImage(filename);
+				notEnoughMoney.setSize(notEnoughMoney.getWidth() * 0.8, notEnoughMoney.getHeight() * 0.8);
+				double imageX = (resX - notEnoughMoney.getWidth()) / 2;
+				double imageY = (resY - notEnoughMoney.getHeight()) / 2;
+				drawNotification(notEnoughMoney, imageX, imageY, 2000);
 	    	}
 	    }
-	    unitBar.clearSelectedUnit();
-	    removeElement(this.selectedUnit);
-	    this.selectedUnit = null;
+	    
+	    clearSelection();
 	}
 	
 	public void mouseClicked(MouseEvent e) {
