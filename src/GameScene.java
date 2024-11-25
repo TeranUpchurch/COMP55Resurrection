@@ -50,6 +50,7 @@ public class GameScene extends Scene{
 	private ImageToRobotMap imageToRobotMap = new ImageToRobotMap();
 	private ArrayList<Projectile> projectileCache = new ArrayList<>();
 	private ArrayList<Robot> robotCache = new ArrayList<>();
+	protected List<Notification> notifications = new ArrayList<>();
 	
 	public GameScene(MainApplication mainApp, String difficulty)
 	{
@@ -162,6 +163,25 @@ public class GameScene extends Scene{
 		addElement(currencyLabel);
 	}
 	
+	private void drawNotification(GImage image, double x, double y, int duration) {
+		Notification noti = new Notification (image, x, y, duration);
+		notifications.add(noti);
+		addElement(noti.getImage());
+		// noti.showNoti(mainApp);
+		System.out.println("Showed notification");
+	}
+	
+	private void update() {
+		notifications.removeIf(notification -> {
+			if (notification.isExpired()) {
+				mainApp.remove(notification.getImage());
+				// notification.hideNoti(mainApp);
+				return true;
+			}
+			return false;
+		});
+	}
+	
 	// Currency management methods
 	public void addCurrency(int amount) {
 		this.currency += amount;
@@ -173,10 +193,18 @@ public class GameScene extends Scene{
 			currency -= amount;
 			updateCurrencyLabel();
 			return true;
+		} else {
+			String filename = IMG_FILENAME_PATH + "notification_notEnoughMoney" + IMG_EXTENSION;
+			GImage notEnoughMoney = new GImage(filename);
+			notEnoughMoney.setSize(notEnoughMoney.getWidth() * 0.8, notEnoughMoney.getHeight() * 0.8);
+			double imageX = (resX - notEnoughMoney.getWidth()) / 2;
+			double imageY = (resY - notEnoughMoney.getHeight()) / 2;
+			drawNotification(notEnoughMoney, imageX, imageY, 2000);
+			// update();
 		}
-		// should show notification to player when they do not have enough money. DO IT LATER
 		return false;
 	}
+	
 	private void updateCurrencyLabel() {
 		this.currencyLabel.setLabel("" + currency);
 	}
@@ -215,6 +243,7 @@ public class GameScene extends Scene{
 		    		game.incrementWaveNum();
 		    		game.startCurrentWave();
 		    	}
+		    	update();
 		    }};
 		   
 	    gameTimer.createActionListener(listener);
