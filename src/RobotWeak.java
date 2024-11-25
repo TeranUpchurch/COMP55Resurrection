@@ -8,26 +8,16 @@ import javax.swing.*;
 
 	// this class handles the enemy units in the game and their attributes, such as how fast they move and how much health they have
 	public class RobotWeak extends Robot {
-		private GImage image;
-		private int health;
-		private int damage;
-		private int lane;
-		private int moveSpeed;
-		private int currencyEarned;
-		private Unit unitAttacking;
-		public boolean isMoving;
-		public boolean hasTakenDamage;
+		public static final String IMG_FILENAME_PATH = "media/";
+		public static final String IMG_EXTENSION = ".png";
 		
-		public RobotWeak() {
-			image = new GImage("robotWeak.png");
-			health = 100;
-			damage = 20;
-			lane = 1;
-			moveSpeed = 5;
-			currencyEarned = 25;
-			unitAttacking = null;
-			isMoving = true;
-			hasTakenDamage = false;
+		public RobotWeak(int laneNum) {
+			super(laneNum);
+			this.image = new GImage("robotWeak.png");
+			this.health = 100;
+			this.damage = 20;
+			this.moveSpeed = 4;
+			this.currencyEarned = 25;
 		}
 		
 		public int getImageX() {
@@ -63,11 +53,6 @@ import javax.swing.*;
 			health -= damage;
 			hasReachedUnit(hasTakenDamage);
 			return 0; */
-		}
-		
-		public void step()
-		{
-			
 		}
 		
 		// if an enemy's health reaches zero, it is defeated and disappears from the grid

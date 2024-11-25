@@ -119,10 +119,10 @@ public class Wave {
 	public static void main(String[] args) {
 		System.out.println("Unit tests:");
 		ArrayList<Robot> robots1 = new ArrayList<Robot>();
-		robots1.add(new RobotWeak());
-		robots1.add(new RobotWeak());
-		robots1.add(new RobotWeak());
-		robots1.add(new RobotStrong());
+		robots1.add(new RobotWeak(1));
+		robots1.add(new RobotWeak(2));
+		robots1.add(new RobotWeak(3));
+		robots1.add(new RobotStrong(2));
 		ArrayList<Integer> intervals1 = new ArrayList<Integer>();
 		intervals1.add(10);
 		intervals1.add(10);

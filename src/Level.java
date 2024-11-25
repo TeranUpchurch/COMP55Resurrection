@@ -13,10 +13,10 @@ public class Level {
 	public Level(GameScene gameScene)
 	{
 		ArrayList<Robot> robots = new ArrayList<Robot>();
-		robots.add(new RobotWeak());
-		robots.add(new RobotWeak());
-		robots.add(new RobotWeak());
-		robots.add(new RobotStrong());
+		robots.add(new RobotWeak(1));
+		robots.add(new RobotWeak(2));
+		robots.add(new RobotWeak(3));
+		robots.add(new RobotStrong(2));
 		ArrayList<Integer> intervals = new ArrayList<Integer>();
 		intervals.add(10);
 		intervals.add(10);

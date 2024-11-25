@@ -7,35 +7,19 @@ import javax.swing.*;
 
 // this class handles the enemy units in the game and their attributes, such as how fast they move and how much health they have
 public class Robot {
-	private GImage image;
-	private int health;
-	private int damage;
-	private int lane;
-	private int moveSpeed;
-	private int currencyEarned;
-	private Unit unitAttacking;
-	public boolean isMoving;
-	public boolean hasTakenDamage;
-	
-	public Robot() {
-		image = new GImage("robot.png");
-		health = 100;
-		damage = 20;
-		lane = 1;
-		moveSpeed = 2;
-		currencyEarned = 25;
+	protected GImage image;
+	protected int health;
+	protected int damage;
+	protected int lane;
+	protected int moveSpeed;
+	protected int currencyEarned;
+	protected Unit unitAttacking;
+	protected boolean isMoving;
+
+	public Robot(int laneNum) { // Parent class constructor. Initializes lane spawn number and status variables.
+		lane = laneNum;
 		unitAttacking = null;
 		isMoving = true;
-		hasTakenDamage = false;
-	}
-	
-	public Robot(GImage image, int health, int damage, int lane, int moveSpeed, int currencyEarned) {
-		this.image = image;
-		this.health = health;
-		this.damage = damage;
-		this.lane = lane;
-		this.moveSpeed = moveSpeed;
-		this.currencyEarned = currencyEarned;
 	}
 	
 	public GImage getImage()
@@ -49,6 +33,11 @@ public class Robot {
 	
 	public int getImageY() {
 		return 0;
+	}
+	
+	public int getLane()
+	{
+		return lane;
 	}
 	
 	// how much damage the enemy deals to the player unit it is attacking
