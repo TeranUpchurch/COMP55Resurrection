@@ -470,6 +470,12 @@ public class GameScene extends Scene{
 	    	
 	    	if (isOutOfBound(e.getX(), e.getY()) || isOccupied(row, col)) {
 	    		clearSelection();
+	    		String filename = IMG_FILENAME_PATH + "notification_canNotPlaceUnit" + IMG_EXTENSION;
+	    		GImage canNotPlaceUnit = new GImage(filename);
+	    		canNotPlaceUnit.setSize(canNotPlaceUnit.getWidth() * 0.8, canNotPlaceUnit.getHeight() * 0.8);
+				double imageX = (resX - canNotPlaceUnit.getWidth()) / 2;
+				double imageY = (resY - canNotPlaceUnit.getHeight()) / 2;
+				drawNotification(canNotPlaceUnit, imageX, imageY, 2000);
 				return;
 	    	}
 	    	
