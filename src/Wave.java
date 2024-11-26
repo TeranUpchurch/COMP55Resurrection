@@ -103,7 +103,7 @@ public class Wave {
 		        	return;
 		        }
 		    	//System.out.println("Tick. " + numTimes +  " Current robot: " + robots.get(enemyNum));
-		        if (numTimes >= intervals.get(enemyNum))
+		        if (numTimes >= intervals.get(enemyNum) && !gameScene.isPaused())
 		        {
 		        	numTimes = 0;
 		        	gameScene.instantiateRobot(robots.get(enemyNum));

@@ -263,6 +263,7 @@ public class GameScene extends Scene{
 		    	// Move all robots in cache.
 		    	for (Robot robot : robotCache)
 		    	{
+		    		if (game.gameScene.isPaused()) return;
 		    		robot.step();
 		    	}
 		    	

@@ -11,6 +11,8 @@ import javax.swing.*;
 		public static final String IMG_FILENAME_PATH = "media/";
 		public static final String IMG_EXTENSION = ".png";
 		
+		private GameScene scene;
+		
 		public RobotWeak(int laneNum) {
 			super(laneNum);
 			this.image = new GImage("robotWeak.png");

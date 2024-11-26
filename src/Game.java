@@ -18,7 +18,7 @@ public class Game {
 	private ImageToUnitMap imageToUnitMap;
 	private ImageToRobotMap imageToRobotMap;
 	
-	private GameScene gameScene;
+	public GameScene gameScene;
 	
 	
 	public Game(GameScene gameScene)

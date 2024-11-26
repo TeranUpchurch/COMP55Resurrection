@@ -21,6 +21,8 @@ public class Robot {
 		lane = laneNum;
 		unitAttacking = null;
 		isMoving = true;
+		
+		
 	}
 	
 	public GImage getImage()
