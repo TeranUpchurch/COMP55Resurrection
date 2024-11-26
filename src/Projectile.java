@@ -58,7 +58,6 @@ public class Projectile {
 	}
 	
 	public void step() {
-		if (scene.isPaused()) return;
 		image.setLocation(image.getX() + speed, image.getY());
 	}
 }

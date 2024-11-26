@@ -219,6 +219,7 @@ public class GameScene extends Scene{
 		    public void actionPerformed(ActionEvent e) {
 		    	for (Projectile proj : projectileCache)
 		    	{
+		    		if (game.gameScene.isPaused()) return;
 		    		proj.step();
 		    		
 		    		if (proj.getImage().getX() > resX)
