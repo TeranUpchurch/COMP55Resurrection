@@ -23,10 +23,8 @@ public class ExitConfirmation extends PopupMenu{
 		this.mainApp = mainApp;
 		this.gameTimer = gameTimer;
 		
-		String filename = IMG_FILENAME_PATH + "exitBackground" + IMG_EXTENSION;
-		this.exitBackground = new GImage(filename);
-		this.confirmButton = drawConfirmButton("confirmButton", exitBackground); 
-		this.cancelButton = drawCancelButton("cancelButton", exitBackground);
+		this.confirmButton = drawConfirmButton("button_confirm", exitBackground); 
+		this.cancelButton = drawCancelButton("button_cancel", exitBackground);
 		
 		addMenuElement(confirmButton);
 		addMenuElement(cancelButton);

@@ -21,10 +21,8 @@ public class RestartConfirmation extends PopupMenu{
 		this.pauseMenu = pauseMenu;
 		this.mainApp = mainApp;
 		
-		String filename = IMG_FILENAME_PATH + "restartBackground" + IMG_EXTENSION;
-		this.restartBackground = new GImage(filename);
-		this.confirmButton = drawConfirmButton("confirmButton", restartBackground); 
-		this.cancelButton = drawCancelButton("cancelButton", restartBackground);
+		this.confirmButton = drawConfirmButton("button_confirm", restartBackground); 
+		this.cancelButton = drawCancelButton("button_cancel", restartBackground);
 		
 		addMenuElement(confirmButton);
 		addMenuElement(cancelButton);

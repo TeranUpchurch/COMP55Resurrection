@@ -19,7 +19,7 @@ public class UnitBar {
 	public static final String IMG_EXTENSION = ".png";
 	
 	public void drawUnitBar(GameScene scene) {
-		String[] unitsImages = {"soldierUnitBar", "machineGunUnitBar", "grenadeUnitBar", "rockUnitBar"};
+		String[] unitsImages = {"unitBar_soldier", "unitBar_machineGun", "unitBar_grenade", "unitBar_rock"};
 		double xStart = X_UNIT_BAR;
 		double yStart = Y_UNIT_BAR;
 		

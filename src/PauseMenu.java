@@ -121,21 +121,21 @@ public class PauseMenu extends PopupMenu{
 			}
 		});
 	}
-	// handles when the player wants to restart the level they are playing
+	
 	private void handleRestart() {
 		System.out.println("Restart button clicked: Showing confirmation dialog.");
 		hidePopup(this.mainApp, false);
-		// Logic to restart the game (e.g., restarting level)
-		String filename = IMG_FILENAME_PATH + "restartBackground" + IMG_EXTENSION;
+		
+		String filename = IMG_FILENAME_PATH + "background_restartConfirm" + IMG_EXTENSION;
 		this.restartConfirmation = new RestartConfirmation(filename, mainApp, this);
 		this.restartConfirmation.showPopup(mainApp); // Display the confirmation menu
 	}
-	// handles when the player wants to exit the level
+	
 	private void handleExit() {
 		System.out.println("Exit button clicked: Showing confirmation dialog.");
 		hidePopup(this.mainApp, false);
-		// Logic to exit level to main menu (e.g., exiting level)
-		String filename = IMG_FILENAME_PATH + "exitBackground" + IMG_EXTENSION;
+		
+		String filename = IMG_FILENAME_PATH + "background_exitConfirm" + IMG_EXTENSION;
 		this.exitConfirmation = new ExitConfirmation(filename, mainApp, this, gameTimer);
 		this.exitConfirmation.showPopup(mainApp); // Display the confirmation menu
 	}
@@ -143,12 +143,12 @@ public class PauseMenu extends PopupMenu{
 	private void handleLevelSelect() {
 		System.out.println("LevelSelect button clicked: Showing confirmation dialog.");
 		hidePopup(this.mainApp, false);
-		// Logic to go to level select from the game (e.g., exit level and select new difficulty)
-		String filename = IMG_FILENAME_PATH + "levelMenuBackground" + IMG_EXTENSION;
+		
+		String filename = IMG_FILENAME_PATH + "background_levelMenuConfirm" + IMG_EXTENSION;
 		this.levelMenuConfirmation = new LevelMenuConfirmation(filename, mainApp, this);
 		this.levelMenuConfirmation.showPopup(mainApp); // Display the confirmation menu
 	}
-	// resumes the game after clicking the resume button on the pause menu
+	
 	private void handleResume() {
 		System.out.println("Resuming game...");
 		hidePopup(this.mainApp, true);

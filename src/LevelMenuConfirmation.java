@@ -19,11 +19,9 @@ public class LevelMenuConfirmation extends PopupMenu{
 		super(imagePath);
 		this.pauseMenu = pauseMenu;
 		this.mainApp = mainApp;
-		
-		String filename = IMG_FILENAME_PATH + "levelMenuBackground" + IMG_EXTENSION;
-		this.levelMenuBackground = new GImage(filename);
-		this.confirmButton = drawConfirmButton("confirmButton", levelMenuBackground); 
-		this.cancelButton = drawCancelButton("cancelButton", levelMenuBackground);
+	
+		this.confirmButton = drawConfirmButton("button_confirm", levelMenuBackground); 
+		this.cancelButton = drawCancelButton("button_cancel", levelMenuBackground);
 		
 		addMenuElement(confirmButton);
 		addMenuElement(cancelButton);

@@ -1,9 +1,9 @@
 
 public enum UnitType {
-	SOLDIER ("soldier", "media/soldier.png", 50, 50, 20, 100),
-	MACHINE_GUN ("machineGun", "media/machineGun.png", 100, 100, 10, 150),
-	GRENADE ("grenade", "media/grenade.png", 25, 25, 10, 1),
-	ROCK ("rock", "media/rock.png", 50, 50, 10, 300);
+	SOLDIER ("soldier", "media/unit_soldier.png", 50, 50, 20, 100),
+	MACHINE_GUN ("machineGun", "media/unit_machineGun.png", 100, 100, 10, 150),
+	GRENADE ("grenade", "media/unit_grenade.png", 25, 25, 10, 1),
+	ROCK ("rock", "media/unit_rock.png", 50, 50, 10, 300);
 	
 	private final String name;
 	private final String imagePath;
