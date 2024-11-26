@@ -11,6 +11,8 @@ public class Projectile {
 	private int height;
 	private int damage;
 	private int speed;
+	
+	private boolean destroyed;
 	private GameScene scene;
 	
 	public Projectile(GImage image, 
@@ -27,7 +29,9 @@ public class Projectile {
 		image.setSize(width, height);
 		this.damage = damage;
 		this.speed = speed;
+		
 		this.scene = scene;
+		this.destroyed = false;
 	}
 	
 	public GImage getImage()
@@ -38,6 +42,31 @@ public class Projectile {
 	public void setLocation(double x, double y)
 	{
 		image.setLocation(x, y);
+	}
+	
+	public GPoint getLocation()
+	{
+		return image.getLocation();
+	}
+	
+	public int getDamage()
+	{
+		return this.damage;
+	}
+	
+	public int getSpeed()
+	{
+		return this.speed;
+	}
+	
+	public boolean isDestroyed()
+	{
+		return this.destroyed;
+	}
+	
+	public void toggleDestroyed()
+	{
+		this.destroyed = true;
 	}
 	
 	public void step() {

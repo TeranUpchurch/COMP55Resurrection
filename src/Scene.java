@@ -31,6 +31,16 @@ public class Scene extends GraphicsApplication implements Interfaceable{
 		this.mainApp = mainApp;
 	}
 	
+	public GObject getElementAtPoint(GPoint p)
+	{
+		return this.mainApp.getElementAt(p);
+	}
+	
+	public GObject getElementAtCoordinate(double x, double y)
+	{
+		return this.mainApp.getElementAt(x, y);
+	}
+	
 	public void addElement(GObject element)
 	{
 		activeContents.add(element);

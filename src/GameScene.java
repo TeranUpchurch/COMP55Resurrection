@@ -215,10 +215,38 @@ public class GameScene extends Scene{
 		
 		ActionListener listener = new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		    	// Move all projectiles in cache.
-		    	for (Projectile item : projectileCache)
+		    	for (Projectile proj : projectileCache)
 		    	{
-		    		item.step();
+		    		
+		    		proj.step();
+		    		GPoint projLocation = proj.getLocation();
+		    		GObject element = getElementAtCoordinate(projLocation.getX() + proj.getImage().getWidth() + proj.getSpeed(), projLocation.getY());
+		    		
+		    		if (element instanceof GImage)
+		    		{
+		    			GImage image = (GImage) element;
+		    			Robot robot = imageToRobotMap.get(image);
+
+		    			if (robot == null)
+			    		{
+			    			continue;
+			    		}
+			    		else
+			    		{
+			    			if (proj.isDestroyed())
+			    			{
+			    				continue;
+			    			}
+
+			    			robot.takeDamage(proj.getDamage());
+			    			removeElement(proj.getImage());
+			    			proj.toggleDestroyed();
+			    		}
+		    		}
+		    		else
+		    		{
+		    			continue;
+		    		}
 		    	}
 		    	// Move all robots in cache.
 		    	for (Robot robot : robotCache)
@@ -273,7 +301,7 @@ public class GameScene extends Scene{
 		robotImage.setSize(tileWidth, tileHeight);
 		robotImage.setLocation(this.resX, gridStartY + robot.getLane() * tileHeight);
 		addElement(robotImage);
-		imageToRobotMap.addPair(robotImage, robot);
+		imageToRobotMap.addPair(robot.getImage(), robot);
 		robotCache.add(robot);
 		System.out.println("Added robot " + robot + " to screen.");
 	}

@@ -14,9 +14,9 @@ import javax.swing.*;
 		public RobotWeak(int laneNum) {
 			super(laneNum);
 			this.image = new GImage("robotWeak.png");
-			this.health = 100;
+			this.health = 40;
 			this.damage = 20;
-			this.moveSpeed = 4;
+			this.moveSpeed = 2;
 			this.currencyEarned = 25;
 		}
 		

@@ -14,9 +14,9 @@ import javax.swing.*;
 		public RobotStrong(int laneNum) {
 			super(laneNum);
 			this.image = new GImage("robotStrong.png");
-			this.health = 200;
+			this.health = 80;
 			this.damage = 20;
-			this.moveSpeed = 2;
+			this.moveSpeed = 1;
 			this.currencyEarned = 50;
 		}
 		

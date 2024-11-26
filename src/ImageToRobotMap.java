@@ -3,6 +3,7 @@ import acm.program.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import javax.swing.*;
@@ -29,6 +30,11 @@ public class ImageToRobotMap {
 	public Robot get(GImage image)
 	{
 		return map.get(image);
+	}
+	
+	public void printContents()
+	{
+		System.out.println(Arrays.asList(map));
 	}
 	
 	public static void main(String[] args) {

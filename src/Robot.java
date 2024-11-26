@@ -15,6 +15,7 @@ public class Robot {
 	protected int currencyEarned;
 	protected Unit unitAttacking;
 	protected boolean isMoving;
+	protected GameScene scene;
 
 	public Robot(int laneNum) { // Parent class constructor. Initializes lane spawn number and status variables.
 		lane = laneNum;
