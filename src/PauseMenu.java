@@ -36,12 +36,12 @@ public class PauseMenu extends PopupMenu{
 		this.gameTimer = gameTimer;
 		this.gameScene = gameScene;
 		
-		String filename1 = IMG_FILENAME_PATH + "pauseMenu" + IMG_EXTENSION;
+		String filename1 = IMG_FILENAME_PATH + "menu_pauseMenu" + IMG_EXTENSION;
 		this.pauseMenu = new GImage(filename1);
-		this.biggerRestartButton = drawRestartButton("biggerRestartButton", pauseMenu);
-		this.biggerLevelMenuButton = drawLevelMenuButton("biggerLevelMenuButton", pauseMenu);
-		this.biggerExitButton = drawExitButton("biggerExitButton", pauseMenu);		
-		this.resumeButton = drawResumeButton("resumeButton", pauseMenu);
+		this.biggerRestartButton = drawRestartButton("button_restart_bigger", pauseMenu);
+		this.biggerLevelMenuButton = drawLevelMenuButton("button_levelMenu_bigger", pauseMenu);
+		this.biggerExitButton = drawExitButton("button_exit_bigger", pauseMenu);		
+		this.resumeButton = drawResumeButton("button_resume", pauseMenu);
 		
 		addMenuElement(biggerRestartButton);
 		addMenuElement(biggerLevelMenuButton);

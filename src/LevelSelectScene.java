@@ -27,7 +27,7 @@ public class LevelSelectScene extends Scene{
 	}
 	
 	private void drawEasyLevelButton() {
-		String filename = IMG_FILENAME_PATH + "easyButton" + IMG_EXTENSION;
+		String filename = IMG_FILENAME_PATH + "button_easy" + IMG_EXTENSION;
 		GImage easyButtonImage = new GImage(filename);
 		this.easyLevelButton = new GButton(easyButtonImage,MainApplication.getResolutionWidth() / 16,MainApplication.getResolutionHeight() / 2);
 		addElement(easyLevelButton);
@@ -42,7 +42,7 @@ public class LevelSelectScene extends Scene{
 	
 	
 	private void drawMediumLevelButton() {
-		String filename = IMG_FILENAME_PATH + "mediumButton" + IMG_EXTENSION;
+		String filename = IMG_FILENAME_PATH + "button_medium" + IMG_EXTENSION;
 		GImage mediumButtonImage = new GImage(filename);
 		this.mediumLevelButton = new GButton(mediumButtonImage,6 * MainApplication.getResolutionWidth() / 16,MainApplication.getResolutionHeight() / 2);
 		addElement(mediumLevelButton);
@@ -56,7 +56,7 @@ public class LevelSelectScene extends Scene{
 	}
 	
 	private void drawHardLevelButton() {
-		String filename = IMG_FILENAME_PATH + "hardButton" + IMG_EXTENSION;
+		String filename = IMG_FILENAME_PATH + "button_hard" + IMG_EXTENSION;
 		// change from robot to "X" button
 		GImage hardButtonImage = new GImage(filename);
 		this.hardLevelButton = new GButton(hardButtonImage, 11 * MainApplication.getResolutionWidth() / 16,MainApplication.getResolutionHeight() / 2);
@@ -71,7 +71,7 @@ public class LevelSelectScene extends Scene{
 	}
 	
 	private void drawReturnButton() {
-		String filename = IMG_FILENAME_PATH + "returnButton" + IMG_EXTENSION;
+		String filename = IMG_FILENAME_PATH + "button_return" + IMG_EXTENSION;
 		GImage returnButtonImage = new GImage(filename);
 		int returnButtonX = (int)(MainApplication.getResolutionWidth() * 0.90);
 		int returnButtonY = (int)(MainApplication.getResolutionHeight() * 0.02);
@@ -87,7 +87,7 @@ public class LevelSelectScene extends Scene{
 	}
 	
 	private void drawHelpButton() {
-		String filename = IMG_FILENAME_PATH + "helpButton" + IMG_EXTENSION;
+		String filename = IMG_FILENAME_PATH + "button_help" + IMG_EXTENSION;
 		GImage helpButtonImage = new GImage(filename);
 		int helpButtonX = (int)(MainApplication.getResolutionWidth() * 0.02);
 		int helpButtonY = (int)(MainApplication.getResolutionHeight() * 0.02);

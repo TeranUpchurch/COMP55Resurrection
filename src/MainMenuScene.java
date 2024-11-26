@@ -24,7 +24,7 @@ public class MainMenuScene extends Scene {
 	}
 	
 	private void drawStartButton() {
-		String filename = IMG_FILENAME_PATH + "startButton" + IMG_EXTENSION;
+		String filename = IMG_FILENAME_PATH + "button_start" + IMG_EXTENSION;
 		GImage startButtonImage = new GImage(filename);
 		int startButtonX = (MainApplication.getResolutionWidth() - (int) startButtonImage.getWidth()) / 2;
 		int startButtonY = (int)(MainApplication.getResolutionHeight() * 0.6);
@@ -40,7 +40,7 @@ public class MainMenuScene extends Scene {
 	}
 	
 	private void drawHelpButton() {
-		String filename = IMG_FILENAME_PATH + "helpButton" + IMG_EXTENSION;
+		String filename = IMG_FILENAME_PATH + "button_help" + IMG_EXTENSION;
 		GImage helpButtonImage = new GImage(filename);
 		int helpButtonX = (int)(MainApplication.getResolutionWidth() * 0.02);
 		int helpButtonY = (int)(MainApplication.getResolutionHeight() * 0.02);
@@ -56,7 +56,7 @@ public class MainMenuScene extends Scene {
 	}
 	
 	private void drawExitButton() {
-		String filename = IMG_FILENAME_PATH + "exitButton" + IMG_EXTENSION;
+		String filename = IMG_FILENAME_PATH + "button_exit" + IMG_EXTENSION;
 		GImage exitButtonImage = new GImage(filename);
 		int exitButtonX = (int)(MainApplication.getResolutionWidth() * 0.90);
 		int exitButtonY = (int)(MainApplication.getResolutionHeight() * 0.02);

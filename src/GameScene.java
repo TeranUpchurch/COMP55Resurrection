@@ -88,9 +88,9 @@ public class GameScene extends Scene{
 	
 	// UI drawing methods
 	public void drawBackground() {
-		String fence = IMG_FILENAME_PATH + "fence" + IMG_EXTENSION;
+		String fence = IMG_FILENAME_PATH + "backgroundGS_fence" + IMG_EXTENSION;
 		String background = IMG_FILENAME_PATH + "backgroundGameScene" + IMG_EXTENSION;
-		String ground = IMG_FILENAME_PATH + "ground" + IMG_EXTENSION;
+		String ground = IMG_FILENAME_PATH + "backgroundGS_ground" + IMG_EXTENSION;
 		
 		this.backgroundGameScene = new GImage(background);
 		GImage fenceImage = new GImage(fence);
@@ -107,8 +107,8 @@ public class GameScene extends Scene{
 	
 	public void drawGrid(int rows, int cols)
 	{
-		String darkTileFilename = IMG_FILENAME_PATH + "darkTile" + IMG_EXTENSION;
-		String lightTileFilename = IMG_FILENAME_PATH + "lightTile" + IMG_EXTENSION;
+		String darkTileFilename = IMG_FILENAME_PATH + "tile_dark" + IMG_EXTENSION;
+		String lightTileFilename = IMG_FILENAME_PATH + "tile_light" + IMG_EXTENSION;
 		
 		this.tileWidth = this.gridWidth / cols;
 		this.tileHeight = this.gridHeight / rows;
@@ -131,13 +131,13 @@ public class GameScene extends Scene{
 	}
 	
 	private void drawPauseButton() {
-		String filename = IMG_FILENAME_PATH + "pauseButton" + IMG_EXTENSION;
+		String filename = IMG_FILENAME_PATH + "button_pause" + IMG_EXTENSION;
 		GImage pauseButtonImage = new GImage(filename);
 		int pauseButtonX = (int)(MainApplication.getResolutionWidth() * 0.90);
 		int pauseButtonY = (int)((MainApplication.getResolutionHeight() * 0.02) + 20);
 		this.pauseButton = new GButton(pauseButtonImage,pauseButtonX,pauseButtonY);
 		addElement(pauseButton);
-		PauseMenu pauseMenu = new PauseMenu ("media/pauseMenu.png", mainApp, gameTimer, this);
+		PauseMenu pauseMenu = new PauseMenu ("media/menu_pauseMenu.png", mainApp, gameTimer, this);
 		pauseButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("Pause Button clicked!");
@@ -147,7 +147,7 @@ public class GameScene extends Scene{
 	}
 	
 	private void drawCurrencyBackground() {
-		String filename = IMG_FILENAME_PATH + "currencyBackground" + IMG_EXTENSION;
+		String filename = IMG_FILENAME_PATH + "background_currency" + IMG_EXTENSION;
 		this.currencyBackground = new GImage(filename);
 		int currencyBackgroundX = (int)(MainApplication.getResolutionWidth() * 0.70);
 		int currencyBackgroundY = (int)((MainApplication.getResolutionHeight() * 0.02) + 20);
