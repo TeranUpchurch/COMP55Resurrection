@@ -323,8 +323,7 @@ public class GameScene extends Scene{
 	public void instantiateRobot(Robot robot)
 	{
 		GImage robotImage = robot.getImage();
-		robotImage.setSize(tileWidth, tileHeight);
-		robotImage.setLocation(this.resX, gridStartY + robot.getLane() * tileHeight);
+		robotImage.setLocation(this.resX, gridStartY + robot.getLane() * tileHeight - robotImage.getHeight() / 6 );
 		addElement(robotImage);
 		imageToRobotMap.addPair(robot.getImage(), robot);
 		robotCache.add(robot);
