@@ -55,16 +55,6 @@ import javax.swing.*;
 			return 0; */
 		}
 		
-		// if an enemy's health reaches zero, it is defeated and disappears from the grid
-		public boolean isDeath(int health, int currencyEarned) {
-			/*if (health == 0) {
-				System.out.println(currencyEarned + "currency awarded");
-				return true;
-			}
-			return false; */
-			return health <= 0;
-		}
-		
 		// determines if an enemy unit is close enough to a player unit to start attacking and dealing damage to it
 		public boolean hasReachedUnit(boolean isMoving) {
 			if (isMoving == false) {

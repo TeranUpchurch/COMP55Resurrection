@@ -12,7 +12,6 @@ public class Projectile {
 	private int damage;
 	private int speed;
 	
-	private boolean destroyed;
 	private GameScene scene;
 	
 	public Projectile(GImage image, 
@@ -31,7 +30,6 @@ public class Projectile {
 		this.speed = speed;
 		
 		this.scene = scene;
-		this.destroyed = false;
 	}
 	
 	public GImage getImage()
@@ -57,16 +55,6 @@ public class Projectile {
 	public int getSpeed()
 	{
 		return this.speed;
-	}
-	
-	public boolean isDestroyed()
-	{
-		return this.destroyed;
-	}
-	
-	public void toggleDestroyed()
-	{
-		this.destroyed = true;
 	}
 	
 	public void step() {

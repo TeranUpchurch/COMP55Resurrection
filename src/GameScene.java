@@ -50,6 +50,8 @@ public class GameScene extends Scene{
 	private ImageToRobotMap imageToRobotMap = new ImageToRobotMap();
 	private ArrayList<Projectile> projectileCache = new ArrayList<>();
 	private ArrayList<Robot> robotCache = new ArrayList<>();
+	private Set<Projectile> projectilesToDestroy = new HashSet<>();
+	private Set<Robot> robotsToDestroy = new HashSet<>();
 	protected List<Notification> notifications = new ArrayList<>();
 	
 	public GameScene(MainApplication mainApp, String difficulty)
@@ -217,8 +219,14 @@ public class GameScene extends Scene{
 		    public void actionPerformed(ActionEvent e) {
 		    	for (Projectile proj : projectileCache)
 		    	{
-		    		
 		    		proj.step();
+		    		
+		    		if (proj.getImage().getX() > resX)
+		    		{
+		    			projectilesToDestroy.add(proj);
+		    			continue;
+		    		}
+		    		
 		    		GPoint projLocation = proj.getLocation();
 		    		GObject element = getElementAtCoordinate(projLocation.getX() + proj.getImage().getWidth() + proj.getSpeed(), projLocation.getY());
 		    		
@@ -233,14 +241,18 @@ public class GameScene extends Scene{
 			    		}
 			    		else
 			    		{
-			    			if (proj.isDestroyed())
-			    			{
-			    				continue;
-			    			}
-
+			    			// Inflict damage once robot is found.
 			    			robot.takeDamage(proj.getDamage());
-			    			removeElement(proj.getImage());
-			    			proj.toggleDestroyed();
+			    			
+			    			// Immediately check if the robot has been defeated after this update.
+			    			if (robot.isDefeated())
+			    			{
+			    				removeElement(image);
+			    				imageToRobotMap.deletePair(image);
+			    				robotsToDestroy.add(robot);
+			    			}
+			    			
+			    			projectilesToDestroy.add(proj);
 			    		}
 		    		}
 		    		else
@@ -253,6 +265,19 @@ public class GameScene extends Scene{
 		    	{
 		    		robot.step();
 		    	}
+		    	
+		    	// Remove robots and projectiles from their respective caches according to the robotsToDestroy and projectilesToDestroy sets.
+		    	for (Projectile proj : projectilesToDestroy)
+		    	{
+		    		removeElement(proj.getImage());
+		    		projectileCache.remove(proj);
+		    	}
+		    	for (Robot robot : robotsToDestroy)
+		    	{
+		    		removeElement(robot.getImage());
+		    		robotCache.remove(robot);
+		    	}
+		    	
 		    	// Check the enemy counter - if 0, go to next wave.
 		    	if (game.getActiveEnemyCount() <= 0)
 		    	{
