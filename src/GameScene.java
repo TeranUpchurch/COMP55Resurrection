@@ -248,9 +248,16 @@ public class GameScene extends Scene{
 			    			// Immediately check if the robot has been defeated after this update.
 			    			if (robot.isDefeated())
 			    			{
+			    				// If the robot's HP is 0 or less after do the following:
+			    				// delete Robot from screen, 
+			    				// remove from backend 
+			    				// add currency
+			    				// decrement Game activeEnemyCount
 			    				removeElement(image);
 			    				imageToRobotMap.deletePair(image);
 			    				robotsToDestroy.add(robot);
+			    				addCurrency(robot.getCurrencyEarned());
+			    				game.decrementEnemyCount();
 			    			}
 			    			
 			    			projectilesToDestroy.add(proj);

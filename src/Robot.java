@@ -74,6 +74,11 @@ public class Robot {
 		return health <= 0;
 	}
 	
+	public int getCurrencyEarned()
+	{
+		return currencyEarned;
+	}
+	
 	// determines if an enemy unit is close enough to a player unit to start attacking and dealing damage to it
 	public boolean hasReachedUnit(boolean isMoving) {
 		if (isMoving == true) {

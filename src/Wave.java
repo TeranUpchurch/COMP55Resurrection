@@ -23,7 +23,6 @@ public class Wave {
 	
 	// Constructor for unit testing.
 	public Wave(ArrayList<Robot> robots, ArrayList<Integer> intervals) {
-		this.gameScene = gameScene;
 		this.robots = robots;
 		this.intervals = intervals;
 		arraySize = robots.size();
