@@ -22,6 +22,7 @@ public class UnitSoldier extends Unit{
         this.frequency = unitType.getFrequency();
         this.numTimes = 0;
         this.enemyDetected = false;
+        this.lane = lane;
 	}
 	
 	public void startTimer()
@@ -42,38 +43,43 @@ public class UnitSoldier extends Unit{
 		    routineTimerSoldier.createActionListener(listener);
 	}
 	
+	@Override
 	public void routine () {
 		if (gameScene.isPaused()) {
 			return;
 		}
-		double projectileStartX = image.getX() + image.getWidth(); // Right edge of the soldier
-        double projectileStartY = image.getY() + 0.15 * image.getHeight(); // Slightly below the top
-		Projectile projectile = new Projectile(
-				new GImage(IMG_FILENAME_PATH + "paintball_Yellow" + IMG_EXTENSION),
-				10,
-				10,
-				10,
-				10,
-				projectileStartX,
-				projectileStartY,
-				gameScene
-				);
-		gameScene.instantiateProjectile(projectile, projectileStartX, projectileStartY);
-		System.out.println("Instantiated projectile from " + this);
+		if (checkForEnemy()) {
+			shoot();
+		}
+		else {
+			System.out.println("No enemy in lane " + lane);
+			return;
+		}
 		
 	}
 	
-	// checks if a player unit is upgradable to a stronger unit
+	@Override
+	public void shoot() {
+		double projectileStartX = image.getX() + image.getWidth(); // Right edge of the soldier
+		double projectileStartY = image.getY() + 0.15 * image.getHeight(); // Slightly below the top
+		Projectile projectile = new Projectile(
+			new GImage(IMG_FILENAME_PATH + "paintball_Yellow" + IMG_EXTENSION),
+			10,
+			10,
+			10,
+			10,
+			projectileStartX,
+			projectileStartY,
+			gameScene
+			);
+		gameScene.instantiateProjectile(projectile, projectileStartX, projectileStartY);
+		System.out.println("Instantiated projectile from " + this);
+	}
+	
 	public boolean isItUpgradable(boolean upgrade) {
 		return this.upgradable && upgrade && unitToUpgradeTo != null;
 	}
 	
-	// checks if an enemy is in the same lane as the player unit. If it is, the player unit starts attacking the enemy
-	public boolean checkForEnemy(boolean robotLocation) {
-		return robotLocation;
-	}
-	
-	// handles enemies dealing damage to the player unit
 	public int takeDamage(int damage) {
 		health -= damage;
         if (health <= 0) { 
@@ -85,7 +91,7 @@ public class UnitSoldier extends Unit{
         }
         return health;
 	}
-	// if the player unit's health hits zero
+	
 	public boolean isDeath() {
 		return health <= 0; 
 	}

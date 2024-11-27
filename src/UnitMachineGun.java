@@ -41,11 +41,22 @@ public class UnitMachineGun extends Unit{
 		    routineTimerMachineGun.createActionListener(listener);
 	}
 	
+	@Override
 	public void routine () {
 		if (gameScene.isPaused()) {
 			return;
 		}
-
+		if (checkForEnemy()) {
+			shoot();
+		}
+		else {
+			System.out.println("No enemy in lane ");
+			return;
+		}
+	}
+	
+	@Override
+	public void shoot() {
 		double projectileStartX = image.getX() + image.getWidth(); // Right edge of the machine gun
         double projectileStartY = image.getY() + 0.15 * image.getHeight(); // Slightly below the top
 		Projectile projectile = new Projectile(

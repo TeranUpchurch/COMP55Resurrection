@@ -50,7 +50,11 @@ public class Unit {
 	}
 	
 	public void routine () {
-		
+		if (checkForEnemy()) {
+			shoot();
+		} else {
+			System.out.println("No enemy in lane " + lane);
+		}
 	}
 	
 	public void stopRoutine() {
@@ -68,6 +72,15 @@ public class Unit {
 	   }
 	}
 	
+	
+	public void setLane(int lane) {
+		this.lane = lane;
+	}
+	
+	public int getLane() {
+		return this.lane;
+	}
+	
 	public GImage getImageFromUnit()
 	{
 		return image;
@@ -78,17 +91,19 @@ public class Unit {
 		image.setLocation(x, y);
 	}
 	
-	// checks if a player unit is upgradable to a stronger unit
 	public boolean isItUpgradable(boolean upgrade) {
 		return this.upgradable && upgrade && unitToUpgradeTo != null;
 	}
 	
-	// checks if an enemy is in the same lane as the player unit. If it is, the player unit starts attacking the enemy
-	public boolean checkForEnemy(boolean robotLocation) {
-		return robotLocation;
+	public boolean checkForEnemy() {
+		ArrayList<Robot> robots = gameScene.getRobotsInLane(this.lane);
+		return !robots.isEmpty();
 	}
 	
-	// handles enemies dealing damage to the player unit
+	public void shoot() {
+		System.out.println("Shoot!");
+	}
+	
 	public int takeDamage(int damage) {
 		health -= damage;
         if (health <= 0) { 

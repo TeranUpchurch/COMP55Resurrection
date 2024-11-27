@@ -332,6 +332,17 @@ public class GameScene extends Scene{
 		System.out.println("Added robot " + robot + " to screen.");
 	}
 	
+	public ArrayList<Robot> getRobotsInLane(int lane) {
+		ArrayList<Robot> robotsInLane = new ArrayList<>();
+		for (Robot robot : robotCache) {
+			if (robot.getLane() == lane) {
+				robotsInLane.add(robot);
+				System.out.println("Robots: " + robot + " in lane " + lane);
+			}
+		}
+		return robotsInLane;
+	}
+	
 	public void instantiateUnit(UnitType unitName, int x, int y)
 	{
 		Unit unit = null;
@@ -367,15 +378,23 @@ public class GameScene extends Scene{
 		}
 		
 		System.out.println(row + " " + col);
-			
+					
 		int calculatedImageX = this.gridStartX + col * this.tileWidth;
 		int calculatedImageY = this.gridStartY + row * this.tileHeight;
+		
+		int lane = calculateLane(y);
+		unit.setLane(lane);
 		
 		unit.setImagePos(calculatedImageX, calculatedImageY);
 		game.grid.setSpace(unit, row, col);
 		unit.startTimer();
 		imageToUnitMap.addPair(unitImage, unit);
 		addElement(unitImage);
+	}
+	
+	public int calculateLane(int y) {
+		int lane = (y - this.gridStartY) / this.tileHeight;
+		return lane;
 	}
 	
 	public void instantiateProjectile(Projectile projectile, double x, double y)
@@ -385,7 +404,6 @@ public class GameScene extends Scene{
 		addElement(projImage);
 		projectileCache.add(projectile);
 		System.out.println("Added projectile " + projectile + " to cache");
-		System.out.println("Current number of projectiles: " + projectileCache.size());
 	}
 	
 	public boolean isPaused() {
@@ -446,8 +464,6 @@ public class GameScene extends Scene{
 	
 	@Override
 	public void mousePressed(MouseEvent e) {
-		System.out.println("Mouse pressed.");
-		// Check if the mouse click is on one of the squares in unit bar
 		this.chosenUnitName = unitBar.handleMousePressed(e.getX(), e.getY());
 		if (this.chosenUnitName == null)
 		{
@@ -498,12 +514,10 @@ public class GameScene extends Scene{
 	}
 	
 	public void mouseClicked(MouseEvent e) {
-		//System.out.println("Mouse clicked.");
 	}
 	
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		// Move the selected unit with the mouse
 		if (this.selectedUnit != null) {
 			this.selectedUnit.setLocation(e.getX() - this.selectedUnit.getWidth() / 2, e.getY() - this.selectedUnit.getHeight() / 2);
 		}
