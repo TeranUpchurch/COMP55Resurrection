@@ -22,14 +22,6 @@ import javax.swing.*;
 			this.currencyEarned = 50;
 		}
 		
-		public int getImageX() {
-			return 0;
-		}
-		
-		public int getImageY() {
-			return 0;
-		}
-		
 		// how much damage the enemy deals to the player unit it is attacking
 		public void damageUnit(int d) {
 			damage = d;

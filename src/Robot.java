@@ -27,18 +27,18 @@ public class Robot {
 		isMoving = true;
 		this.scene = scene;
 	}
-	
+
 	public GImage getImage()
 	{
 		return image;
 	}
 	
-	public int getImageX() {
-		return 0;
+	public double getImageX() {
+		return image.getX();
 	}
 	
-	public int getImageY() {
-		return 0;
+	public double getImageY() {
+		return image.getY();
 	}
 	
 	public int getLane()

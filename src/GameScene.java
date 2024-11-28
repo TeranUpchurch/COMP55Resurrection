@@ -274,6 +274,11 @@ public class GameScene extends Scene{
 		    	{
 		    		if (!robot.isMoving) continue;
 		    		robot.step();
+		    		if (robot.getImageX() < 0)
+		    		{
+		    			System.out.println("Game over would happen here.");
+		    			setPaused(true);
+		    		}
 		    	}
 		    	
 		    	// Remove robots and projectiles from their respective caches according to the robotsToDestroy and projectilesToDestroy sets.
