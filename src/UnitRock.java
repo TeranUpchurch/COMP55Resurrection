@@ -12,10 +12,12 @@ public class UnitRock extends Unit{
 	
 	// private GImage image = new GImage(IMG_FILENAME_PATH + "soldier" + IMG_EXTENSION);
 	private UnitType unitType = UnitType.ROCK;
+	
+	private Game game;
 
-	public UnitRock(GameScene gameScene)
+	public UnitRock(GameScene gameScene, Game game)
 	{
-		super(gameScene);
+		super(gameScene, game);
 		this.image = new GImage(unitType.getImagePath());
 		this.health = unitType.getHealth();
         this.cost = unitType.getCost();
@@ -44,21 +46,6 @@ public class UnitRock extends Unit{
 	
 	public void routine () {
 	}
-		/*double projectileStartX = image.getX() + image.getWidth(); // Right edge of the soldier
-        double projectileStartY = image.getY() + 0.15 * image.getHeight(); // Slightly below the top
-		Projectile projectile = new Projectile(
-				new GImage(IMG_FILENAME_PATH + "paintball" + IMG_EXTENSION),
-				10,
-				10,
-				10,
-				10,
-				projectileStartX,
-				projectileStartY,
-				gameScene
-				);
-		gameScene.instantiateProjectile(projectile, projectileStartX, projectileStartY);
-		System.out.println("Instantiated projectile from " + this);
-	} */
 	
 	// checks if a player unit is upgradable to a stronger unit
 	public boolean isItUpgradable(boolean upgrade) {

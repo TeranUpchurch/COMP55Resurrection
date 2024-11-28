@@ -36,7 +36,7 @@ public class GameScene extends Scene{
 	
 	// Game state
 	private String labelText;
-	private Game game;
+	public Game game;
 	private GameTimer gameTimer;
 	private int numTimes = 0;
 	private int currency;
@@ -215,6 +215,9 @@ public class GameScene extends Scene{
 		gameTimer = new GameTimer(25, "Game");
 		setPaused(false);
 		
+		// Ensure that projectile cache is empty
+		projectileCache.clear();
+		
 		ActionListener listener = new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		    	if (game.gameScene.isPaused()) return;
@@ -388,10 +391,10 @@ public class GameScene extends Scene{
 		}
 		
 		switch (unitName) {
-			case SOLDIER -> unit = new UnitSoldier(this);
-			case MACHINE_GUN -> unit = new UnitMachineGun(this);
-			case GRENADE -> unit = new UnitGrenade(this);
-			case ROCK -> unit = new UnitRock(this);
+			case SOLDIER -> unit = new UnitSoldier(this, game);
+			case MACHINE_GUN -> unit = new UnitMachineGun(this, game);
+			case GRENADE -> unit = new UnitGrenade(this, game);
+			case ROCK -> unit = new UnitRock(this, game);
 		}
 		if (unit != null)
 		{

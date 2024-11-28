@@ -11,10 +11,12 @@ public class UnitMachineGun extends Unit{
 	public static final String IMG_EXTENSION = ".png";
 	
 	private UnitType unitType = UnitType.MACHINE_GUN;
+	
+	private Game game;
 
-	public UnitMachineGun(GameScene gameScene)
+	public UnitMachineGun(GameScene gameScene, Game game)
 	{
-		super(gameScene);
+		super(gameScene, game);
 		this.image = new GImage(unitType.getImagePath());
 		this.health = unitType.getHealth();
         this.cost = unitType.getCost();
@@ -59,18 +61,21 @@ public class UnitMachineGun extends Unit{
 	public void shoot() {
 		double projectileStartX = image.getX() + image.getWidth(); // Right edge of the machine gun
         double projectileStartY = image.getY() + 0.15 * image.getHeight(); // Slightly below the top
-		Projectile projectile = new Projectile(
-				new GImage(IMG_FILENAME_PATH + "paintball_Red" + IMG_EXTENSION),
-				10,
-				10,
-				10,
-				10,
-				projectileStartX,
-				projectileStartY,
-				gameScene
-				);
-		gameScene.instantiateProjectile(projectile, projectileStartX, projectileStartY);
-		System.out.println("Instantiated projectile from " + this);
+        if (!gameScene.isPaused() && gameScene.game.grid.getUnitAtSpace(lane, getCurrentColumn()) != null
+    			&& !gameScene.getRobotsInLane(lane).isEmpty()) {
+        	Projectile projectile = new Projectile(
+    				new GImage(IMG_FILENAME_PATH + "paintball_Red" + IMG_EXTENSION),
+    				10,
+    				10,
+    				10,
+    				10,
+    				projectileStartX,
+    				projectileStartY,
+    				gameScene
+    				);
+    		gameScene.instantiateProjectile(projectile, projectileStartX, projectileStartY);
+    		System.out.println("Instantiated projectile from " + this);
+        }
 	}
 	
 	// checks if a player unit is upgradable to a stronger unit

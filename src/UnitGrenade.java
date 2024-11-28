@@ -12,10 +12,12 @@ public class UnitGrenade extends Unit{
 	
 	// private GImage image = new GImage(IMG_FILENAME_PATH + "grenade" + IMG_EXTENSION);
 	private UnitType unitType = UnitType.GRENADE;
+	
+	private Game game;
 
-	public UnitGrenade(GameScene gameScene)
+	public UnitGrenade(GameScene gameScene, Game game)
 	{	// TO DO CHANGE ATTRIBUTES - NOT FINAL
-		super(gameScene);
+		super(gameScene, game);
 		this.image = new GImage(unitType.getImagePath());
 		this.health = unitType.getHealth();
         this.cost = unitType.getCost();

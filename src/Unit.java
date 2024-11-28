@@ -29,10 +29,12 @@ public class Unit {
 	protected Space location;
 	
 	protected GameScene gameScene;
+	protected Game game;
 	
-	public Unit(GameScene gameScene)
+	public Unit(GameScene gameScene, Game game)
 	{
 		this.gameScene = gameScene;
+		this.game = game;
 	}
 	
 	public Unit(GImage image, int health, int cost, int lane, int frequency) {
@@ -108,13 +110,13 @@ public class Unit {
 		return false;
 	}
 	
-	private int getCurrentColumn() {
+	protected int getCurrentColumn() {
 		int gridStartX = gameScene.gridStartX;
 		int tileWidth = gameScene.tileWidth;
 		return (int)((image.getX() - gridStartX) / tileWidth);
 	}
 	
-	private int getRobotColumn(Robot robot) {
+	protected int getRobotColumn(Robot robot) {
 		int gridStartX = gameScene.gridStartX;
 		int tileWidth = gameScene.tileWidth;
 		return (int)((robot.getImage().getX() - gridStartX) / tileWidth);
