@@ -9,7 +9,7 @@ import javax.swing.*;
 public class Wave {
 	private ArrayList<Robot> robots;
 	private ArrayList<Integer> intervals;
-	private static GameScene gameScene;
+	private GameScene gameScene;
 	
 	private int enemyNum = 0;
 	private GameTimer waveTimer;
