@@ -11,8 +11,10 @@ import javax.swing.*;
 		public static final String IMG_FILENAME_PATH = "media/";
 		public static final String IMG_EXTENSION = ".png";
 		
-		public RobotStrong(int laneNum) {
-			super(laneNum);
+		private GameScene scene;
+		
+		public RobotStrong(int laneNum, GameScene scene) {
+			super(laneNum, scene);
 			this.image = new GImage("robotStrong.png");
 			this.health = 80;
 			this.damage = 20;

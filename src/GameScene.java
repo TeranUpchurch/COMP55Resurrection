@@ -20,12 +20,12 @@ public class GameScene extends Scene{
 	// Display properties
 	private int resX = MainApplication.getResolutionWidth();
 	private int resY = MainApplication.getResolutionHeight();
-	private int gridStartX = (int)(this.resX * 0.05);
-	private int gridStartY = (int)(this.resY * 0.252);
+	public int gridStartX = (int)(this.resX * 0.05);
+	public int gridStartY = (int)(this.resY * 0.252);
 	private int gridWidth = (int)(this.resX * 0.9);
 	private int gridHeight = (int)(this.resY * 0.75);
-	private int tileWidth;
-	private int tileHeight;
+	public int tileWidth;
+	public int tileHeight;
 	
 	// UI elements
 	private GLabel currencyLabel;

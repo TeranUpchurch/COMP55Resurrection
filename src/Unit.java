@@ -96,8 +96,27 @@ public class Unit {
 	}
 	
 	public boolean checkForEnemy() {
+		int unitCol = getCurrentColumn();
 		ArrayList<Robot> robots = gameScene.getRobotsInLane(this.lane);
-		return !robots.isEmpty();
+		for (Robot robot : robots) {
+			int robotCol = getRobotColumn(robot);
+			if (robotCol >= unitCol) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	private int getCurrentColumn() {
+		int gridStartX = gameScene.gridStartX;
+		int tileWidth = gameScene.tileWidth;
+		return (int)((image.getX() - gridStartX) / tileWidth);
+	}
+	
+	private int getRobotColumn(Robot robot) {
+		int gridStartX = gameScene.gridStartX;
+		int tileWidth = gameScene.tileWidth;
+		return (int)((robot.getImage().getX() - gridStartX) / tileWidth);
 	}
 	
 	public void shoot() {

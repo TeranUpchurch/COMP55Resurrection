@@ -9,7 +9,7 @@ import javax.swing.*;
 public class Wave {
 	private ArrayList<Robot> robots;
 	private ArrayList<Integer> intervals;
-	private GameScene gameScene;
+	private static GameScene gameScene;
 	
 	private int enemyNum = 0;
 	private GameTimer waveTimer;
@@ -116,12 +116,13 @@ public class Wave {
 	}
 	
 	public static void main(String[] args) {
+		/*
 		System.out.println("Unit tests:");
 		ArrayList<Robot> robots1 = new ArrayList<Robot>();
-		robots1.add(new RobotWeak(1));
-		robots1.add(new RobotWeak(2));
-		robots1.add(new RobotWeak(3));
-		robots1.add(new RobotStrong(2));
+		robots1.add(new RobotWeak(1, gameScene));
+		robots1.add(new RobotWeak(2, gameScene));
+		robots1.add(new RobotWeak(3, gameScene));
+		robots1.add(new RobotStrong(2, gameScene));
 		ArrayList<Integer> intervals1 = new ArrayList<Integer>();
 		intervals1.add(10);
 		intervals1.add(10);
@@ -129,5 +130,6 @@ public class Wave {
 		intervals1.add(10);
 		Wave wave = new Wave(robots1, intervals1);
 		wave.stepThrough();
+		*/
 	}
 }

@@ -17,10 +17,11 @@ public class Robot {
 	protected boolean isMoving;
 	protected GameScene scene;
 
-	public Robot(int laneNum) { // Parent class constructor. Initializes lane spawn number and status variables.
+	public Robot(int laneNum, GameScene scene) { // Parent class constructor. Initializes lane spawn number and status variables.
 		lane = laneNum;
 		unitAttacking = null;
 		isMoving = true;
+		this.scene = scene;
 	}
 	
 	public GImage getImage()
@@ -62,9 +63,20 @@ public class Robot {
         return damage;
 	}
 	
-	public void step() // kind of similar to projectile, 
+	public void step()
 	{
 		image.move(-1 * moveSpeed, 0);
+	    if (scene != null) {
+	        int currentCol = getCurrentColumn();
+	        int newCol = currentCol - 1; 
+	    }
+	}
+	
+	private int getCurrentColumn() {
+	    int gridStartX = scene.gridStartX;
+	    int tileWidth = scene.tileWidth;
+	    
+	    return (int)((image.getX() - gridStartX) / tileWidth);
 	}
 	
 	// if an enemy's health reaches zero, it is defeated and disappears from the grid

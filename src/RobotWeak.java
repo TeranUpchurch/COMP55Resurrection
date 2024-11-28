@@ -13,8 +13,8 @@ import javax.swing.*;
 		
 		private GameScene scene;
 		
-		public RobotWeak(int laneNum) {
-			super(laneNum);
+		public RobotWeak(int laneNum, GameScene scene) {
+			super(laneNum, scene);
 			this.image = new GImage("robotWeak.png");
 			this.health = 40;
 			this.damage = 20;
