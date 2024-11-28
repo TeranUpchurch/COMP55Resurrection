@@ -33,6 +33,12 @@ public class Grid {
 		 return cols;
 	 }
 	 
+	 public void removeUnit(Unit unit)
+	 {
+		 Space location = unit.getLocation();
+		 gameGrid[location.getRow()][location.getCol()] = null;
+	 }
+	 
 	 public void printAsciiGrid() {
 	        for (int row = 0; row < rows; row++) {
 	            // this loop prints the top border of each row

@@ -23,8 +23,14 @@ public class Space {
         }
     }
 
-    public boolean isOccupied() {
-        return unit != null;
+    public int getRow()
+    {
+    	return row;
+    }
+    
+    public int getCol()
+    {
+    	return col;
     }
 
     public Unit getUnit() {

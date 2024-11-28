@@ -70,18 +70,6 @@ public class UnitRock extends Unit{
 		return robotLocation;
 	}
 	
-	// handles enemies dealing damage to the player unit
-	public int takeDamage(int damage) {
-		health -= damage;
-        if (health <= 0) { 
-            health = 0;
-            System.out.println("Unit destroyed");
-        } 
-        else {
-            System.out.println("Unit took " + damage + " damage. Health: " + health);
-        }
-        return health;
-	}
 	// if the player unit's health hits zero
 	public boolean isDeath() {
 		return health <= 0; 

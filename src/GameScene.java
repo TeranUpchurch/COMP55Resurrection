@@ -272,6 +272,7 @@ public class GameScene extends Scene{
 		    	for (Robot robot : robotCache)
 		    	{
 		    		if (game.gameScene.isPaused()) return;
+		    		if (!robot.isMoving) continue;
 		    		robot.step();
 		    	}
 		    	
@@ -402,10 +403,18 @@ public class GameScene extends Scene{
 		unit.setLane(lane);
 		
 		unit.setImagePos(calculatedImageX, calculatedImageY);
+		unit.setLocation(row, col);
 		game.grid.setSpace(unit, row, col);
 		unit.startTimer();
 		imageToUnitMap.addPair(unitImage, unit);
 		addElement(unitImage);
+	}
+	
+	public void removeUnitFromGrid(Unit unit)
+	{
+		unitContainer.remove(unit);
+		game.removeUnitFromGrid(unit);
+		removeElement(unit.getImageFromUnit());
 	}
 	
 	public int calculateLane(int y) {

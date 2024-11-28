@@ -97,6 +97,11 @@ public class Game {
 		return imageToRobotMap.get(image);
 	}
 	
+	public void removeUnitFromGrid(Unit unit)
+	{
+		grid.removeUnit(unit);
+	}
+	
 	public static void main(String[] args) {
 		
 	}

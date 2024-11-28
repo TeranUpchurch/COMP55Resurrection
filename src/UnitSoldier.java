@@ -80,18 +80,6 @@ public class UnitSoldier extends Unit{
 		return this.upgradable && upgrade && unitToUpgradeTo != null;
 	}
 	
-	public int takeDamage(int damage) {
-		health -= damage;
-        if (health <= 0) { 
-            health = 0;
-            System.out.println("Unit destroyed");
-        } 
-        else {
-            System.out.println("Unit took " + damage + " damage. Health: " + health);
-        }
-        return health;
-	}
-	
 	public boolean isDeath() {
 		return health <= 0; 
 	}

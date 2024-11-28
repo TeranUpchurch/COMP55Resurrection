@@ -26,6 +26,7 @@ public class Unit {
 	protected int numTimes;
 	protected boolean enemyDetected;
 	protected int lane;
+	protected Space location;
 	
 	protected GameScene gameScene;
 	
@@ -123,20 +124,32 @@ public class Unit {
 		System.out.println("Shoot!");
 	}
 	
-	public int takeDamage(int damage) {
+	// Return false if the unit dies. Return true if it just takes damage only.
+	public boolean takeDamage(int damage) {
 		health -= damage;
         if (health <= 0) { 
             health = 0;
             System.out.println("Unit destroyed");
+            return false;
         } 
         else {
             System.out.println("Unit took " + damage + " damage. Health: " + health);
         }
-        return health;
+        return true;
 	}
 	// if the player unit's health hits zero
 	public boolean isDeath() {
 		return health <= 0; 
+	}
+	
+	public Space getLocation()
+	{
+		return location;
+	}
+	
+	public void setLocation(int row, int col)
+	{
+		location = new Space(row, col);
 	}
 	
 	public static void main(String[] args) {

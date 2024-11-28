@@ -13,9 +13,13 @@ public class Robot {
 	protected int lane;
 	protected int moveSpeed;
 	protected int currencyEarned;
-	protected Unit unitAttacking;
 	protected boolean isMoving;
 	protected GameScene scene;
+	
+	protected Unit unitAttacking;
+	protected GameTimer attackUnitTimer;
+	protected int numTimes;
+	
 
 	public Robot(int laneNum, GameScene scene) { // Parent class constructor. Initializes lane spawn number and status variables.
 		lane = laneNum;
@@ -66,6 +70,11 @@ public class Robot {
 	public void step()
 	{
 		ArrayList<Unit> unitsInLane = scene.getUnitsInLane(this.lane);
+		if (unitAttacking != null)
+		{
+			return;
+		}
+		
 	    if (scene != null) {
 	        int currentCol = getCurrentColumn();
 	        int newCol = currentCol - 1; 
@@ -82,11 +91,49 @@ public class Robot {
 	        
 	        if (robotCol == unitCol) {
 	        	isMoving = false;
+	        	unitAttacking = unit;
+	        	startAttackingUnit(unit);
 	        	return;
 	        }
 	    }
 	    
 	    image.move(-1 * moveSpeed, 0);
+	}
+	
+	public boolean damageUnit(Unit unit)
+	{
+		return unit.takeDamage(damage);
+	}
+	
+	public void startAttackingUnit(Unit unit)
+	{
+		attackUnitTimer = new GameTimer(500, "Attacking Unit: " + unit);
+		attackUnitTimer.start();
+		
+		// timer mechanisms for how a wave works
+		ActionListener listener = new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		    	boolean outcome = true;
+		        if (numTimes >= 2)
+		        {
+		        	numTimes = 0;
+		        	outcome = damageUnit(unit);
+		        }
+		        // if the unit dies OR robot dies
+		        if (outcome == false || health <= 0)
+		        {
+		        	isMoving = true;
+		        	scene.removeUnitFromGrid(unit);
+		        	unitAttacking = null;
+		        	attackUnitTimer.stop();
+		        	attackUnitTimer.removeActionListener(this);
+		        }
+		        
+		        numTimes = numTimes + 1;
+
+		    }};
+		    
+		    attackUnitTimer.createActionListener(listener);
 	}
 	
 	private int getCurrentColumn() {
