@@ -8,6 +8,7 @@ import javax.swing.*;
 public class Level {
 	private ArrayList<Wave> waves;
 	private String difficulty;
+	private int numWaves;
 	private GameScene gameScene;
 	
 	public Level(GameScene gameScene)
@@ -37,12 +38,19 @@ public class Level {
 		waves = new ArrayList<Wave>();
 		waves.add(new Wave(gameScene, robots1, intervals1));
 		waves.add(new Wave(gameScene, robots2, intervals2));
+		
 		difficulty = "Easy";
+		numWaves = waves.size();
 	}
 	
 	public Wave getWave(int n)
 	{
 		return waves.get(n);
+	}
+	
+	public int getNumWaves()
+	{
+		return numWaves;
 	}
 	
 	public static void main(String[] args) {

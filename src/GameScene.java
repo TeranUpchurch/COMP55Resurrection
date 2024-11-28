@@ -293,11 +293,24 @@ public class GameScene extends Scene{
 		    		robotCache.remove(robot);
 		    	}
 		    	
-		    	// Check the enemy counter - if 0, go to next wave.
+		    	// Check the enemy counter - if 0, check if boss wave is next, all waves are complete, or neither. Otherwise go to next wave and start it
 		    	if (game.getActiveEnemyCount() <= 0)
 		    	{
-		    		System.out.println("Starting next wave");
-		    		game.incrementWaveNum();
+		    		if (game.isBossWaveNext())
+		    		{
+		    			System.out.println("Starting BOSS wave");
+		    		}
+		    		else if (game.isWaveNumMax())
+		    		{
+		    			System.out.println("You win");
+		    			setPaused(true);
+		    		}
+		    		else
+		    		{
+		    			System.out.println("Starting next wave");
+		    		}
+		    		
+		    		game.incrementWaveNum();		    		
 		    		game.startCurrentWave();
 		    	}
 		    	

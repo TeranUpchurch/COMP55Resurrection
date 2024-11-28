@@ -102,6 +102,16 @@ public class Game {
 		grid.removeUnit(unit);
 	}
 	
+	public boolean isBossWaveNext()
+	{
+		return level.getNumWaves() - 2 == waveNum;
+	}
+	
+	public boolean isWaveNumMax()
+	{
+		return level.getNumWaves() - 1 == waveNum;
+	}
+	
 	public static void main(String[] args) {
 		
 	}
