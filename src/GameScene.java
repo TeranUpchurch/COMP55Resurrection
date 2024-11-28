@@ -344,10 +344,19 @@ public class GameScene extends Scene{
 		for (Robot robot : robotCache) {
 			if (robot.getLane() == lane) {
 				robotsInLane.add(robot);
-				System.out.println("Robots: " + robot + " in lane " + lane);
 			}
 		}
 		return robotsInLane;
+	}
+	
+	public ArrayList<Unit> getUnitsInLane(int lane) {
+		ArrayList<Unit> unitsInLane = new ArrayList<>();
+		for (Unit unit : unitContainer) {
+			if (unit.getLane() == lane) {
+				unitsInLane.add(unit);
+			}
+		}
+		return unitsInLane;
 	}
 	
 	public void instantiateUnit(UnitType unitName, int x, int y)

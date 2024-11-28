@@ -65,11 +65,28 @@ public class Robot {
 	
 	public void step()
 	{
-		image.move(-1 * moveSpeed, 0);
+		ArrayList<Unit> unitsInLane = scene.getUnitsInLane(this.lane);
 	    if (scene != null) {
 	        int currentCol = getCurrentColumn();
 	        int newCol = currentCol - 1; 
 	    }
+	    
+	    if (unitsInLane.isEmpty()) {
+	    	image.move(-1 * moveSpeed, 0);
+	    	return;
+	    }
+	    
+	    for (Unit unit : unitsInLane) {
+	    	int robotCol = getCurrentColumn();
+	        int unitCol = getCurrentUnitColumn(unit);
+	        
+	        if (robotCol == unitCol) {
+	        	isMoving = false;
+	        	return;
+	        }
+	    }
+	    
+	    image.move(-1 * moveSpeed, 0);
 	}
 	
 	private int getCurrentColumn() {
@@ -77,6 +94,13 @@ public class Robot {
 	    int tileWidth = scene.tileWidth;
 	    
 	    return (int)((image.getX() - gridStartX) / tileWidth);
+	}
+	
+	private int getCurrentUnitColumn(Unit unit) {
+	    int gridStartX = scene.gridStartX;
+	    int tileWidth = scene.tileWidth;
+	    
+	    return (int)((unit.getImageFromUnit().getX() - gridStartX) / tileWidth);
 	}
 	
 	// if an enemy's health reaches zero, it is defeated and disappears from the grid
