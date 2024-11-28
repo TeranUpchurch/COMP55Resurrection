@@ -217,9 +217,10 @@ public class GameScene extends Scene{
 		
 		ActionListener listener = new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
+		    	if (game.gameScene.isPaused()) return;
+		    	
 		    	for (Projectile proj : projectileCache)
 		    	{
-		    		if (game.gameScene.isPaused()) return;
 		    		proj.step();
 		    		
 		    		if (proj.getImage().getX() > resX)
@@ -271,7 +272,6 @@ public class GameScene extends Scene{
 		    	// Move all robots in cache.
 		    	for (Robot robot : robotCache)
 		    	{
-		    		if (game.gameScene.isPaused()) return;
 		    		if (!robot.isMoving) continue;
 		    		robot.step();
 		    	}
