@@ -60,6 +60,10 @@ public class Robot {
 		health -= damage;
         if (health <= 0) { 
             health = 0;
+            if (unitAttacking != null)
+            {
+            	attackUnitTimer.stop();
+            }
         } 
         else {
             System.out.println("Robot took " + damage + " damage. Health remaining: " + health);
