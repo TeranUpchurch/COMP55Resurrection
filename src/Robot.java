@@ -116,12 +116,25 @@ public class Robot {
 		
 		// timer mechanisms for how a wave works
 		ActionListener listener = new ActionListener() {
+			private int attackPhase = 0;
 		    public void actionPerformed(ActionEvent e) {
 		    	boolean outcome = true;
 		        if (numTimes >= 2)
 		        {
 		        	numTimes = 0;
 		        	outcome = damageUnit(unit);
+		        	// Attack phase logic
+		        	// Attack effect
+	                switch(attackPhase) {
+	                    case 0:
+	                        image.move(10, 0);
+	                        attackPhase = 1;
+	                        break;
+	                    case 1:
+	                        image.move(-10, 0);
+	                        attackPhase = 0;
+	                        break;
+	                }
 		        }
 		        // if the unit dies OR robot dies
 		        if (outcome == false || health <= 0)
