@@ -22,6 +22,7 @@ public class UnitSoldier extends Unit{
         this.health = unitType.getHealth();
         this.cost = unitType.getCost();
         this.frequency = unitType.getFrequency();
+        Unit.cooldown = unitType.getCooldown();
         this.numTimes = 0;
         this.enemyDetected = false;
         this.lane = lane;

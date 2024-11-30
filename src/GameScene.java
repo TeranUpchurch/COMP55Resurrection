@@ -396,9 +396,17 @@ public class GameScene extends Scene{
 			case GRENADE -> unit = new UnitGrenade(this, game);
 			case ROCK -> unit = new UnitRock(this, game);
 		}
+		
+		// Check if the chosen unit's static timer variable is not null. If it is still active and running return (this is a cooldown).
+		if (unit.isCooldownActive())
+		{
+			return;
+		}
+		
 		if (unit != null)
 		{
 			placeUnit(unit, x, y);
+			unit.startCooldown();
 			unitContainer.add(unit);
 		}
 		System.out.println("Instantiated unit:" + unitName.getName());

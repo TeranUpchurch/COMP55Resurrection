@@ -28,6 +28,10 @@ public class Unit {
 	protected int lane;
 	protected Space location;
 	
+	protected static GameTimer cooldownTimer;
+	protected static int cooldown; // in function calls per 500MS.
+	protected static int numTimesCooldown;
+	
 	protected GameScene gameScene;
 	protected Game game;
 	
@@ -37,12 +41,13 @@ public class Unit {
 		this.game = game;
 	}
 	
-	public Unit(GImage image, int health, int cost, int lane, int frequency) {
+	public Unit(GImage image, int health, int cost, int lane, int frequency, int cooldown) {
         this.image = image;
         this.health = health;
         this.cost = cost;
         this.lane = lane;
         this.frequency = frequency;
+        Unit.cooldown = cooldown;
         this.numTimes = 0;
         this.enemyDetected = false;
     }
@@ -50,6 +55,42 @@ public class Unit {
 	public void startTimer()
 	{
 		
+	}
+	
+	public void startCooldown()
+	{
+		cooldownTimer = new GameTimer(500, "Cooldown");
+		cooldownTimer.start();
+		
+		numTimesCooldown = 0;
+		
+		ActionListener listener = new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		    	if (numTimesCooldown >= cooldown)
+		    	{
+		    		cooldownTimer.stop();
+		    		cooldownTimer.removeActionListener(this);
+		    		cooldownTimer = null;
+		    	}
+		    	else
+		    	{
+		    		numTimesCooldown = numTimesCooldown + 1;
+		    	}
+		    }};
+		    
+		cooldownTimer.createActionListener(listener);
+	}
+	
+	public boolean isCooldownActive()
+	{
+		if (cooldownTimer != null)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 	
 	public void routine () {
