@@ -10,6 +10,10 @@ public class UnitMachineGun extends Unit{
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
 	
+	protected static GameTimer cooldownTimer;
+	protected static int cooldown; // in function calls per 500MS.
+	protected static int numTimesCooldown;
+	
 	private UnitType unitType = UnitType.MACHINE_GUN;
 	
 	private Game game;
@@ -21,7 +25,7 @@ public class UnitMachineGun extends Unit{
 		this.health = unitType.getHealth();
         this.cost = unitType.getCost();
         this.frequency = unitType.getFrequency();
-        Unit.cooldown = unitType.getCooldown();
+        UnitMachineGun.cooldown = unitType.getCooldown();
         this.numTimes = 0;
         this.enemyDetected = false;
 	}
@@ -77,6 +81,42 @@ public class UnitMachineGun extends Unit{
     		gameScene.instantiateProjectile(projectile, projectileStartX, projectileStartY);
     		System.out.println("Instantiated projectile from " + this);
         }
+	}
+	
+	public void startCooldown()
+	{
+		cooldownTimer = new GameTimer(500, "Cooldown");
+		cooldownTimer.start();
+		
+		numTimesCooldown = 0;
+		
+		ActionListener listener = new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		    	if (numTimesCooldown >= cooldown)
+		    	{
+		    		cooldownTimer.stop();
+		    		cooldownTimer.removeActionListener(this);
+		    		cooldownTimer = null;
+		    	}
+		    	else
+		    	{
+		    		numTimesCooldown = numTimesCooldown + 1;
+		    	}
+		    }};
+		    
+		cooldownTimer.createActionListener(listener);
+	}
+	
+	public boolean isCooldownActive()
+	{
+		if (cooldownTimer != null)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 	
 	// checks if a player unit is upgradable to a stronger unit
