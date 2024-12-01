@@ -47,6 +47,11 @@ public class UnitBar {
 		return null;
 	}
 	
+	public List<UnitType> getTypeList()
+	{
+		return typeList;
+	}
+	
 	public UnitType getSelectedUnit() {
 		return selectedUnit;
 	}

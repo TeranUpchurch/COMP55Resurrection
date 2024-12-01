@@ -3,6 +3,8 @@ import acm.program.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.*;
 
 // this class handles creating the player unit, or the units that the player will use to defeat enemies
@@ -75,9 +77,28 @@ public class Unit {
 	   }
 	}
 	
-	public void startCooldown()
+	public void startCooldown() {};
+	
+	public void reconfigureLabel(GLabel label, UnitType unitType)
 	{
+		label.setLocation(60, 18);
+		List<UnitType> typeList = new ArrayList<>();
+		typeList = gameScene.returnUnitBar().getTypeList();
 		
+		for (int i = 0; i < typeList.size(); i++)
+		{
+			System.out.print(typeList.get(i));
+			System.out.println(unitType);
+			if (typeList.get(i).getName() == unitType.getName())
+			{
+				break;
+			}
+			else
+			{
+				label.move(120, 0);
+			}
+		}
+		label.setFont("Arial-Bold-20");
 	}
 	
 	public boolean isCooldownActive()

@@ -97,7 +97,7 @@ public class UnitSoldier extends Unit{
 		numTimesCooldown = 0;
 		int seconds = cooldown / 2;
 		cooldownLabel.setLabel(Integer.toString(seconds));
-		cooldownLabel.setLocation(20, 20);
+		reconfigureLabel(cooldownLabel, unitType);
 		gameScene.addElement(cooldownLabel);
 		
 		ActionListener listener = new ActionListener() {

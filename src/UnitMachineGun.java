@@ -92,13 +92,14 @@ public class UnitMachineGun extends Unit{
 		cooldownTimer.start();
 		
 		numTimesCooldown = 0;
-		cooldownLabel.setLabel(Integer.toString(cooldown));
-		cooldownLabel.setLocation(20, 20);
+		int seconds = cooldown / 2;
+		cooldownLabel.setLabel(Integer.toString(seconds));
+		reconfigureLabel(cooldownLabel, unitType);
 		gameScene.addElement(cooldownLabel);
 		
 		ActionListener listener = new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		    	if (numTimesCooldown >= cooldown)
+		    	if (numTimesCooldown >= cooldown - 1)
 		    	{
 		    		gameScene.removeElement(cooldownLabel);
 		    		cooldownTimer.stop();
@@ -110,13 +111,14 @@ public class UnitMachineGun extends Unit{
 		    		numTimesCooldown = numTimesCooldown + 1;
 		    		if (numTimesCooldown % 2 == 0)
 		    		{
-		    			cooldownLabel.setLabel(Integer.toString(cooldown - numTimesCooldown / 2));
+		    			cooldownLabel.setLabel(Integer.toString(seconds - numTimesCooldown / 2));
 		    		}
 		    	}
 		    }};
 		    
 		cooldownTimer.createActionListener(listener);
 	}
+	
 	
 	public boolean isCooldownActive()
 	{

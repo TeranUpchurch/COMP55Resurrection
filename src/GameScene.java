@@ -487,6 +487,11 @@ public class GameScene extends Scene{
 		this.isPaused = paused;
 	}
 	
+	public UnitBar returnUnitBar()
+	{
+		return unitBar;
+	}
+	
 	// Helper methods
 	private boolean isOccupied (int row, int col) {
 		if (game.grid.getUnitAtSpace(row, col) != null)
