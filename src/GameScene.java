@@ -296,6 +296,8 @@ public class GameScene extends Scene{
 		    		if (game.isBossWaveNext())
 		    		{
 		    			System.out.println("Starting BOSS wave");
+		    			game.incrementWaveNum();		    		
+			    		game.startCurrentWave();
 		    		}
 		    		else if (game.isWaveNumMax())
 		    		{
@@ -305,10 +307,9 @@ public class GameScene extends Scene{
 		    		else
 		    		{
 		    			System.out.println("Starting next wave");
-		    		}
-		    		
-		    		game.incrementWaveNum();		    		
-		    		game.startCurrentWave();
+		    			game.incrementWaveNum();		    		
+			    		game.startCurrentWave();
+		    		}		    		
 		    	}
 		    	
 		    	updateNotification();
