@@ -11,6 +11,7 @@ public class UnitGrenade extends Unit{
 	public static final String IMG_EXTENSION = ".png";
 	
 	protected static GameTimer cooldownTimer;
+	protected static GLabel cooldownLabel;
 	protected static int cooldown; // in function calls per 500MS.
 	protected static int numTimesCooldown;
 	
@@ -27,8 +28,10 @@ public class UnitGrenade extends Unit{
         this.cost = unitType.getCost();
         this.frequency = unitType.getFrequency();
         UnitGrenade.cooldown = unitType.getCooldown();
+        
         this.numTimes = 0;
         this.enemyDetected = false;
+        cooldownLabel = new GLabel("");
 	}
 	
 	public void startTimer()
@@ -59,11 +62,15 @@ public class UnitGrenade extends Unit{
 		cooldownTimer.start();
 		
 		numTimesCooldown = 0;
+		cooldownLabel.setLabel(Integer.toString(cooldown));
+		cooldownLabel.setLocation(20, 20);
+		gameScene.addElement(cooldownLabel);
 		
 		ActionListener listener = new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		    	if (numTimesCooldown >= cooldown)
 		    	{
+		    		gameScene.removeElement(cooldownLabel);
 		    		cooldownTimer.stop();
 		    		cooldownTimer.removeActionListener(this);
 		    		cooldownTimer = null;
@@ -71,6 +78,10 @@ public class UnitGrenade extends Unit{
 		    	else
 		    	{
 		    		numTimesCooldown = numTimesCooldown + 1;
+		    		if (numTimesCooldown % 2 == 0)
+		    		{
+		    			cooldownLabel.setLabel(Integer.toString(cooldown - numTimesCooldown / 2));
+		    		}
 		    	}
 		    }};
 		    
