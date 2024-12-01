@@ -153,6 +153,11 @@ public class Unit {
 		return health <= 0; 
 	}
 	
+	public int getCost()
+	{
+		return cost;
+	}
+	
 	public Space getLocation()
 	{
 		return location;

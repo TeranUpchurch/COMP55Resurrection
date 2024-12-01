@@ -189,8 +189,6 @@ public class GameScene extends Scene{
 	
 	public boolean canAfford(int amount) {
 		if (this.currency >= amount) {
-			currency -= amount;
-			updateCurrencyLabel();
 			return true;
 		}
 		return false;
@@ -402,6 +400,9 @@ public class GameScene extends Scene{
 		{
 			return;
 		}
+		
+		this.currency -= unit.getCost();
+		updateCurrencyLabel();
 		
 		if (unit != null)
 		{
