@@ -75,6 +75,15 @@ public class Unit {
 	   }
 	}
 	
+	public void startCooldown()
+	{
+		
+	}
+	
+	public boolean isCooldownActive()
+	{
+		return false;
+	}
 	
 	public void setLane(int lane) {
 		this.lane = lane;
