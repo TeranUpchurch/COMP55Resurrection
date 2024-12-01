@@ -18,7 +18,6 @@ public class Level {
 		robots1.add(new RobotGreen(2, gameScene));
 		robots1.add(new RobotGreen(3, gameScene));
 		robots1.add(new RobotYellow(2, gameScene));
-		robots1.add(new RobotGrey(0, gameScene));
 		robots1.add(new RobotGrey(4, gameScene));
 		ArrayList<Integer> intervals1 = new ArrayList<Integer>();
 		intervals1.add(10);
@@ -30,7 +29,6 @@ public class Level {
 		
 		ArrayList<Robot> robots2 = new ArrayList<Robot>();
 		robots2.add(new RobotGrey(0, gameScene));
-		robots2.add(new RobotGrey(4, gameScene));
 		robots2.add(new RobotYellow(1, gameScene));
 		robots2.add(new RobotYellow(2, gameScene));
 		robots2.add(new RobotYellow(3, gameScene));
