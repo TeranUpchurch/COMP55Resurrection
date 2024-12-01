@@ -13,21 +13,25 @@ public class UnitBar {
 	private static final int X_UNIT_BAR = 20;
 	
 	private List<GImage> unitBarImages = new ArrayList<>();
+	private List<UnitType> typeList = new ArrayList<>();
 	private UnitType selectedUnit = null;
 	
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
 	
-	public void drawUnitBar(GameScene scene) {
+	public void drawUnitBar(GameScene scene, List<UnitType> chosenTypes) {
 		String[] unitsImages = {"unitBar_soldier", "unitBar_machineGun", "unitBar_grenade", "unitBar_rock"};
+		
+		typeList = chosenTypes;
+		
 		double xStart = X_UNIT_BAR;
 		double yStart = Y_UNIT_BAR;
 		
-		for (int i = 0; i < unitsImages.length; i++) {
-			GImage unitBarImage = new GImage(IMG_FILENAME_PATH + unitsImages[i] + IMG_EXTENSION);
+		for (int i = 0; i < chosenTypes.size(); i++) {
+			GImage unitBarImage = new GImage(chosenTypes.get(i).getUnitBarImagePath());
 			unitBarImage.setLocation(xStart + unitBarImage.getWidth()*(i), yStart );
 			unitBarImages.add(unitBarImage); // Add to unitBar list for tracking
-			scene.addElement(unitBarImage); // Add to display so it appears on screen
+			scene.addElement(unitBarImage); // Add unit image to display so it appears on screen
 		}
 	}
 	

@@ -66,11 +66,7 @@ public class GameScene extends Scene{
 	{
 		System.out.println("Show contents from this point..");
 		addElement(new GLabel(labelText, MainApplication.getResolutionWidth() / 2, MainApplication.getResolutionHeight() / 2));
-		drawBackground();
-		drawPauseButton();
-		unitBar.drawUnitBar(this);
-		drawCurrencyBackground();
-		drawCurrencyCounter();
+		initializeGameScene();
 		startGame();
 	}
 	
@@ -342,11 +338,33 @@ public class GameScene extends Scene{
 	public void initializeGameScene() {
 		drawBackground();
 		drawPauseButton();
-		unitBar.drawUnitBar(this);
+		List<UnitType> chosenUnits = useDefaultUnits();
+		unitBar.drawUnitBar(this, chosenUnits);
 		drawCurrencyBackground();
 		drawCurrencyCounter();
 	}
+	
+	// Returns the default set of 4 units to be chosen in the UnitBar.
+	public List<UnitType> useDefaultUnits()
+	{
+		List<UnitType> allTypes = new ArrayList<>();
+		allTypes.add(UnitType.SOLDIER);
+		allTypes.add(UnitType.MACHINE_GUN);
+		allTypes.add(UnitType.GRENADE);
+		allTypes.add(UnitType.ROCK);
+		return allTypes;
+	}
 
+	// INCOMPLETE - loads default units for now into UnitBar.
+	public List<UnitType> groupChosenUnits()
+	{
+		List<UnitType> allTypes = new ArrayList<>();
+		allTypes.add(UnitType.SOLDIER);
+		allTypes.add(UnitType.MACHINE_GUN);
+		allTypes.add(UnitType.GRENADE);
+		allTypes.add(UnitType.ROCK);
+		return allTypes;
+	}
 	
 	// Unit and Robot management methods
 	public void instantiateRobot(Robot robot)
