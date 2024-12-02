@@ -10,7 +10,7 @@ public class UnitGrenade extends Unit{
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
 	
-	protected static GameTimer cooldownTimer;
+	public static GameTimer cooldownTimer;
 	protected static GLabel cooldownLabel;
 	protected static boolean isOnCooldown = false;
 	protected static int cooldown; // in function calls per 500MS.

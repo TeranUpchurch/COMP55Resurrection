@@ -493,26 +493,8 @@ public class GameScene extends Scene{
 	
 	public void setPaused (boolean paused) {
 		this.isPaused = paused;
-		if (paused == true)
-		{
-			for (Robot robot : robotCache)
-			{
-				if (robot.hasReachedUnit())
-				{
-					robot.stopAttackTimer();
-				}
-			}
-		}
-		else
-		{
-			for (Robot robot : robotCache)
-			{
-				if (robot.hasReachedUnit())
-				{
-					robot.resumeAttackTimer();
-				}
-			}
-		}
+		toggleAllRobotTimers(paused);
+		toggleCooldownTimers(paused);
 	}
 	
 	public UnitBar returnUnitBar()
@@ -537,6 +519,48 @@ public class GameScene extends Scene{
 		unitBar.clearSelectedUnit();
         removeElement(this.selectedUnit);
         this.selectedUnit = null;
+	}
+	
+	private void toggleAllRobotTimers(boolean paused)
+	{
+		if (paused == true)
+		{
+			for (Robot robot : robotCache)
+			{
+				if (robot.hasReachedUnit())
+				{
+					robot.stopAttackTimer();
+				}
+			}
+		}
+		else
+		{
+			for (Robot robot : robotCache)
+			{
+				if (robot.hasReachedUnit())
+				{
+					robot.resumeAttackTimer();
+				}
+			}
+		}
+	}
+	
+	private void toggleCooldownTimers(boolean paused)
+	{
+		if (paused == true)
+		{
+			if (UnitSoldier.cooldownTimer != null) {UnitSoldier.cooldownTimer.stop();}
+			if (UnitMachineGun.cooldownTimer != null) {UnitMachineGun.cooldownTimer.stop();}
+			if (UnitGrenade.cooldownTimer != null) {UnitGrenade.cooldownTimer.stop();}
+			if (UnitRock.cooldownTimer != null) {UnitRock.cooldownTimer.stop();}
+		}
+		else
+		{
+			if (UnitSoldier.cooldownTimer != null) {UnitSoldier.cooldownTimer.start();}
+			if (UnitMachineGun.cooldownTimer != null) {UnitMachineGun.cooldownTimer.start();}
+			if (UnitGrenade.cooldownTimer != null) {UnitGrenade.cooldownTimer.start();}
+			if (UnitRock.cooldownTimer != null) {UnitRock.cooldownTimer.start();}
+		}
 	}
 	
 	private void clearProjectiles() {
