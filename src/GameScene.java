@@ -415,7 +415,7 @@ public class GameScene extends Scene{
 		}
 		
 		// Check if the chosen unit's static timer variable is not null. If it is still active and running return (this is a cooldown).
-		if (unit.isCooldownActive())
+		if (unit.isCooldownActive() == true)
 		{
 			return;
 		}
@@ -486,6 +486,26 @@ public class GameScene extends Scene{
 	
 	public void setPaused (boolean paused) {
 		this.isPaused = paused;
+		if (paused == true)
+		{
+			for (Robot robot : robotCache)
+			{
+				if (robot.hasReachedUnit())
+				{
+					robot.stopAttackTimer();
+				}
+			}
+		}
+		else
+		{
+			for (Robot robot : robotCache)
+			{
+				if (robot.hasReachedUnit())
+				{
+					robot.resumeAttackTimer();
+				}
+			}
+		}
 	}
 	
 	public UnitBar returnUnitBar()

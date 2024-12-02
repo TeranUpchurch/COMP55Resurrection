@@ -177,8 +177,24 @@ public class Robot {
 		return currencyEarned;
 	}
 	
+	public void resumeAttackTimer()
+	{
+		if (attackUnitTimer != null)
+		{
+			attackUnitTimer.start();
+		}
+	}
+	
+	public void stopAttackTimer()
+	{
+		if (attackUnitTimer != null)
+		{
+			attackUnitTimer.stop();
+		}
+	}
+	
 	// determines if an enemy unit is close enough to a player unit to start attacking and dealing damage to it
-	public boolean hasReachedUnit(boolean isMoving) {
+	public boolean hasReachedUnit() {
 		if (isMoving == true) {
 			return false;
 		}

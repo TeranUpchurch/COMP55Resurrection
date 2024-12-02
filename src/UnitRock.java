@@ -12,6 +12,7 @@ public class UnitRock extends Unit{
 	
 	protected static GameTimer cooldownTimer;
 	protected static GLabel cooldownLabel;
+	protected static boolean isOnCooldown = false;
 	protected static int cooldown; // in function calls per 500MS.
 	protected static int numTimesCooldown;
 	
@@ -66,6 +67,8 @@ public class UnitRock extends Unit{
 		reconfigureLabel(cooldownLabel, unitType);
 		gameScene.addElement(cooldownLabel);
 		
+		isOnCooldown = true;
+		
 		ActionListener listener = new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		    	if (numTimesCooldown >= cooldown - 1)
@@ -74,6 +77,7 @@ public class UnitRock extends Unit{
 		    		cooldownTimer.stop();
 		    		cooldownTimer.removeActionListener(this);
 		    		cooldownTimer = null;
+		    		isOnCooldown = false;
 		    	}
 		    	else
 		    	{
@@ -91,7 +95,7 @@ public class UnitRock extends Unit{
 	
 	public boolean isCooldownActive()
 	{
-		if (cooldownTimer != null)
+		if (isOnCooldown == true)
 		{
 			return true;
 		}
