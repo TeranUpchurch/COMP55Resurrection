@@ -57,8 +57,9 @@ public class Unit {
 	public void routine () {
 		if (checkForEnemy()) {
 			shoot();
-		} else {
-			System.out.println("No enemy in lane " + lane);
+		} 
+		else {
+			System.out.println("No enemies in lane " + lane);
 		}
 	}
 	
@@ -77,7 +78,9 @@ public class Unit {
 	   }
 	}
 	
-	public void startCooldown() {};
+	public void startCooldown() {
+		
+	}
 	
 	public void reconfigureLabel(GLabel label, UnitType unitType)
 	{
