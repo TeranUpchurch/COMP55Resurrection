@@ -438,6 +438,14 @@ public class GameScene extends Scene{
 		int row = (y - this.gridStartY) / this.tileHeight;
 		int col = (x - this.gridStartX) / this.tileWidth;
 		
+		int calculatedImageX = this.gridStartX + col * this.tileWidth;
+		int calculatedImageY = this.gridStartY + row * this.tileHeight;
+		
+		if (unit instanceof UnitGrenade) {
+			calculatedImageX = (int)(this.gridStartX + col * this.tileWidth + this.tileWidth / 2 - unitImage.getWidth() / 2);
+			calculatedImageY = (int)(this.gridStartY + row * this.tileHeight + this.tileHeight / 2 - unitImage.getHeight() / 2);
+		}
+		
 		if (isOccupied(row, col))
 		{
 			return;
@@ -445,8 +453,7 @@ public class GameScene extends Scene{
 		
 		System.out.println(row + " " + col);
 					
-		int calculatedImageX = this.gridStartX + col * this.tileWidth;
-		int calculatedImageY = this.gridStartY + row * this.tileHeight;
+		
 		
 		int lane = calculateLane(y);
 		unit.setLane(lane);

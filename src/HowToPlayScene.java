@@ -12,6 +12,7 @@ public class HowToPlayScene extends Scene{
 	private GLabel label = new GLabel("HowToPlayScene", MainApplication.getResolutionWidth() / 2, MainApplication.getResolutionHeight() / 2);
 	
 	private GButton returnButton;
+	private GImage backgroundHowToPlayScene;
 
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
@@ -37,11 +38,20 @@ public class HowToPlayScene extends Scene{
 		});
 	}
 	
+	private void drawBackground() {
+		String filename = IMG_FILENAME_PATH + "background_HowToPlayScene" + IMG_EXTENSION;
+	    this.backgroundHowToPlayScene = new GImage(filename);
+	    this.backgroundHowToPlayScene.setLocation(0, 0);
+	    mainApp.add(this.backgroundHowToPlayScene);
+	}
+	
 	public void showContents()
 	{
 		System.out.println("Show contents from this point..");
 		addElement(label);
+		drawBackground();
 		drawReturnButton();
+		activeContents.add(this.backgroundHowToPlayScene);
 
 	}
 	
