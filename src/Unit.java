@@ -182,6 +182,11 @@ public class Unit {
 		return cost;
 	}
 	
+	public int getHealth()
+	{
+		return health;
+	}
+	
 	public Space getLocation()
 	{
 		return location;

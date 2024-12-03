@@ -137,7 +137,7 @@ public class Robot {
 	                        break;
 	                }
 		        }
-		        // if the unit dies OR robot dies
+		        // if the unit dies OR robot dies OR unit has been deleted somehow
 		        if (outcome == false || health <= 0)
 		        {
 		        	isMoving = true;
