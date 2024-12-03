@@ -510,6 +510,7 @@ public class GameScene extends Scene{
 	public void removeUnitFromGrid(Unit unit)
 	{
 		unitContainer.remove(unit);
+		unit.takeDamage(unit.getHealth());
 		game.removeUnitFromGrid(unit);
 		removeElement(unit.getImageFromUnit());
 	}
