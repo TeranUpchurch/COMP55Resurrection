@@ -11,7 +11,6 @@ import java.util.Set;
 
 // The how to play scene that contains instructions on how to play
 // and a button to return to main menu scene..
-
 public class GameScene extends Scene{
 	private static final int CURRENCY_START = 200;
 	public static final String IMG_FILENAME_PATH = "media/";
@@ -33,6 +32,7 @@ public class GameScene extends Scene{
 	private UnitBar unitBar;
 	private GImage currencyBackground;
 	private GImage backgroundGameScene;
+	private GButton deleteButton;
 	
 	// Game state
 	private String difficulty;
@@ -40,6 +40,7 @@ public class GameScene extends Scene{
 	private GameTimer gameTimer;
 	private int numTimes = 0;
 	private int currency;
+	private boolean isInDeleteState = false;
 	private boolean isPaused;
 	
 	// Unit management
@@ -166,6 +167,31 @@ public class GameScene extends Scene{
 		addElement(noti.getImage());
 		System.out.println("Showed notification");
 	}
+	
+	private void drawDeleteButton() {
+		String filename = IMG_FILENAME_PATH + "button_pause" + IMG_EXTENSION;
+		GImage deleteButtonImage = new GImage(filename);
+		int imageX = (int)(MainApplication.getResolutionWidth() * 0.50);
+		int imageY = (int)((MainApplication.getResolutionHeight() * 0.02) + 20);
+		this.deleteButton = new GButton(deleteButtonImage,imageX,imageY);
+		addElement(deleteButton);
+		deleteButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				GameTimer delay = new GameTimer(50, "DeleteButtonDelay");
+				delay.start();
+				
+				ActionListener listener = new ActionListener() {
+				    public void actionPerformed(ActionEvent e) {
+				    	isInDeleteState = true;
+				    	System.out.println("Delete state is now: " + isInDeleteState);
+				    	delay.stop();
+				    	delay.removeActionListener(this);
+				    }};
+				delay.createActionListener(listener);
+			}
+		});
+	}
+	
 	
 	private void updateNotification() {
 		notifications.removeIf(notification -> {
@@ -339,6 +365,7 @@ public class GameScene extends Scene{
 	public void initializeGameScene() {
 		drawBackground();
 		drawPauseButton();
+		drawDeleteButton();
 		List<UnitType> chosenUnits = useDefaultUnits();
 		unitBar.drawUnitBar(this, chosenUnits);
 		drawCurrencyBackground();
@@ -594,6 +621,7 @@ public class GameScene extends Scene{
 	
 	@Override
 	public void mousePressed(MouseEvent e) {
+		// Procedure for when a unit is to be chosen then placed in the grid.
 		this.chosenUnitName = unitBar.handleMousePressed(e.getX(), e.getY());
 		if (this.chosenUnitName == null)
 		{
@@ -643,7 +671,35 @@ public class GameScene extends Scene{
 	    clearSelection();
 	}
 	
+	@Override
 	public void mouseClicked(MouseEvent e) {
+		// Procedure for when the controls are in the delete unit state.
+		if (this.isInDeleteState == true)
+		{
+			int mouseX = e.getX();
+			int mouseY = e.getY();
+			GObject element = getElementAtCoordinate(mouseX, mouseY);
+			if (element instanceof GImage)
+			{
+				GImage image = (GImage) element;
+				Unit unit = imageToUnitMap.get(image);
+				if (unit != null)
+				{
+					removeUnitFromGrid(unit);
+					addCurrency(unit.getCost() / 2);
+					System.out.println("Successfully removed unit " + unit + " from grid and returned half money.");
+					System.out.println("Delete state is now: false");
+					this.isInDeleteState = false;
+				}
+			}
+			else
+			{
+				System.out.println("Could not find unit to remove.");
+				System.out.println("Delete state is now: false");
+				this.isInDeleteState = false;
+				return;
+			}
+		}
 	}
 	
 	@Override
