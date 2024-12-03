@@ -42,7 +42,7 @@ public class MainMenuScene extends Scene {
 	private void drawHelpButton() {
 		String filename = IMG_FILENAME_PATH + "button_help" + IMG_EXTENSION;
 		GImage helpButtonImage = new GImage(filename);
-		int helpButtonX = (int)(MainApplication.getResolutionWidth() * 0.02);
+		int helpButtonX = (int)(MainApplication.getResolutionWidth() * 0.015);
 		int helpButtonY = (int)(MainApplication.getResolutionHeight() * 0.02);
 		this.helpButton = new GButton(helpButtonImage,helpButtonX,helpButtonY);
 		addElement(helpButton);
