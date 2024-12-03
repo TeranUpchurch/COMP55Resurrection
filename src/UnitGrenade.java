@@ -46,7 +46,7 @@ public class UnitGrenade extends Unit{
 		    	 
 		    	if (numTimes > 20) {
 		    		routine();
-		    		numTimes = 0;
+		    		routineTimerGrenade.stop();
 		    	}
 		    }};
 		    
@@ -54,6 +54,127 @@ public class UnitGrenade extends Unit{
 	}
 	
 	public void routine () {
+		if (gameScene.isPaused()) {
+			return;
+		}
+		explode();
+		deleteSelf();
+	}
+	
+	public void deleteSelf()
+	{
+		gameScene.removeUnitFromGrid(this);
+	}
+	
+	public void explode() {
+		double projectileStartX = image.getX() + image.getWidth() / 2; // Right edge of the soldier
+		double projectileStartY = image.getY() + image.getHeight() / 2; // Slightly below the top
+		int lifetime = 20;
+		Projectile projectile1 = new Projectile(
+				new GImage(IMG_FILENAME_PATH + "paintball_Yellow" + IMG_EXTENSION),
+				10,
+				10,
+				5,
+				10,
+				0,
+				projectileStartX,
+				projectileStartY,
+				lifetime,
+				gameScene
+				);
+		gameScene.instantiateProjectile(projectile1, projectileStartX, projectileStartY);
+		Projectile projectile2 = new Projectile(
+				new GImage(IMG_FILENAME_PATH + "paintball_Yellow" + IMG_EXTENSION),
+				10,
+				10,
+				5,
+				7,
+				7,
+				projectileStartX,
+				projectileStartY,
+				lifetime,
+				gameScene
+				);
+		gameScene.instantiateProjectile(projectile2, projectileStartX, projectileStartY);
+		Projectile projectile3 = new Projectile(
+				new GImage(IMG_FILENAME_PATH + "paintball_Yellow" + IMG_EXTENSION),
+				10,
+				10,
+				5,
+				0,
+				10,
+				projectileStartX,
+				projectileStartY,
+				lifetime,
+				gameScene
+				);
+		gameScene.instantiateProjectile(projectile3, projectileStartX, projectileStartY);
+		Projectile projectile4 = new Projectile(
+				new GImage(IMG_FILENAME_PATH + "paintball_Yellow" + IMG_EXTENSION),
+				10,
+				10,
+				5,
+				-7,
+				7,
+				projectileStartX,
+				projectileStartY,
+				lifetime,
+				gameScene
+				);
+		gameScene.instantiateProjectile(projectile4, projectileStartX, projectileStartY);
+		Projectile projectile5 = new Projectile(
+				new GImage(IMG_FILENAME_PATH + "paintball_Yellow" + IMG_EXTENSION),
+				10,
+				10,
+				5,
+				-10,
+				0,
+				projectileStartX,
+				projectileStartY,
+				lifetime,
+				gameScene
+				);
+		gameScene.instantiateProjectile(projectile5, projectileStartX, projectileStartY);
+		Projectile projectile6 = new Projectile(
+				new GImage(IMG_FILENAME_PATH + "paintball_Yellow" + IMG_EXTENSION),
+				10,
+				10,
+				5,
+				-7,
+				-7,
+				projectileStartX,
+				projectileStartY,
+				lifetime,
+				gameScene
+				);
+		gameScene.instantiateProjectile(projectile6, projectileStartX, projectileStartY);
+		Projectile projectile7 = new Projectile(
+				new GImage(IMG_FILENAME_PATH + "paintball_Yellow" + IMG_EXTENSION),
+				10,
+				10,
+				5,
+				0,
+				-10,
+				projectileStartX,
+				projectileStartY,
+				lifetime,
+				gameScene
+				);
+		gameScene.instantiateProjectile(projectile7, projectileStartX, projectileStartY);
+		Projectile projectile8 = new Projectile(
+				new GImage(IMG_FILENAME_PATH + "paintball_Yellow" + IMG_EXTENSION),
+				10,
+				10,
+				5,
+				7,
+				-7,
+				projectileStartX,
+				projectileStartY,
+				lifetime,
+				gameScene
+				);
+		gameScene.instantiateProjectile(projectile8, projectileStartX, projectileStartY);
+
 		
 	}
 	

@@ -246,7 +246,8 @@ public class GameScene extends Scene{
 		    	{
 		    		proj.step();
 		    		
-		    		if (proj.getImage().getX() > resX)
+		    		if (!imageIsInBounds(proj.getImage()) || 
+		    				(proj.getSteps() > proj.getLifetime() && (proj.hasLifetime())))
 		    		{
 		    			projectilesToDestroy.add(proj);
 		    			continue;
@@ -617,6 +618,23 @@ public class GameScene extends Scene{
 	    }
 		robotCache.clear();
 		System.out.println("All robots are cleared.");
+	}
+	
+	private boolean imageIsInBounds(GImage image)
+	{
+		double x = image.getX();
+		double y = image.getY();
+		if (x > this.resX || x < 0)
+		{
+			return false;
+		}
+		
+		if (y > this.resY || y < 0)
+		{
+			return false;
+		}
+		
+		return true;
 	}
 	
 	@Override
