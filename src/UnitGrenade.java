@@ -262,7 +262,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 // this class handles creating the player unit, or the units that the player will use to defeat enemies
-public class UnitGrenade extends Unit{
+	public class UnitGrenade extends Unit{
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
 	
@@ -283,7 +283,7 @@ public class UnitGrenade extends Unit{
 		this.image = new GImage(unitType.getImagePath());
 		this.health = unitType.getHealth();
         this.cost = unitType.getCost();
- this.frequency = unitType.getFrequency();
+        this.frequency = unitType.getFrequency();
         UnitGrenade.cooldown = unitType.getCooldown();
         
         this.numTimes = 0;
@@ -331,7 +331,8 @@ public class UnitGrenade extends Unit{
 		}
 		return false;
 	}
-private void startCountdownToExplode() {
+	
+	private void startCountdownToExplode() {
 		GameTimer countdownTimer = new GameTimer(2000, "GrenadeExplosion") ;
 		countdownTimer.start();
 		
@@ -362,14 +363,11 @@ private void startCountdownToExplode() {
 				}
 			}
 		}
-		
-	    gameScene.removeElement(image);
-	    // gameScene.removeUnitFromGrid(this);
+	    gameScene.removeUnitFromGrid(this);
 	    System.out.println("Grenade exploded!");
 	}
 	
-	public void startCooldown()
-{
+	public void startCooldown() {
 		cooldownTimer = new GameTimer(500, "Cooldown");
 		cooldownTimer.start();
 		
@@ -403,7 +401,7 @@ private void startCountdownToExplode() {
 		    
 		cooldownTimer.createActionListener(listener);
 	}
-public boolean isCooldownActive()
+	public boolean isCooldownActive()
 	{
 		if (isOnCooldown == true)
 		{
