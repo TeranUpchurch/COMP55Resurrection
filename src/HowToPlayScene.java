@@ -13,6 +13,9 @@ public class HowToPlayScene extends Scene{
 	
 	private GButton returnButton;
 	private GImage backgroundHowToPlayScene;
+	private GImage howToPlayDescription;
+
+	
 
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
@@ -45,11 +48,20 @@ public class HowToPlayScene extends Scene{
 	    mainApp.add(this.backgroundHowToPlayScene);
 	}
 	
+	private void drawDescription() {
+		String filename = IMG_FILENAME_PATH + "HowToPlayDescription" + IMG_EXTENSION;
+	    this.howToPlayDescription = new GImage(filename);
+	    this.howToPlayDescription.setLocation(MainApplication.getResolutionWidth() * 0.09, MainApplication.getResolutionHeight() * 0.02);
+	    mainApp.add(this.howToPlayDescription);
+	}
+	
+	
 	public void showContents()
 	{
 		System.out.println("Show contents from this point..");
 		addElement(label);
 		drawBackground();
+		drawDescription();
 		drawReturnButton();
 		activeContents.add(this.backgroundHowToPlayScene);
 
