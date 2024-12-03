@@ -43,6 +43,11 @@ public class UnitGrenade extends Unit{
 		ActionListener listener = new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		    	numTimes = numTimes + 1;
+		    	
+		    	if (numTimes > 15)
+		    	{
+		    		image.setColor(new Color(255,0,0));
+		    	}
 		    	 
 		    	if (numTimes > 20) {
 		    		routine();
