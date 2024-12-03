@@ -28,10 +28,10 @@ public class UnitBar {
 		double yStart = Y_UNIT_BAR;
 		
 		for (int i = 0; i < chosenTypes.size(); i++) {
-			GImage unitBarImage = new GImage(chosenTypes.get(i).getUnitBarImagePath());
-			unitBarImage.setLocation(xStart + unitBarImage.getWidth()*(i), yStart );
-			unitBarImages.add(unitBarImage); // Add to unitBar list for tracking
-			scene.addElement(unitBarImage); // Add unit image to display so it appears on screen
+				GImage unitBarImage = new GImage(chosenTypes.get(i).getUnitBarImagePath());
+				unitBarImage.setLocation(xStart + unitBarImage.getWidth()*(i), yStart );
+				unitBarImages.add(unitBarImage); // Add to unitBar list for tracking
+				scene.addElement(unitBarImage); // Add unit image to display so it appears on screen
 		}
 	}
 	

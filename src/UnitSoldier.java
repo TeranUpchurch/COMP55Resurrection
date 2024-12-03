@@ -9,6 +9,8 @@ import javax.swing.*;
 public class UnitSoldier extends Unit{
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
+	private static final int Y_UNIT_BAR = 20;
+	private static final int X_UNIT_BAR = 20;
 	
 	public static GameTimer cooldownTimer;
 	protected static GLabel cooldownLabel;
@@ -94,6 +96,12 @@ public class UnitSoldier extends Unit{
 	{
 		cooldownTimer = new GameTimer(500, "Cooldown");
 		cooldownTimer.start();
+		String filename = IMG_FILENAME_PATH + "unitBar_soldier_cooldown" + IMG_EXTENSION;
+		GImage unitBarSoldierImage_cooldown = new GImage(filename);
+		double xStart = X_UNIT_BAR;
+		double yStart = Y_UNIT_BAR;
+		unitBarSoldierImage_cooldown.setLocation(xStart + unitBarSoldierImage_cooldown.getWidth() * unitType.getNum(), yStart );
+		gameScene.addElement(unitBarSoldierImage_cooldown);
 		
 		numTimesCooldown = 0;
 		int seconds = cooldown / 2;
@@ -112,6 +120,7 @@ public class UnitSoldier extends Unit{
 		    		cooldownTimer.removeActionListener(this);
 		    		cooldownTimer = null;
 		    		isOnCooldown = false;
+		    		gameScene.removeElement(unitBarSoldierImage_cooldown);
 		    	}
 		    	else
 		    	{
@@ -128,12 +137,15 @@ public class UnitSoldier extends Unit{
 	
 	public boolean isCooldownActive()
 	{
+		
 		if (isOnCooldown == true)
 		{
+    		
 			return true;
 		}
 		else
 		{
+			
 			return false;
 		}
 	}
