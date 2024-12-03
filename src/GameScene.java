@@ -650,11 +650,6 @@ public class GameScene extends Scene{
 		return true;
 	}
 	
-	protected GObject getElementAtCoordinate(double x, double y)
-	{
-		return this.getElementAtCoordinate(x, y);
-	}
-	
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// Procedure for when a unit is to be chosen then placed in the grid.

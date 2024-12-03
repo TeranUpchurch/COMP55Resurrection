@@ -36,7 +36,7 @@ public class Scene extends GraphicsApplication implements Interfaceable{
 		return this.mainApp.getElementAt(p);
 	}
 	
-	protected GObject getElementAtCoordinate(double x, double y)
+	public GObject getElementAtCoordinate(double x, double y)
 	{
 		return this.mainApp.getElementAt(x, y);
 	}
