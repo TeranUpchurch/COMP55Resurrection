@@ -32,13 +32,13 @@ public class UnitRock extends Unit{
         
         this.numTimes = 0;
         this.enemyDetected = false;
-        cooldownLabel = new GLabel("");
 	}
 	 
 	public void startTimer()
 	{
 		routineTimerRock = new GameTimer(0, "Rock");
 		routineTimerRock.start();
+		cooldownLabel = new GLabel("");
 		
 		ActionListener listener = new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {

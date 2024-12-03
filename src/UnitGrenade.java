@@ -32,13 +32,13 @@ public class UnitGrenade extends Unit{
         
         this.numTimes = 0;
         this.enemyDetected = false;
-        cooldownLabel = new GLabel("");
 	}
 	
 	public void startTimer()
 	{
 		routineTimerGrenade = new GameTimer(100, "Grenade");
 		routineTimerGrenade.start();
+		cooldownLabel = new GLabel("");
 		
 		ActionListener listener = new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {

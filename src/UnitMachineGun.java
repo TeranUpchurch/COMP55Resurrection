@@ -31,13 +31,13 @@ public class UnitMachineGun extends Unit{
         
         this.numTimes = 0;
         this.enemyDetected = false;
-        cooldownLabel = new GLabel("");
 	}
 	
 	public void startTimer()
 	{
 		routineTimerMachineGun = new GameTimer(20, "MachineGun");
 		routineTimerMachineGun.start();
+		cooldownLabel = new GLabel("");
 		
 		ActionListener listener = new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {

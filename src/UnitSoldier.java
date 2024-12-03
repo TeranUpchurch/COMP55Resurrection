@@ -33,13 +33,13 @@ public class UnitSoldier extends Unit{
         this.numTimes = 0;
         this.enemyDetected = false;
         this.lane = lane;
-        cooldownLabel = new GLabel("");
 	}
 	
 	public void startTimer()
 	{
 		routineTimerSoldier = new GameTimer(100, "Soldier");
 		routineTimerSoldier.start();
+		cooldownLabel = new GLabel("");
 		
 		ActionListener listener = new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
