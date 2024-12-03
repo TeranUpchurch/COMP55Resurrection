@@ -75,10 +75,9 @@ public class MainApplication extends GraphicsApplication{
 		switchSceneTo(this.previousScene); 
 	}
 	
-	// TODO - Actually make the Game class before this. 
 	public void switchSceneToGame(String difficulty)
 	{
-		System.out.println("Switching scene.");
+		System.out.println("Switching to game with difficulty " + difficulty);
 		GameScene = new GameScene(this, difficulty);
 		currentScene.hideContents();
 		currentScene = GameScene;

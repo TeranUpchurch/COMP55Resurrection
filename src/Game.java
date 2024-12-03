@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 public class Game {
-	private ArrayList<Unit> unitOptions;
+	private ArrayList<Unit> unitOptions; // will remain unused because customizability will be hard to add.
 	private Level level;
 	
 	private Wave currentWave;
@@ -20,7 +20,7 @@ public class Game {
 	public GameScene gameScene;
 	
 	
-	public Game(GameScene gameScene)
+	public Game(GameScene gameScene) // TEST LEVEL
 	{
 		grid = new Grid(5, 9);
 		level = new Level(gameScene);
@@ -31,11 +31,13 @@ public class Game {
 		imageToRobotMap = new ImageToRobotMap();
 	}
 	
-	public Game(GameScene gameScene, Level chosenLevel, ArrayList<Unit> chosenUnits)
+	public Game(GameScene gameScene, String levelString)
 	{
-		unitOptions = chosenUnits;
-		level = chosenLevel;
 		grid = new Grid(5, 9);
+		level = new Level(gameScene, levelString);
+		waveNum = 0;
+		currentWave = level.getWave(waveNum);
+		this.gameScene = gameScene;
 		imageToUnitMap = new ImageToUnitMap();
 		imageToRobotMap = new ImageToRobotMap();
 	}
