@@ -33,6 +33,7 @@ public class GameScene extends Scene{
 	private GImage currencyBackground;
 	private GImage backgroundGameScene;
 	private GButton deleteButton;
+	private GButton deleteButtonInUse;
 	
 	// Game state
 	private String difficulty;
@@ -169,9 +170,9 @@ public class GameScene extends Scene{
 	}
 	
 	private void drawDeleteButton() {
-		String filename = IMG_FILENAME_PATH + "button_pause" + IMG_EXTENSION;
+		String filename = IMG_FILENAME_PATH + "button_delete" + IMG_EXTENSION;
 		GImage deleteButtonImage = new GImage(filename);
-		int imageX = (int)(MainApplication.getResolutionWidth() * 0.50);
+		int imageX = (int)(MainApplication.getResolutionWidth() * 0.43);
 		int imageY = (int)((MainApplication.getResolutionHeight() * 0.02) + 20);
 		this.deleteButton = new GButton(deleteButtonImage,imageX,imageY);
 		addElement(deleteButton);
@@ -183,7 +184,14 @@ public class GameScene extends Scene{
 				ActionListener listener = new ActionListener() {
 				    public void actionPerformed(ActionEvent e) {
 				    	isInDeleteState = true;
+				    	String filename = IMG_FILENAME_PATH + "button_delete_InUse" + IMG_EXTENSION;
 				    	System.out.println("Delete state is now: " + isInDeleteState);
+				    	GImage deleteButtonImage = new GImage(filename);
+						int imageX = (int)(MainApplication.getResolutionWidth() * 0.43);
+						int imageY = (int)((MainApplication.getResolutionHeight() * 0.02) + 20);
+						deleteButtonInUse = new GButton(deleteButtonImage,imageX,imageY);
+						addElement(deleteButtonInUse);
+						
 				    	delay.stop();
 				    	delay.removeActionListener(this);
 				    }};
@@ -714,13 +722,16 @@ public class GameScene extends Scene{
 					System.out.println("Successfully removed unit " + unit + " from grid and returned half money.");
 					System.out.println("Delete state is now: false");
 					this.isInDeleteState = false;
+					removeElement(deleteButtonInUse);
 				}
 			}
 			else
 			{
+				
 				System.out.println("Could not find unit to remove.");
 				System.out.println("Delete state is now: false");
 				this.isInDeleteState = false;
+				removeElement(deleteButtonInUse);
 				return;
 			}
 		}
