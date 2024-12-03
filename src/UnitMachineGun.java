@@ -9,6 +9,8 @@ import javax.swing.*;
 public class UnitMachineGun extends Unit{
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
+	private static final int Y_UNIT_BAR = 20;
+	private static final int X_UNIT_BAR = 20;
 	
 	public static GameTimer cooldownTimer;
 	protected static GLabel cooldownLabel;
@@ -92,6 +94,13 @@ public class UnitMachineGun extends Unit{
 		cooldownTimer = new GameTimer(500, "Cooldown");
 		cooldownTimer.start();
 		
+		String filename = IMG_FILENAME_PATH + "unitBar_machineGun_cooldown" + IMG_EXTENSION;
+		GImage unitBarMachineGunImage_cooldown = new GImage(filename);
+		double xStart = X_UNIT_BAR;
+		double yStart = Y_UNIT_BAR;
+		unitBarMachineGunImage_cooldown.setLocation(xStart + unitBarMachineGunImage_cooldown.getWidth() * unitType.getNum(), yStart );
+		gameScene.addElement(unitBarMachineGunImage_cooldown);
+		
 		numTimesCooldown = 0;
 		int seconds = cooldown / 2;
 		cooldownLabel.setLabel(Integer.toString(seconds));
@@ -109,6 +118,7 @@ public class UnitMachineGun extends Unit{
 		    		cooldownTimer.removeActionListener(this);
 		    		cooldownTimer = null;
 		    		isOnCooldown = false;
+		    		gameScene.removeElement(unitBarMachineGunImage_cooldown);
 		    	}
 		    	else
 		    	{

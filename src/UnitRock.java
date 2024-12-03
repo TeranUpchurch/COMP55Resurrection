@@ -9,6 +9,8 @@ import javax.swing.*;
 public class UnitRock extends Unit{
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
+	private static final int Y_UNIT_BAR = 20;
+	private static final int X_UNIT_BAR = 20;
 	
 	public static GameTimer cooldownTimer;
 	protected static GLabel cooldownLabel;
@@ -48,6 +50,13 @@ public class UnitRock extends Unit{
 		cooldownTimer = new GameTimer(500, "Cooldown");
 		cooldownTimer.start();
 		
+		String filename = IMG_FILENAME_PATH + "unitBar_Rock_cooldown" + IMG_EXTENSION;
+		GImage unitBarRockImage_cooldown = new GImage(filename);
+		double xStart = X_UNIT_BAR;
+		double yStart = Y_UNIT_BAR;
+		unitBarRockImage_cooldown.setLocation(xStart + unitBarRockImage_cooldown.getWidth() * unitType.getNum(), yStart );
+		gameScene.addElement(unitBarRockImage_cooldown);
+		
 		numTimesCooldown = 0;
 		int seconds = cooldown / 2;
 		cooldownLabel.setLabel(Integer.toString(seconds));
@@ -65,6 +74,7 @@ public class UnitRock extends Unit{
 		    		cooldownTimer.removeActionListener(this);
 		    		cooldownTimer = null;
 		    		isOnCooldown = false;
+		    		gameScene.removeElement(unitBarRockImage_cooldown);
 		    	}
 		    	else
 		    	{

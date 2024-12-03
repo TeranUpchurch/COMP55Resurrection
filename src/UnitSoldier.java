@@ -96,6 +96,7 @@ public class UnitSoldier extends Unit{
 	{
 		cooldownTimer = new GameTimer(500, "Cooldown");
 		cooldownTimer.start();
+		
 		String filename = IMG_FILENAME_PATH + "unitBar_soldier_cooldown" + IMG_EXTENSION;
 		GImage unitBarSoldierImage_cooldown = new GImage(filename);
 		double xStart = X_UNIT_BAR;
