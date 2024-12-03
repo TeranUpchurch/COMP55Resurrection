@@ -278,11 +278,7 @@ public class GameScene extends Scene{
 			    				// remove from backend 
 			    				// add currency
 			    				// decrement Game activeEnemyCount
-			    				removeElement(image);
-			    				imageToRobotMap.deletePair(image);
-			    				robotsToDestroy.add(robot);
-			    				addCurrency(robot.getCurrencyEarned());
-			    				game.decrementEnemyCount();
+			    				handleRobotDeath(robot);
 			    			}
 			    			
 			    			projectilesToDestroy.add(proj);
@@ -345,6 +341,15 @@ public class GameScene extends Scene{
 	    gameTimer.createActionListener(listener);
 	    gameTimer.start();
 	}
+	
+	public void handleRobotDeath(Robot robot) {
+		removeElement(robot.getImage());
+		imageToRobotMap.deletePair(robot.getImage());
+		robotsToDestroy.add(robot);
+		addCurrency(robot.getCurrencyEarned());
+		game.decrementEnemyCount();
+	}
+
 	
 	public void restartLevel() {
 		gameTimer.stop();

@@ -1,3 +1,4 @@
+/*
 import acm.graphics.*;
 import acm.program.*;
 import java.awt.*;
@@ -251,3 +252,188 @@ public class UnitGrenade extends Unit{
 		
 	}
 }
+*/
+
+import acm.graphics.*;
+import acm.program.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.ArrayList;
+import javax.swing.*;
+
+// this class handles creating the player unit, or the units that the player will use to defeat enemies
+public class UnitGrenade extends Unit{
+	public static final String IMG_FILENAME_PATH = "media/";
+	public static final String IMG_EXTENSION = ".png";
+	
+	public static GameTimer cooldownTimer;
+	protected static GLabel cooldownLabel;
+	protected static boolean isOnCooldown = false;
+	protected static int cooldown; // in function calls per 500MS.
+	protected static int numTimesCooldown;
+	
+	// private GImage image = new GImage(IMG_FILENAME_PATH + "grenade" + IMG_EXTENSION);
+	private UnitType unitType = UnitType.GRENADE;
+	
+	private Game game;
+
+	public UnitGrenade(GameScene gameScene, Game game)
+	{	// TO DO CHANGE ATTRIBUTES - NOT FINAL
+		super(gameScene, game);
+		this.image = new GImage(unitType.getImagePath());
+		this.health = unitType.getHealth();
+        this.cost = unitType.getCost();
+ this.frequency = unitType.getFrequency();
+        UnitGrenade.cooldown = unitType.getCooldown();
+        
+        this.numTimes = 0;
+        this.enemyDetected = false;
+        this.lane = lane;
+	}
+	
+	public void startTimer()
+	{
+		routineTimerGrenade = new GameTimer(100, "Grenade");
+		routineTimerGrenade.start();
+		cooldownLabel = new GLabel("");
+		
+		ActionListener listener = new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		    	numTimes = numTimes + 1;
+		    	 
+		    	if (numTimes > 20) {
+		    		routine();
+		    		numTimes = 0;
+		    	}
+		    	
+		    	if (checkForEnemyInRange()) {
+		    		startCountdownToExplode();  // Initiate countdown if detected
+		    		routineTimerGrenade.stop();
+		    	}
+		    }};
+		    
+		    routineTimerGrenade.createActionListener(listener);
+	}
+	
+	public void routine () {
+		
+	}
+	
+	private boolean checkForEnemyInRange() {
+		ArrayList<Robot> robotsInLane = gameScene.getRobotsInLane(this.lane); 
+		double grenadeX = image.getX();
+		
+		for (Robot robot : robotsInLane) {
+			double robotX = robot.getImage().getX();
+			if (Math.abs(robotX - grenadeX) <= 140) {  // Check distance
+	            return true;  // Robot detected in range
+	        }
+		}
+		return false;
+	}
+private void startCountdownToExplode() {
+		GameTimer countdownTimer = new GameTimer(2000, "GrenadeExplosion") ;
+		countdownTimer.start();
+		
+		ActionListener listener = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				explode();
+				countdownTimer.stop();
+				
+			}
+		};
+		countdownTimer.createActionListener(listener);
+	}
+	
+	private void explode() {
+		ArrayList<Robot> robotsInLane = gameScene.getRobotsInLane(this.lane); 
+		double grenadeX = image.getX();
+		
+		if (!gameScene.isPaused() && gameScene.game.grid.getUnitAtSpace(lane, getCurrentColumn()) != null
+				&& !gameScene.getRobotsInLane(lane).isEmpty()) {
+			for (Robot robot : robotsInLane) {
+				double robotX = robot.getImage().getX();
+				if (Math.abs(robotX - grenadeX) <= 140) {  // Check if robots are still in range
+					robot.takeDamage(70); 
+					if (robot.isDefeated()) {
+						gameScene.handleRobotDeath(robot);
+					}
+				}
+			}
+		}
+		
+	    gameScene.removeElement(image);
+	    // gameScene.removeUnitFromGrid(this);
+	    System.out.println("Grenade exploded!");
+	}
+	
+	public void startCooldown()
+{
+		cooldownTimer = new GameTimer(500, "Cooldown");
+		cooldownTimer.start();
+		
+		numTimesCooldown = 0;
+		int seconds = cooldown / 2;
+		cooldownLabel.setLabel(Integer.toString(seconds));
+		reconfigureLabel(cooldownLabel, unitType);
+		gameScene.addElement(cooldownLabel);
+		
+		isOnCooldown = true;
+		
+		ActionListener listener = new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		    	if (numTimesCooldown >= cooldown - 1)
+		    	{
+		    		gameScene.removeElement(cooldownLabel);
+		    		cooldownTimer.stop();
+		    		cooldownTimer.removeActionListener(this);
+		    		cooldownTimer = null;
+		    		isOnCooldown = false;
+		    	}
+		    	else
+		    	{
+		    		numTimesCooldown = numTimesCooldown + 1;
+		    		if (numTimesCooldown % 2 == 0)
+		    		{
+		    			cooldownLabel.setLabel(Integer.toString(seconds - numTimesCooldown / 2));
+		    		}
+		    	}
+		    }};
+		    
+		cooldownTimer.createActionListener(listener);
+	}
+public boolean isCooldownActive()
+	{
+		if (isOnCooldown == true)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	// checks if a player unit is upgradable to a stronger unit
+	public boolean isItUpgradable(boolean upgrade) {
+		return this.upgradable && upgrade && unitToUpgradeTo != null;
+	}
+	
+	// checks if an enemy is in the same lane as the player unit. If it is, the player unit starts attacking the enemy
+	public boolean checkForEnemy(boolean robotLocation) {
+		return robotLocation;
+	}
+	
+	// if the player unit's health hits zero
+	public boolean isDeath() {
+		return health <= 0; 
+	}
+	
+	public static void main(String[] args) {
+		
+	}
+}
+
+
+

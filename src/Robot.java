@@ -63,6 +63,7 @@ public class Robot {
             if (unitAttacking != null)
             {
             	attackUnitTimer.stop();
+            	System.out.println("Robot took " + damage );
             }
         } 
         else {
