@@ -685,6 +685,7 @@ public class GameScene extends Scene{
 				Unit unit = imageToUnitMap.get(image);
 				if (unit != null)
 				{
+					// Remove unit from the grid and give some money back (half of unit cost).
 					removeUnitFromGrid(unit);
 					addCurrency(unit.getCost() / 2);
 					System.out.println("Successfully removed unit " + unit + " from grid and returned half money.");
