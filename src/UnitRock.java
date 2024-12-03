@@ -36,21 +36,8 @@ public class UnitRock extends Unit{
 	 
 	public void startTimer()
 	{
-		routineTimerRock = new GameTimer(0, "Rock");
-		routineTimerRock.start();
-		cooldownLabel = new GLabel("");
-		
-		ActionListener listener = new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		    	numTimes = numTimes + 1;
-		    	 
-		    	if (numTimes > 20) {
-		    		routine();
-		    		numTimes = 0;
-		    	}
-		    }};
-		    
-		    routineTimerRock.createActionListener(listener);
+		// Don't even make a timer, the rock does nothing.
+		cooldownLabel = new GLabel("");	
 	}
 	
 	public void routine () {
