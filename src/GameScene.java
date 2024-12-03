@@ -650,6 +650,11 @@ public class GameScene extends Scene{
 		return true;
 	}
 	
+	protected GObject getElementAtCoordinate(double x, double y)
+	{
+		return this.getElementAtCoordinate(x, y);
+	}
+	
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// Procedure for when a unit is to be chosen then placed in the grid.
@@ -717,6 +722,7 @@ public class GameScene extends Scene{
 				if (unit != null)
 				{
 					// Remove unit from the grid and give some money back (half of unit cost).
+					unitContainer.remove(unit);
 					removeUnitFromGrid(unit);
 					addCurrency(unit.getCost() / 2);
 					System.out.println("Successfully removed unit " + unit + " from grid and returned half money.");
