@@ -307,6 +307,7 @@ public class GameScene extends Scene{
 		    		{
 		    			System.out.println("Game over would happen here.");
 		    			setPaused(true);
+		    			// TODO add loss screen.
 		    		}
 		    	}
 		    	
