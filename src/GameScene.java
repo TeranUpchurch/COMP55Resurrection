@@ -335,6 +335,7 @@ public class GameScene extends Scene{
 		    		{
 		    			System.out.println("You win");
 		    			setPaused(true);
+		    			// TODO show win screen
 		    		}
 		    		else
 		    		{

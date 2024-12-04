@@ -131,13 +131,13 @@ public class WinMenu extends PopupMenu{
 	}
 	
 	
-	@Override
+	/*@Override
 	protected void pauseGame(GraphicsApplication mainApp) {
 		super.pauseGame(mainApp);
 		gameScene.setPaused(true);
 		if (gameTimer != null) {
 			gameTimer.stop();
 		}
-	}
+	}*/
 	
 }
