@@ -12,6 +12,8 @@ public class LevelMenuConfirmation extends PopupMenu{
 	private MainApplication mainApp;
 	private PauseMenu pauseMenu;
 	private WinMenu winMenu;
+	private LossMenu lossMenu;
+
 
 	
 	public static final String IMG_FILENAME_PATH = "media/";
@@ -31,6 +33,19 @@ public class LevelMenuConfirmation extends PopupMenu{
 	}
 	
 	public LevelMenuConfirmation(String imagePath, MainApplication mainApp, WinMenu winMenu) {
+		super(imagePath);
+		this.pauseMenu = pauseMenu;
+		this.mainApp = mainApp;
+	
+		this.confirmButton = drawConfirmButton("button_confirm", levelMenuBackground); 
+		this.cancelButton = drawCancelButton("button_cancel", levelMenuBackground);
+		
+		addMenuElement(confirmButton);
+		addMenuElement(cancelButton);
+		addMouseListeners();
+	}
+	
+	public LevelMenuConfirmation(String imagePath, MainApplication mainApp, LossMenu lossMenu) {
 		super(imagePath);
 		this.pauseMenu = pauseMenu;
 		this.mainApp = mainApp;

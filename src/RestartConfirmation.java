@@ -13,6 +13,8 @@ public class RestartConfirmation extends PopupMenu{
 	private MainApplication mainApp;
 	private PauseMenu pauseMenu;
 	private WinMenu winMenu;
+	private LossMenu lossMenu;
+
 	
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
@@ -33,6 +35,19 @@ public class RestartConfirmation extends PopupMenu{
 	public RestartConfirmation(String imagePath, MainApplication mainApp, WinMenu winMenu) {
 		super(imagePath);
 		this.winMenu = winMenu;
+		this.mainApp = mainApp;
+		
+		this.confirmButton = drawConfirmButton("button_confirm", restartBackground); 
+		this.cancelButton = drawCancelButton("button_cancel", restartBackground);
+		
+		addMenuElement(confirmButton);
+		addMenuElement(cancelButton);
+		addMouseListeners();
+	}
+	
+	public RestartConfirmation(String imagePath, MainApplication mainApp, LossMenu lossMenu) {
+		super(imagePath);
+		this.lossMenu = lossMenu;
 		this.mainApp = mainApp;
 		
 		this.confirmButton = drawConfirmButton("button_confirm", restartBackground); 
