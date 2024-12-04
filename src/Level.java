@@ -66,7 +66,6 @@ public class Level {
 			intervals1.add(50);
 			intervals1.add(50);
 			intervals1.add(50);
-			intervals1.add(50);
 			waves.add(new Wave(gameScene, robots1, intervals1));
 			
 			ArrayList<Robot> robots2 = new ArrayList<Robot>();
@@ -81,22 +80,20 @@ public class Level {
 			intervals2.add(50);
 			intervals2.add(50);
 			intervals2.add(50);
-			intervals2.add(50);
 			waves.add(new Wave(gameScene, robots2, intervals2));
 			
 			ArrayList<Robot> robots3 = new ArrayList<Robot>();
-			robots2.add(new RobotGreen(0, gameScene));
-			robots2.add(new RobotYellow(1, gameScene));
-			robots2.add(new RobotGreen(2, gameScene));
-			robots2.add(new RobotYellow(3, gameScene));
-			robots2.add(new RobotGreen(2, gameScene));
+			robots3.add(new RobotGreen(0, gameScene));
+			robots3.add(new RobotYellow(1, gameScene));
+			robots3.add(new RobotGreen(2, gameScene));
+			robots3.add(new RobotYellow(3, gameScene));
+			robots3.add(new RobotGreen(2, gameScene));
 			ArrayList<Integer> intervals3 = new ArrayList<Integer>();
-			intervals2.add(1);
-			intervals2.add(50);
-			intervals2.add(10);
-			intervals2.add(50);
-			intervals2.add(10);
-			intervals2.add(10);
+			intervals3.add(1);
+			intervals3.add(50);
+			intervals3.add(10);
+			intervals3.add(50);
+			intervals3.add(10);
 			waves.add(new Wave(gameScene, robots3, intervals3));
 		}
 		else if (difficulty == "Medium")
@@ -122,7 +119,6 @@ public class Level {
 			robots2.add(new RobotYellow(3, gameScene));
 			robots2.add(new RobotYellow(2, gameScene));
 			ArrayList<Integer> intervals2 = new ArrayList<Integer>();
-			intervals2.add(10);
 			intervals2.add(10);
 			intervals2.add(10);
 			intervals2.add(10);
