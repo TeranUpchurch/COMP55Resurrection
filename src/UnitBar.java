@@ -35,7 +35,6 @@ public class UnitBar {
 		}
 	}
 	
-	// handles how many units are in the unit bar
 	public UnitType handleMousePressed(double x, double y) {
 		for (int i = 0; i < unitBarImages.size(); i++) {
 			GImage itemUnitBar = unitBarImages.get(i);
