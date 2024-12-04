@@ -178,6 +178,7 @@ public class GameScene extends Scene{
 		addElement(deleteButton);
 		deleteButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
+				if (isPaused()) return;
 				GameTimer delay = new GameTimer(50, "DeleteButtonDelay");
 				delay.start();
 				
@@ -654,9 +655,10 @@ public class GameScene extends Scene{
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// Procedure for when a unit is to be chosen then placed in the grid.
-		if (isPaused) {
+		if (isPaused()) {
 			return;
 		}
+		
 		this.chosenUnitName = unitBar.handleMousePressed(e.getX(), e.getY());
 		if (this.chosenUnitName == null)
 		{
@@ -709,6 +711,10 @@ public class GameScene extends Scene{
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// Procedure for when the controls are in the delete unit state.
+		if (isPaused()) {
+			return;
+		}
+		
 		if (this.isInDeleteState == true)
 		{
 			int mouseX = e.getX();

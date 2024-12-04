@@ -63,7 +63,6 @@ public class UnitMachineGun extends Unit{
 			shoot();
 		}
 		else {
-			System.out.println("No enemy in lane ");
 			return;
 		}
 	}

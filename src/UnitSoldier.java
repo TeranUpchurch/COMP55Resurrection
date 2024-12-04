@@ -65,7 +65,6 @@ public class UnitSoldier extends Unit{
 			shoot();
 		}
 		else {
-			System.out.println("No enemy in lane " + lane);
 			return;
 		}
 		
