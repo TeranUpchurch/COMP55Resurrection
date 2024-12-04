@@ -11,11 +11,26 @@ public class LevelMenuConfirmation extends PopupMenu{
 	private GButton cancelButton;
 	private MainApplication mainApp;
 	private PauseMenu pauseMenu;
+	private WinMenu winMenu;
+
 	
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
 	
 	public LevelMenuConfirmation(String imagePath, MainApplication mainApp, PauseMenu pauseMenu) {
+		super(imagePath);
+		this.pauseMenu = pauseMenu;
+		this.mainApp = mainApp;
+	
+		this.confirmButton = drawConfirmButton("button_confirm", levelMenuBackground); 
+		this.cancelButton = drawCancelButton("button_cancel", levelMenuBackground);
+		
+		addMenuElement(confirmButton);
+		addMenuElement(cancelButton);
+		addMouseListeners();
+	}
+	
+	public LevelMenuConfirmation(String imagePath, MainApplication mainApp, WinMenu winMenu) {
 		super(imagePath);
 		this.pauseMenu = pauseMenu;
 		this.mainApp = mainApp;

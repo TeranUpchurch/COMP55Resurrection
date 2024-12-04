@@ -11,6 +11,7 @@ public class ExitConfirmation extends PopupMenu{
 	private GButton cancelButton;
 	private MainApplication mainApp;
 	private PauseMenu pauseMenu;
+	private WinMenu winMenu;
 	private GameTimer gameTimer;
 	
 	public static final String IMG_FILENAME_PATH = "media/";
@@ -20,6 +21,20 @@ public class ExitConfirmation extends PopupMenu{
 	public ExitConfirmation(String imagePath, MainApplication mainApp, PauseMenu pauseMenu, GameTimer gameTimer) {
 		super(imagePath);
 		this.pauseMenu = pauseMenu;
+		this.mainApp = mainApp;
+		this.gameTimer = gameTimer;
+		
+		this.confirmButton = drawConfirmButton("button_confirm", exitBackground); 
+		this.cancelButton = drawCancelButton("button_cancel", exitBackground);
+		
+		addMenuElement(confirmButton);
+		addMenuElement(cancelButton);
+		addMouseListeners();
+	}
+	
+	public ExitConfirmation(String imagePath, MainApplication mainApp, WinMenu winMenu, GameTimer gameTimer) {
+		super(imagePath);
+		this.winMenu = winMenu;
 		this.mainApp = mainApp;
 		this.gameTimer = gameTimer;
 		

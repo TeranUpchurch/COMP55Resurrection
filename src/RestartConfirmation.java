@@ -12,6 +12,7 @@ public class RestartConfirmation extends PopupMenu{
 	private GButton cancelButton;
 	private MainApplication mainApp;
 	private PauseMenu pauseMenu;
+	private WinMenu winMenu;
 	
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
@@ -28,6 +29,20 @@ public class RestartConfirmation extends PopupMenu{
 		addMenuElement(cancelButton);
 		addMouseListeners();
 	}
+	
+	public RestartConfirmation(String imagePath, MainApplication mainApp, WinMenu winMenu) {
+		super(imagePath);
+		this.winMenu = winMenu;
+		this.mainApp = mainApp;
+		
+		this.confirmButton = drawConfirmButton("button_confirm", restartBackground); 
+		this.cancelButton = drawCancelButton("button_cancel", restartBackground);
+		
+		addMenuElement(confirmButton);
+		addMenuElement(cancelButton);
+		addMouseListeners();
+	}
+
 	
 	private GButton drawCancelButton(String label, GImage background) {
 		GImage image = new GImage(IMG_FILENAME_PATH + label + IMG_EXTENSION);
