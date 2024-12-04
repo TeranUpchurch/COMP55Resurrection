@@ -654,6 +654,9 @@ public class GameScene extends Scene{
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// Procedure for when a unit is to be chosen then placed in the grid.
+		if (isPaused) {
+			return;
+		}
 		this.chosenUnitName = unitBar.handleMousePressed(e.getX(), e.getY());
 		if (this.chosenUnitName == null)
 		{
