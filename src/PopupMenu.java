@@ -10,7 +10,7 @@ public class PopupMenu {
 	public PopupMenu(String imagePath) {
 		GImage background = new GImage (imagePath);
 		if (imagePath == "media/menu_defeatMenu.png" || imagePath == "media/menu_winMenu.png") {
-			background.setLocation((MainApplication.getResolutionWidth() - background.getWidth()) / 2, (MainApplication.getResolutionHeight() - background.getHeight()) / 3);
+			background.setLocation((MainApplication.getResolutionWidth() - background.getWidth()) / 2, (MainApplication.getResolutionHeight() - background.getHeight()) / 2.8);
 		}
 		else {
 			background.setLocation((MainApplication.getResolutionWidth() - background.getWidth()) / 2, (MainApplication.getResolutionHeight() - background.getHeight()) / 2);

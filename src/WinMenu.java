@@ -19,6 +19,7 @@ public class WinMenu extends PopupMenu{
 	private GButton biggerRestartButton;
 	private GButton biggerLevelMenuButton;
 	private GButton biggerExitButton;
+	private GButton nextLevelButton;
 	private MainApplication mainApp;
 	private RestartConfirmation restartConfirmation;
 	private LevelMenuConfirmation levelMenuConfirmation;
@@ -40,10 +41,13 @@ public class WinMenu extends PopupMenu{
 		this.biggerRestartButton = drawRestartButton("button_restart_bigger", winMenu);
 		this.biggerLevelMenuButton = drawLevelMenuButton("button_levelMenu_bigger", winMenu);
 		this.biggerExitButton = drawExitButton("button_exit_bigger", winMenu);		
+		this.nextLevelButton = drawNextLevelButton("button_nextLevel", winMenu);
 		
 		addMenuElement(biggerRestartButton);
 		addMenuElement(biggerLevelMenuButton);
 		addMenuElement(biggerExitButton);
+		addMenuElement(nextLevelButton);
+
 		
 		addMouseListeners();
 		
@@ -78,6 +82,17 @@ public class WinMenu extends PopupMenu{
 
 		return button;
 	}
+	
+	private GButton drawNextLevelButton(String lable, GImage backgroundImage) {
+		GImage image = new GImage(IMG_FILENAME_PATH + lable + IMG_EXTENSION);
+		// TODO fix position
+		double x = (MainApplication.getResolutionWidth() - image.getWidth()) / 2;
+		double y = MainApplication.getResolutionHeight() * Y_RATIO_RESUME_BUTTON;
+		GButton button = new GButton(image, x, y);
+
+		return button;
+	}
+	
 	
 	
 	//TODO: ADD FOR ANOTHER BUTTONS
@@ -125,6 +140,16 @@ public class WinMenu extends PopupMenu{
 		System.out.println("LevelSelect button clicked: Showing confirmation dialog.");
 		hidePopup(this.mainApp, false);
 		
+		String filename = IMG_FILENAME_PATH + "background_levelMenuConfirm" + IMG_EXTENSION;
+		this.levelMenuConfirmation = new LevelMenuConfirmation(filename, mainApp, this);
+		this.levelMenuConfirmation.showPopup(mainApp); // Display the confirmation menu
+	}
+	
+	private void handleNextLevel() {
+		System.out.println("Next Level button clicked: Showing confirmation dialog.");
+		hidePopup(this.mainApp, false);
+		// TODO make next level function and class for confirmation screen maybe
+		// TODO make hard not have next level.
 		String filename = IMG_FILENAME_PATH + "background_levelMenuConfirm" + IMG_EXTENSION;
 		this.levelMenuConfirmation = new LevelMenuConfirmation(filename, mainApp, this);
 		this.levelMenuConfirmation.showPopup(mainApp); // Display the confirmation menu
