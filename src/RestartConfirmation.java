@@ -32,6 +32,7 @@ public class RestartConfirmation extends PopupMenu{
 		addMouseListeners();
 	}
 	
+	
 	public RestartConfirmation(String imagePath, MainApplication mainApp, WinMenu winMenu) {
 		super(imagePath);
 		this.winMenu = winMenu;
@@ -95,9 +96,14 @@ public class RestartConfirmation extends PopupMenu{
 	private void handleConfirm() {
 		System.out.println("Restarting game...");
 		hidePopup(mainApp, false);
-		pauseMenu.hidePopup(mainApp, false);
+		if (winMenu != null) {
+			winMenu.hidePopup(mainApp, false);
+	    } 
+		else if (lossMenu != null) {
+	        lossMenu.hidePopup(mainApp, false);
+	    }		
 		mainApp.GameScene.restartLevel();
-	}
+}
 	
 	private void handleCancel() {
 		System.out.println("Cancel");
