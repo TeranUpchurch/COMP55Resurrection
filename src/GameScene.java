@@ -43,6 +43,8 @@ public class GameScene extends Scene{
 	private int currency;
 	private boolean isInDeleteState = false;
 	private boolean isPaused;
+	private WinMenu winMenu;
+	private LossMenu lossMenu;
 	
 	// Unit management
 	private UnitType chosenUnitName;
@@ -61,6 +63,10 @@ public class GameScene extends Scene{
 		super(mainApp);
 		this.difficulty = difficulty;
 		unitBar = new UnitBar();
+		String winMenuImagePath = IMG_FILENAME_PATH + "menu_winMenu" + IMG_EXTENSION;
+		String defeatMenuImagePath = IMG_FILENAME_PATH + "menu_defeatMenu" + IMG_EXTENSION;
+		lossMenu = new LossMenu(defeatMenuImagePath, mainApp, gameTimer, this);
+		winMenu = new WinMenu(winMenuImagePath, mainApp, gameTimer, this);
 	}
 	
 	@Override
@@ -307,7 +313,10 @@ public class GameScene extends Scene{
 		    		{
 		    			System.out.println("Game over would happen here.");
 		    			setPaused(true);
+		    			
 		    			// TODO add loss screen.
+		    			lossMenu.showPopup(mainApp);
+
 		    		}
 		    	}
 		    	
@@ -337,6 +346,7 @@ public class GameScene extends Scene{
 		    			System.out.println("You win");
 		    			setPaused(true);
 		    			// TODO show win screen
+		    			winMenu.showPopup(mainApp);
 		    		}
 		    		else
 		    		{

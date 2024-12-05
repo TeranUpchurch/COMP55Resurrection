@@ -9,7 +9,7 @@ import java.awt.event.MouseEvent;
 public class WinMenu extends PopupMenu{
 	private static final double Y_RATIO = 0.4;
 	private static final double Y_RATIO_RESUME_BUTTON = 0.65;
-	
+
 	private GameTimer gameTimer;
 	private GameScene gameScene;
 
