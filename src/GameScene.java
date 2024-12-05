@@ -313,10 +313,7 @@ public class GameScene extends Scene{
 		    		{
 		    			System.out.println("Game over would happen here.");
 		    			setPaused(true);
-		    			
-		    			// TODO add loss screen.
 		    			lossMenu.showPopup(mainApp);
-
 		    		}
 		    	}
 		    	
@@ -345,7 +342,6 @@ public class GameScene extends Scene{
 		    		{
 		    			System.out.println("You win");
 		    			setPaused(true);
-		    			// TODO show win screen
 		    			winMenu.showPopup(mainApp);
 		    		}
 		    		else
