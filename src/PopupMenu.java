@@ -9,7 +9,12 @@ public class PopupMenu {
 	
 	public PopupMenu(String imagePath) {
 		GImage background = new GImage (imagePath);
-		background.setLocation((MainApplication.getResolutionWidth() - background.getWidth()) / 2, (MainApplication.getResolutionHeight() - background.getHeight()) / 2);
+		if (imagePath == "media/menu_defeatMenu.png" || imagePath == "media/menu_winMenu.png") {
+			background.setLocation((MainApplication.getResolutionWidth() - background.getWidth()) / 2, (MainApplication.getResolutionHeight() - background.getHeight()) / 3);
+		}
+		else {
+			background.setLocation((MainApplication.getResolutionWidth() - background.getWidth()) / 2, (MainApplication.getResolutionHeight() - background.getHeight()) / 2);
+		}
 		this.menuElements.add(background);
 	}
 	
