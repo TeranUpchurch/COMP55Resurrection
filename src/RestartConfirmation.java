@@ -102,7 +102,13 @@ public class RestartConfirmation extends PopupMenu{
 	private void handleCancel() {
 		System.out.println("Cancel");
 		hidePopup(mainApp, false);
-		pauseMenu.showPopup(mainApp);
+		if (pauseMenu != null) {
+			pauseMenu.showPopup(mainApp);
+	    } else if (winMenu != null) {
+	        winMenu.showPopup(mainApp);
+	    } else if (lossMenu != null) {
+	        lossMenu.showPopup(mainApp);
+	    }	
 	}
 	
 }

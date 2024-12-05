@@ -34,7 +34,7 @@ public class LevelMenuConfirmation extends PopupMenu{
 	
 	public LevelMenuConfirmation(String imagePath, MainApplication mainApp, WinMenu winMenu) {
 		super(imagePath);
-		this.pauseMenu = pauseMenu;
+		this.winMenu = winMenu;
 		this.mainApp = mainApp;
 	
 		this.confirmButton = drawConfirmButton("button_confirm", levelMenuBackground); 
@@ -47,7 +47,7 @@ public class LevelMenuConfirmation extends PopupMenu{
 	
 	public LevelMenuConfirmation(String imagePath, MainApplication mainApp, LossMenu lossMenu) {
 		super(imagePath);
-		this.pauseMenu = pauseMenu;
+		this.lossMenu = lossMenu;
 		this.mainApp = mainApp;
 	
 		this.confirmButton = drawConfirmButton("button_confirm", levelMenuBackground); 
@@ -100,7 +100,15 @@ public class LevelMenuConfirmation extends PopupMenu{
 	private void handleCancel() {
 		System.out.println("Cancel");
 		hidePopup(mainApp, false);
-		pauseMenu.showPopup(mainApp);
+		if (pauseMenu != null) {
+			pauseMenu.showPopup(mainApp);
+	    } 
+		else if (winMenu != null) {
+	        winMenu.showPopup(mainApp);
+	    } 
+		else if (lossMenu != null) {
+	        lossMenu.showPopup(mainApp);
+	    }	
 	}
 	
 }
