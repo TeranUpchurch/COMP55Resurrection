@@ -34,6 +34,8 @@ public class GameScene extends Scene{
 	private GImage backgroundGameScene;
 	private GButton deleteButton;
 	private GButton deleteButtonInUse;
+	private WinMenu winMenu;
+	private LossMenu lossMenu;
 	
 	// Game state
 	private String difficulty;
@@ -43,8 +45,6 @@ public class GameScene extends Scene{
 	private int currency;
 	private boolean isInDeleteState = false;
 	private boolean isPaused;
-	private WinMenu winMenu;
-	private LossMenu lossMenu;
 	
 	// Unit management
 	private UnitType chosenUnitName;
