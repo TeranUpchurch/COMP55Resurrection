@@ -49,7 +49,7 @@ public class WinMenu extends PopupMenu{
 		addMenuElement(biggerLevelMenuButton);
 		addMenuElement(biggerExitButton);
 		
-		if (this.difficulty != "hard") { // if dicculty != hard
+		if (this.difficulty != "Hard") { // if dicculty != hard
 			addMenuElement(nextLevelButton);
 		}
 
@@ -119,6 +119,12 @@ public class WinMenu extends PopupMenu{
 			}
 		});
 		
+		nextLevelButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				handleNextLevel();
+			}
+		});
+		
 	}
 	
 	private void handleRestart() {
@@ -152,11 +158,16 @@ public class WinMenu extends PopupMenu{
 		System.out.println("Next Level button clicked: Showing confirmation dialog.");
 		hidePopup(this.mainApp, false);
 		// TODO make next level function and class for confirmation screen maybe
-		// TODO make hard not have next level.
-		
-		String filename = IMG_FILENAME_PATH + "background_levelMenuConfirm" + IMG_EXTENSION;
-		this.levelMenuConfirmation = new LevelMenuConfirmation(filename, mainApp, this);
-		this.levelMenuConfirmation.showPopup(mainApp); // Display the confirmation menu
+		if (difficulty == "Easy") {
+			mainApp.switchSceneToGame("Medium");
+			System.out.println("Level Switched from Easy to Medium");
+
+		}
+		else {
+			mainApp.switchSceneToGame("Hard");
+			System.out.println("Level Switched from Medium to Hard");
+		}	
+
 	}
 	
 	
