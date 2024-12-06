@@ -18,7 +18,7 @@ public class RobotGreen extends Robot {
 		this.image = new GImage("robot_Green.png");
 		this.health = 40;
 		this.damage = 20;
-		this.moveSpeed = 2;
+		this.moveSpeed = 3;
 		this.currencyEarned = 25;
 	}
 	
