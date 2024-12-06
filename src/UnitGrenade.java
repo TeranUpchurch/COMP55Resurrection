@@ -303,14 +303,13 @@ import javax.swing.*;
 		    public void actionPerformed(ActionEvent e) {
 		    	numTimes = numTimes + 1;
 		    	 
-		    	if (numTimes > 20) {
-		    		routine();
-		    		numTimes = 0;
-		    	}
-		    	
-		    	if (checkForEnemyInRange()) {
-		    		startCountdownToExplode();  // Initiate countdown if detected
-		    		routineTimerGrenade.stop();
+		    	if (numTimes > 50) {
+		    		image.setColor(new Color(255, 0, 0));
+			    	
+			    	if (checkForEnemyInRange()) {
+			    		startCountdownToExplode();  // Initiate countdown if detected
+			    		routineTimerGrenade.stop();
+			    	}
 		    	}
 		    }};
 		    
