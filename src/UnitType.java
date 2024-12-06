@@ -2,7 +2,7 @@
 public enum UnitType {
 	SOLDIER (0, "soldier", "media/unit_soldier.png", "media/unitBar_soldier.png", 50, 50, 20, 100, 10),
 	MACHINE_GUN (1, "machineGun", "media/unit_machineGun.png", "media/unitBar_machineGun.png", 100, 100, 10, 150, 20),
-	GRENADE (2, "grenade", "media/unit_grenade.png", "media/unitBar_grenade.png", 25, 25, 10, 100, 20),
+	GRENADE (2, "grenade", "media/unit_grenade.png", "media/unitBar_grenade.png", 25, 25, 10, 40, 20),
 	ROCK (3, "rock", "media/unit_rock.png", "media/unitBar_rock.png", 50, 50, 10, 300, 10);
 	
 	private final int num;
