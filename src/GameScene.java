@@ -66,7 +66,7 @@ public class GameScene extends Scene{
 		String winMenuImagePath = IMG_FILENAME_PATH + "menu_winMenu" + IMG_EXTENSION;
 		String defeatMenuImagePath = IMG_FILENAME_PATH + "menu_defeatMenu" + IMG_EXTENSION;
 		lossMenu = new LossMenu(defeatMenuImagePath, mainApp, gameTimer, this);
-		winMenu = new WinMenu(winMenuImagePath, mainApp, gameTimer, this);
+		winMenu = new WinMenu(winMenuImagePath, mainApp, gameTimer, this, difficulty);
 	}
 	
 	@Override

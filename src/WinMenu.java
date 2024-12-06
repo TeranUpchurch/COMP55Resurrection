@@ -24,17 +24,19 @@ public class WinMenu extends PopupMenu{
 	private RestartConfirmation restartConfirmation;
 	private LevelMenuConfirmation levelMenuConfirmation;
 	private ExitConfirmation exitConfirmation;
+	private String difficulty;
 
 
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
 	
-	public WinMenu(String imagePath, MainApplication mainApp, GameTimer gameTimer, GameScene gameScene)
+	public WinMenu(String imagePath, MainApplication mainApp, GameTimer gameTimer, GameScene gameScene, String difficulty)
 	{
 		super(imagePath);  // Use the image as the background for the popup
 		this.mainApp = mainApp;
 		this.gameTimer = gameTimer;
 		this.gameScene = gameScene;
+		this.difficulty = difficulty;
 		
 		String filename1 = IMG_FILENAME_PATH + "menu_winMenu" + IMG_EXTENSION;
 		this.winMenu = new GImage(filename1);
@@ -46,9 +48,11 @@ public class WinMenu extends PopupMenu{
 		addMenuElement(biggerRestartButton);
 		addMenuElement(biggerLevelMenuButton);
 		addMenuElement(biggerExitButton);
-		addMenuElement(nextLevelButton);
-
 		
+		if (this.difficulty != "hard") { // if dicculty != hard
+			addMenuElement(nextLevelButton);
+		}
+
 		addMouseListeners();
 		
 	}
@@ -85,7 +89,6 @@ public class WinMenu extends PopupMenu{
 	
 	private GButton drawNextLevelButton(String lable, GImage backgroundImage) {
 		GImage image = new GImage(IMG_FILENAME_PATH + lable + IMG_EXTENSION);
-		// TODO fix position
 		double x = (MainApplication.getResolutionWidth() - image.getWidth()) / 2;
 		double y = MainApplication.getResolutionHeight() * Y_RATIO_RESUME_BUTTON;
 		GButton button = new GButton(image, x, y);
@@ -150,6 +153,7 @@ public class WinMenu extends PopupMenu{
 		hidePopup(this.mainApp, false);
 		// TODO make next level function and class for confirmation screen maybe
 		// TODO make hard not have next level.
+		
 		String filename = IMG_FILENAME_PATH + "background_levelMenuConfirm" + IMG_EXTENSION;
 		this.levelMenuConfirmation = new LevelMenuConfirmation(filename, mainApp, this);
 		this.levelMenuConfirmation.showPopup(mainApp); // Display the confirmation menu
