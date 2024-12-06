@@ -138,6 +138,20 @@ public class Level {
 			intervals2.add(10);
 			intervals2.add(10);
 			waves.add(new Wave(gameScene, robots2, intervals2));
+			
+			ArrayList<Robot> robots3 = new ArrayList<Robot>();
+			robots3.add(new RobotGrey(0, gameScene));
+			robots3.add(new RobotGrey(1, gameScene));
+			robots3.add(new RobotRed(2, gameScene));
+			robots3.add(new RobotGrey(3, gameScene));
+			robots3.add(new RobotGrey(2, gameScene));
+			ArrayList<Integer> intervals3 = new ArrayList<Integer>();
+			intervals3.add(10);
+			intervals3.add(10);
+			intervals3.add(10);
+			intervals3.add(10);
+			intervals3.add(10);
+			waves.add(new Wave(gameScene, robots3, intervals3));
 		}
 		else if (difficulty == "Test")
 		{

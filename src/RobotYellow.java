@@ -15,9 +15,9 @@ public class RobotYellow extends Robot {
 	public RobotYellow(int laneNum, GameScene scene) {
 		super(laneNum, scene);
 		this.image = new GImage("robot_Yellow.png");
-		this.health = 200;
+		this.health = 170;
 		this.damage = 30;
-		this.moveSpeed = 1;
+		this.moveSpeed = 2;
 		this.currencyEarned = 75;
 	}
 		
