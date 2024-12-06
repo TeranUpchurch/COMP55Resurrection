@@ -9,7 +9,7 @@ import javax.swing.*;
 // viewing instruction, and exiting
 
 public class MainMenuScene extends Scene {
-	private GLabel label = new GLabel("MainMenuScene", MainApplication.getResolutionWidth() / 2, MainApplication.getResolutionHeight() / 2);
+	private GLabel label = new GLabel("", MainApplication.getResolutionWidth() / 2, MainApplication.getResolutionHeight() / 2);
 	private GButton startButton;
 	private GButton helpButton;
 	private GButton exitButton;

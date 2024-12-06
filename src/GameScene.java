@@ -566,6 +566,12 @@ public class GameScene extends Scene{
 		return x < this.gridStartX || y < this.gridStartY;
 	}
 	
+	@Override
+	public GObject getElementAtCoordinate(double x, double y)
+	{
+		return this.mainApp.getElementAt(x, y);
+	}
+	
 	private void clearSelection() {
 		unitBar.clearSelectedUnit();
         removeElement(this.selectedUnit);
