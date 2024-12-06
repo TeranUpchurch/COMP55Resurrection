@@ -15,37 +15,19 @@ public class Level {
 	{
 		ArrayList<Robot> robots1 = new ArrayList<Robot>();
 		robots1.add(new RobotGreen(1, gameScene));
-		robots1.add(new RobotGreen(2, gameScene));
-		robots1.add(new RobotGreen(3, gameScene));
-		robots1.add(new RobotYellow(2, gameScene));
-		robots1.add(new RobotGrey(4, gameScene));
 		ArrayList<Integer> intervals1 = new ArrayList<Integer>();
-		intervals1.add(10);
-		intervals1.add(10);
-		intervals1.add(10);
-		intervals1.add(10);
-		intervals1.add(10);
 		intervals1.add(10);
 		
 		ArrayList<Robot> robots2 = new ArrayList<Robot>();
 		robots2.add(new RobotGrey(0, gameScene));
-		robots2.add(new RobotYellow(1, gameScene));
-		robots2.add(new RobotYellow(2, gameScene));
-		robots2.add(new RobotYellow(3, gameScene));
-		robots2.add(new RobotYellow(2, gameScene));
 		ArrayList<Integer> intervals2 = new ArrayList<Integer>();
-		intervals2.add(10);
-		intervals2.add(10);
-		intervals2.add(10);
-		intervals2.add(10);
-		intervals2.add(10);
 		intervals2.add(10);
 		
 		waves = new ArrayList<Wave>();
 		waves.add(new Wave(gameScene, robots1, intervals1));
 		waves.add(new Wave(gameScene, robots2, intervals2));
 		
-		difficulty = "Easy";
+		difficulty = "Test";
 		numWaves = waves.size();
 	}
 	
