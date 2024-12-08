@@ -110,28 +110,30 @@ import javax.swing.*;
 		ArrayList<Robot> robotsInLane = gameScene.getRobotsInLane(this.lane);
 		double grenadeX = image.getX();
 		
+		if (gameScene.isPaused() || gameScene.game.grid.getUnitAtSpace(lane, getCurrentColumn()) == null
+				|| gameScene.getRobotsInLane(lane).isEmpty()) {
+			return;
+		}
+		
 		String filename = IMG_FILENAME_PATH + "effect_grenade_explode" + IMG_EXTENSION;
 		GImage effect = new GImage(filename);
 	    int calculatedEffectX = (int) (gameScene.gridStartX + getCurrentColumn() * gameScene.tileWidth + gameScene.tileWidth / 2 - effect.getWidth() / 2);
 	    int calculatedEffectY = (int) (gameScene.gridStartY + lane * gameScene.tileHeight + gameScene.tileHeight / 2 - effect.getHeight() / 2);
 	    effect.setLocation(calculatedEffectX, calculatedEffectY); 
 	    gameScene.addElement(effect);
-
-		
-		if (!gameScene.isPaused() && gameScene.game.grid.getUnitAtSpace(lane, getCurrentColumn()) != null
-				&& !gameScene.getRobotsInLane(lane).isEmpty()) {
-			for (Robot robot : robotsInLane) {
-				double robotX = robot.getImage().getX();
-				if (Math.abs(robotX - grenadeX) <= EXPLOSION_RANGE) {  // Check if robots are still in range
-					gameScene.addElement(effect);
-					robot.takeDamage(EXPLOSION_DAMAGE);
-					if (robot.isDefeated()) {
-						gameScene.handleRobotDeath(robot);
-						
-					}
+	    
+	    for (Robot robot : robotsInLane) {
+			double robotX = robot.getImage().getX();
+			if (Math.abs(robotX - grenadeX) <= EXPLOSION_RANGE) {  // Check if robots are still in range
+				gameScene.addElement(effect);
+				robot.takeDamage(EXPLOSION_DAMAGE);
+				if (robot.isDefeated()) {
+					gameScene.handleRobotDeath(robot);
+					
 				}
 			}
 		}
+		
 	    gameScene.removeUnitFromGrid(this);
 	    GameTimer explosionEffectTimer = new GameTimer (1000, "ExplosionEffect");
 	    explosionEffectTimer.start();
@@ -151,7 +153,7 @@ import javax.swing.*;
 	
 	public void startCooldown() {
 		cooldownTimer = new GameTimer(500, "Cooldown");
-cooldownTimer.start();
+		cooldownTimer.start();
 		
 		String filename = IMG_FILENAME_PATH + "unitBar_grenade_cooldown" + IMG_EXTENSION;
 		GImage unitBarGrenadeImage_cooldown = new GImage(filename);
@@ -202,7 +204,8 @@ cooldownTimer.start();
 			return false;
 		}
 	}
-// checks if a player unit is upgradable to a stronger unit
+	
+	// checks if a player unit is upgradable to a stronger unit
 	public boolean isItUpgradable(boolean upgrade) {
 		return this.upgradable && upgrade && unitToUpgradeTo != null;
 	}
