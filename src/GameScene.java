@@ -372,7 +372,7 @@ public class GameScene extends Scene{
 		gameTimer.stop();
 		
 		for (Unit unit : unitContainer) {
-			unit.stopRoutine();
+			unit.clearTimers();
 		}
 		
 		clearProjectiles();
@@ -520,6 +520,7 @@ public class GameScene extends Scene{
 	{
 		unitContainer.remove(unit);
 		unit.takeDamage(unit.getHealth());
+		unit.clearTimers();
 		game.removeUnitFromGrid(unit);
 		removeElement(unit.getImageFromUnit());
 	}

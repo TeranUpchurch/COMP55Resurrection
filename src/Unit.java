@@ -78,6 +78,25 @@ public class Unit {
 	   }
 	}
 	
+	public void clearTimers() {
+		   if (routineTimerSoldier != null) {
+			   routineTimerSoldier.stop();
+			   routineTimerSoldier = null;
+		   }
+		   if (routineTimerMachineGun != null) {
+			   routineTimerMachineGun.stop();
+			   routineTimerMachineGun = null;
+		   }
+		   if (routineTimerGrenade != null) {
+			   routineTimerGrenade.stop();
+			   routineTimerGrenade = null;
+		   }
+		   if (routineTimerRock != null) {
+			   routineTimerRock.stop();
+			   routineTimerRock = null;
+		   }
+		}
+	
 	public void startCooldown() {
 		
 	}
