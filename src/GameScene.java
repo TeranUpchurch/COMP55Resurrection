@@ -261,8 +261,7 @@ public class GameScene extends Scene{
 		    	{
 		    		proj.step();
 		    		
-		    		if (!imageIsInBounds(proj.getImage()) || 
-		    				(proj.getSteps() > proj.getLifetime() && (proj.hasLifetime())))
+		    		if (!imageIsInBounds(proj.getImage())) 
 		    		{
 		    			projectilesToDestroy.add(proj);
 		    			continue;
