@@ -15,6 +15,7 @@ public class Notification {
 		this.y = y;
 		this.duration = duration;
 		this.startTime = System.currentTimeMillis(); // captures the current system time in milliseconds.
+		image.setSize(image.getWidth() * 0.42, image.getHeight() * 0.42);
 		image.setLocation(x, y);
 	}
 	

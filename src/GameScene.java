@@ -707,8 +707,8 @@ public class GameScene extends Scene{
 	    		String filename = IMG_FILENAME_PATH + "notification_canNotPlaceUnit" + IMG_EXTENSION;
 	    		GImage canNotPlaceUnit = new GImage(filename);
 	    		canNotPlaceUnit.setSize(canNotPlaceUnit.getWidth() * 0.8, canNotPlaceUnit.getHeight() * 0.8);
-				double imageX = (resX - canNotPlaceUnit.getWidth()) / 2;
-				double imageY = (resY - canNotPlaceUnit.getHeight()) / 2;
+	    		double imageX = resX * 0.47;
+				double imageY = resY * 0.17;
 				drawNotification(canNotPlaceUnit, imageX, imageY, 2000);
 				return;
 	    	}
@@ -720,8 +720,8 @@ public class GameScene extends Scene{
 	    		String filename = IMG_FILENAME_PATH + "notification_notEnoughMoney" + IMG_EXTENSION;
 				GImage notEnoughMoney = new GImage(filename);
 				notEnoughMoney.setSize(notEnoughMoney.getWidth() * 0.8, notEnoughMoney.getHeight() * 0.8);
-				double imageX = (resX - notEnoughMoney.getWidth()) / 2;
-				double imageY = (resY - notEnoughMoney.getHeight()) / 2;
+				double imageX = resX * 0.47;
+				double imageY = resY * 0.17;
 				drawNotification(notEnoughMoney, imageX, imageY, 2000);
 	    	}
 	    }
