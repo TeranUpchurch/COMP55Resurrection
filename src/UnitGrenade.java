@@ -24,6 +24,7 @@ import javax.swing.*;
 	private Game game;
 	
 	boolean[] isEffectVisible = {false};
+	
 	public UnitGrenade(GameScene gameScene, Game game)
 	{	// TO DO CHANGE ATTRIBUTES - NOT FINAL
 		super(gameScene, game);
@@ -109,19 +110,42 @@ import javax.swing.*;
 		ArrayList<Robot> robotsInLane = gameScene.getRobotsInLane(this.lane);
 		double grenadeX = image.getX();
 		
+		String filename = IMG_FILENAME_PATH + "effect_grenade_explode" + IMG_EXTENSION;
+		GImage effect = new GImage(filename);
+	    int calculatedEffectX = (int) (gameScene.gridStartX + getCurrentColumn() * gameScene.tileWidth + gameScene.tileWidth / 2 - effect.getWidth() / 2);
+	    int calculatedEffectY = (int) (gameScene.gridStartY + lane * gameScene.tileHeight + gameScene.tileHeight / 2 - effect.getHeight() / 2);
+	    effect.setLocation(calculatedEffectX, calculatedEffectY); 
+	    gameScene.addElement(effect);
+
+		
 		if (!gameScene.isPaused() && gameScene.game.grid.getUnitAtSpace(lane, getCurrentColumn()) != null
 				&& !gameScene.getRobotsInLane(lane).isEmpty()) {
 			for (Robot robot : robotsInLane) {
 				double robotX = robot.getImage().getX();
 				if (Math.abs(robotX - grenadeX) <= EXPLOSION_RANGE) {  // Check if robots are still in range
+					gameScene.addElement(effect);
 					robot.takeDamage(EXPLOSION_DAMAGE);
 					if (robot.isDefeated()) {
 						gameScene.handleRobotDeath(robot);
+						
 					}
 				}
 			}
 		}
 	    gameScene.removeUnitFromGrid(this);
+	    GameTimer explosionEffectTimer = new GameTimer (1000, "ExplosionEffect");
+	    explosionEffectTimer.start();
+	    
+	    ActionListener listener = new ActionListener() {
+	    	@Override
+	    	public void actionPerformed(ActionEvent e) {
+	    		gameScene.removeElement(effect);
+	    		explosionEffectTimer.stop();
+	    	}
+	    };
+	    explosionEffectTimer.createActionListener(listener);
+
+	    
 	    System.out.println("Grenade exploded!");
 	}
 	
