@@ -39,7 +39,7 @@ public class UnitSoldier extends Unit{
 	
 	public void startTimer()
 	{
-		routineTimerSoldier = new GameTimer(100, "Soldier");
+		routineTimerSoldier = new GameTimer(50, "Soldier");
 		routineTimerSoldier.start();
 		cooldownLabel = new GLabel("");
 		
@@ -80,7 +80,7 @@ public class UnitSoldier extends Unit{
 					new GImage(IMG_FILENAME_PATH + "paintball_Yellow" + IMG_EXTENSION),
 					10,
 					10,
-					10,
+					6,
 					10,
 					projectileStartX,
 					projectileStartY,
