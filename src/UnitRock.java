@@ -89,6 +89,10 @@ public class UnitRock extends Unit{
 		cooldownTimer.createActionListener(listener);
 	}
 	
+	public static void resetCooldown()
+	{
+		numTimesCooldown = cooldown;
+	}
 	
 	public boolean isCooldownActive()
 	{

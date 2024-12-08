@@ -193,6 +193,12 @@ import javax.swing.*;
 		   
 		cooldownTimer.createActionListener(listener);
 	}
+	
+	public static void resetCooldown()
+	{
+		numTimesCooldown = cooldown;
+	}
+	
 	public boolean isCooldownActive()
 	{
 		if (isOnCooldown == true)

@@ -53,7 +53,6 @@ public class Game {
 	}
 	
 	public void resetGame() {
-		waveNum = 0;
 		// Reset the level's waves
 	    if (level != null) {
 	        currentWave = level.getWave(waveNum);
@@ -61,6 +60,7 @@ public class Game {
 	            currentWave.resetWave(); // Reset the wave
 	        }
 	    }
+	    waveNum = 0;
 	    System.out.println("Game has been reset!");
 	}
 	

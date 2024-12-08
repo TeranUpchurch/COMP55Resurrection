@@ -54,6 +54,11 @@ public class UnitMachineGun extends Unit{
 		    routineTimerMachineGun.createActionListener(listener);
 	}
 	
+	public static void resetCooldown()
+	{
+		numTimesCooldown = cooldown;
+	}
+	
 	@Override
 	public void routine () {
 		if (gameScene.isPaused()) {

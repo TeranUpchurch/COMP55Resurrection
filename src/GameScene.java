@@ -379,8 +379,10 @@ public class GameScene extends Scene{
 		clearUnits();
 		clearRobots();
 		initializeGameScene();
-		game = new Game (this);
 		game.resetGame();
+		game = null;
+		game = new Game(this, difficulty);
+		resetAllCooldowns();
 		startGame();
 		System.out.println("Level restarted.");
 	}
@@ -615,6 +617,14 @@ public class GameScene extends Scene{
 			if (UnitGrenade.cooldownTimer != null) {UnitGrenade.cooldownTimer.start();}
 			if (UnitRock.cooldownTimer != null) {UnitRock.cooldownTimer.start();}
 		}
+	}
+	
+	private void resetAllCooldowns()
+	{
+		UnitSoldier.resetCooldown();
+		UnitMachineGun.resetCooldown();
+		UnitGrenade.resetCooldown();
+		UnitRock.resetCooldown();
 	}
 	
 	private void clearProjectiles() {

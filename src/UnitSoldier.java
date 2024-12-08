@@ -135,6 +135,11 @@ public class UnitSoldier extends Unit{
 		cooldownTimer.createActionListener(listener);
 	}
 	
+	public static void resetCooldown()
+	{
+		numTimesCooldown = cooldown;
+	}
+	
 	public boolean isCooldownActive()
 	{
 		

@@ -78,6 +78,7 @@ public class MainApplication extends GraphicsApplication{
 	public void switchSceneToGame(String difficulty)
 	{
 		System.out.println("Switching to game with difficulty " + difficulty);
+		GameScene = null;
 		GameScene = new GameScene(this, difficulty);
 		currentScene.hideContents();
 		currentScene = GameScene;
