@@ -689,9 +689,31 @@ public class GameScene extends Scene{
 		{
 			return;
 		}
+		
+		Unit tempUnit = null;
+		switch(this.chosenUnitName) {
+			case SOLDIER -> tempUnit = new UnitSoldier(this, game);
+			case MACHINE_GUN -> tempUnit = new UnitMachineGun(this, game);
+			case GRENADE -> tempUnit = new UnitGrenade(this, game);
+			case ROCK -> tempUnit = new UnitRock(this, game);
+		}
+		if (tempUnit != null && tempUnit.isCooldownActive()) {
+			return;
+		}
 		this.selectedUnit = new GImage(this.chosenUnitName.getImagePath()); 
 		this.selectedUnit.setLocation(e.getX() - this.selectedUnit.getWidth() / 2, e.getY() - this.selectedUnit.getHeight() / 2);
 		addElement(this.selectedUnit);
+	}
+	
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		if (this.selectedUnit != null) {
+			this.selectedUnit.setLocation(e.getX() - this.selectedUnit.getWidth() / 2, e.getY() - this.selectedUnit.getHeight() / 2);
+		}
+	}
+
+	public static void main(String[] args) {
+
 	}
 	
 	@Override
@@ -772,17 +794,4 @@ public class GameScene extends Scene{
 			}
 		}
 	}
-	
-	@Override
-	public void mouseDragged(MouseEvent e) {
-		if (this.selectedUnit != null) {
-			this.selectedUnit.setLocation(e.getX() - this.selectedUnit.getWidth() / 2, e.getY() - this.selectedUnit.getHeight() / 2);
-		}
-	}
-
-	public static void main(String[] args) {
-
-	}
-	
-
 }
