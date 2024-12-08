@@ -503,8 +503,6 @@ public class GameScene extends Scene{
 		
 		System.out.println(row + " " + col);
 					
-		
-		
 		int lane = calculateLane(y);
 		unit.setLane(lane);
 		

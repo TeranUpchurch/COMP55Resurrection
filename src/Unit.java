@@ -164,7 +164,7 @@ public class Unit {
 		health -= damage;
         if (health <= 0) { 
             health = 0;
-            System.out.println("Unit destroyed");
+            System.out.println("Unit destroyed!!!");
             return false;
         } 
         else {
