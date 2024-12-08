@@ -319,6 +319,7 @@ public class GameScene extends Scene{
 		    	// Remove robots and projectiles from their respective caches according to the robotsToDestroy and projectilesToDestroy sets.
 		    	for (Projectile proj : projectilesToDestroy)
 		    	{
+		    		System.out.println("Removing " + proj + " from cache");
 		    		removeElement(proj.getImage());
 		    		projectileCache.remove(proj);
 		    	}
@@ -327,6 +328,9 @@ public class GameScene extends Scene{
 		    		removeElement(robot.getImage());
 		    		robotCache.remove(robot);
 		    	}
+		    	
+		    	projectilesToDestroy.clear();
+		    	robotsToDestroy.clear();
 		    	
 		    	// Check the enemy counter - if 0, check if boss wave is next, all waves are complete, or neither. Otherwise go to next wave and start it
 		    	if (game.getActiveEnemyCount() <= 0)
