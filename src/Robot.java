@@ -114,6 +114,7 @@ public class Robot {
 	{
 		attackUnitTimer = new GameTimer(500, "Attacking Unit: " + unit);
 		attackUnitTimer.start();
+		image.sendToFront();
 		
 		// timer mechanisms for how a wave works
 		ActionListener listener = new ActionListener() {
@@ -167,7 +168,7 @@ public class Robot {
 	    
 	    return (int)((unit.getImageFromUnit().getX() - gridStartX) / tileWidth);
 	}
-	
+
 	// if an enemy's health reaches zero, it is defeated and disappears from the grid
 	public boolean isDefeated() {
 		return health <= 0;

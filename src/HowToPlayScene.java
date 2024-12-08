@@ -15,8 +15,6 @@ public class HowToPlayScene extends Scene{
 	private GImage backgroundHowToPlayScene;
 	private GImage howToPlayDescription;
 
-	
-
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
 	
