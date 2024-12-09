@@ -32,7 +32,6 @@ public class HowToPlayScene extends Scene{
 		addElement(returnButton);
 		returnButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// trigger return to main menu
 				System.out.println("Return Button clicked!");
 				mainApp.returnToPreviousScene();
 			}

@@ -32,7 +32,6 @@ public class MainMenuScene extends Scene {
 		addElement(startButton);
 		this.startButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// trigger action to start the game
 				System.out.println("Start Button clicked!");
 				mainApp.switchSceneTo(mainApp.LevelSelectScene);
 			}
@@ -48,7 +47,6 @@ public class MainMenuScene extends Scene {
 		addElement(helpButton);
 		this.helpButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// trigger action to start the game
 				System.out.println("Help Button clicked!");
 				mainApp.switchSceneTo(mainApp.HowToPlayScene);
 			}
@@ -64,7 +62,6 @@ public class MainMenuScene extends Scene {
 		addElement(exitButton);
 		this.exitButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// trigger action to start the game
 				System.out.println("Help Button clicked!");
 				mainApp.exitApplication();
 			}

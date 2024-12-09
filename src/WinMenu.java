@@ -49,7 +49,7 @@ public class WinMenu extends PopupMenu{
 		addMenuElement(biggerLevelMenuButton);
 		addMenuElement(biggerExitButton);
 		
-		if (this.difficulty != "Hard") { // if dicculty != hard
+		if (this.difficulty != "Hard") {
 			addMenuElement(nextLevelButton);
 		}
 
@@ -96,9 +96,6 @@ public class WinMenu extends PopupMenu{
 		return button;
 	}
 	
-	
-	
-	//TODO: ADD FOR ANOTHER BUTTONS
 	private void addMouseListeners() {
 		biggerRestartButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
@@ -157,7 +154,6 @@ public class WinMenu extends PopupMenu{
 	private void handleNextLevel() {
 		System.out.println("Next Level button clicked: Showing confirmation dialog.");
 		hidePopup(this.mainApp, false);
-		// TODO make next level function and class for confirmation screen maybe
 		if (difficulty == "Easy") {
 			mainApp.switchSceneToGame("Medium");
 			System.out.println("Level Switched from Easy to Medium");

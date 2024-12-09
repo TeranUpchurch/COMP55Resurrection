@@ -1,7 +1,7 @@
 import acm.graphics.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-// this class controls what happens on the level select screen, such as what level of difficulty the player chooses to play the game on
+
 public class LevelMenuConfirmation extends PopupMenu{
 	private static final double Y_RATIO = 0.60;
 	private static final int BUTTON_DISTANCE = 305;
@@ -90,7 +90,7 @@ public class LevelMenuConfirmation extends PopupMenu{
 		});
 		
 	}
-	// if the player wants to go back to the main menu
+
 	private void handleConfirm() {
 		System.out.println("Exiting to level select scene...");
 		hidePopup(mainApp, false);

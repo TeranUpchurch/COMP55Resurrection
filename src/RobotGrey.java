@@ -1,4 +1,3 @@
-
 import acm.graphics.*;
 import acm.program.*;
 import java.awt.*;
@@ -6,7 +5,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
 
-	// this class handles the enemy units in the game and their attributes, such as how fast they move and how much health they have
+
 public class RobotGrey extends Robot {
 	public static final String IMG_FILENAME_PATH = "media/";
 	public static final String IMG_EXTENSION = ".png";
@@ -22,7 +21,6 @@ public class RobotGrey extends Robot {
 		this.currencyEarned = 50;
 	}
 	
-	// how much damage the enemy deals to the player unit it is attacking
 	public void damageUnit(int d) {
 		damage = d;
 	}
@@ -31,7 +29,6 @@ public class RobotGrey extends Robot {
 		
 	}
 	
-	// how much damage the enemy unit takes from a player unit
 	public int takeDamage() {
 		health -= damage;
         if (health <= 0) { 
@@ -45,7 +42,6 @@ public class RobotGrey extends Robot {
         return health;
 	}
 	
-	// determines if an enemy unit is close enough to a player unit to start attacking and dealing damage to it
 	public boolean hasReachedUnit(boolean isMoving) {
 		if (isMoving == false) {
 			return false;

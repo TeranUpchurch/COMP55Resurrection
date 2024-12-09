@@ -33,9 +33,8 @@ public class LevelSelectScene extends Scene{
 		addElement(easyLevelButton);
 		easyLevelButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// trigger return to main menu
 				System.out.println("Easy Level Button clicked!");
-				mainApp.switchSceneToGame("Easy"); // for now switch to main menu scene
+				mainApp.switchSceneToGame("Easy");
 			}
 		});
 	}
@@ -48,7 +47,6 @@ public class LevelSelectScene extends Scene{
 		addElement(mediumLevelButton);
 		mediumLevelButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// trigger return to main menu
 				System.out.println("Return Button clicked!");
 				mainApp.switchSceneToGame("Medium");
 			}
@@ -57,13 +55,11 @@ public class LevelSelectScene extends Scene{
 	
 	private void drawHardLevelButton() {
 		String filename = IMG_FILENAME_PATH + "button_hard" + IMG_EXTENSION;
-		// change from robot to "X" button
 		GImage hardButtonImage = new GImage(filename);
 		this.hardLevelButton = new GButton(hardButtonImage, 11 * MainApplication.getResolutionWidth() / 16,MainApplication.getResolutionHeight() / 2);
 		addElement(hardLevelButton);
 		hardLevelButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// trigger return to main menu
 				System.out.println("Return Button clicked!");
 				mainApp.switchSceneToGame("Hard");
 			}
@@ -79,7 +75,6 @@ public class LevelSelectScene extends Scene{
 		addElement(returnButton);
 		returnButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// trigger return to main menu
 				System.out.println("Return Button clicked!");
 				mainApp.returnToPreviousScene();
 			}
@@ -95,7 +90,6 @@ public class LevelSelectScene extends Scene{
 		addElement(helpButton);
 		this.helpButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// trigger action to start the game
 				System.out.println("Help Button clicked!");
 				mainApp.switchSceneTo(mainApp.HowToPlayScene);
 			}

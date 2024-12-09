@@ -4,8 +4,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
-// this class handles creating the player unit, or the units that the player will use to defeat enemies
-	public class UnitGrenade extends Unit{
+
+public class UnitGrenade extends Unit{
 	private static final int EXPLOSION_RANGE = 140;
 	private static final int EXPLOSION_DAMAGE = 70;
 	public static final String IMG_FILENAME_PATH = "media/";
@@ -19,14 +19,13 @@ import javax.swing.*;
 	protected static int cooldown; // in function calls per 500MS.
 	protected static int numTimesCooldown;
 	
-	// private GImage image = new GImage(IMG_FILENAME_PATH + "grenade" + IMG_EXTENSION);
 	private UnitType unitType = UnitType.GRENADE;
 	private Game game;
 	
 	boolean[] isEffectVisible = {false};
 	
 	public UnitGrenade(GameScene gameScene, Game game)
-	{	// TO DO CHANGE ATTRIBUTES - NOT FINAL
+	{	
 		super(gameScene, game);
 		this.image = new GImage(unitType.getImagePath());
 		this.health = unitType.getHealth();
@@ -230,3 +229,4 @@ import javax.swing.*;
 		
 	}
 }
+

@@ -7,7 +7,6 @@ import java.util.List;
 
 import javax.swing.*;
 
-// this class handles creating the player unit, or the units that the player will use to defeat enemies
 public class Unit {
 	protected static final String IMG_FILENAME_PATH = "media/";
 	protected static final String IMG_EXTENSION = ".png";
@@ -59,7 +58,7 @@ public class Unit {
 			shoot();
 		} 
 		else {
-			System.out.println("No enemies in lane " + lane);
+			return;
 		}
 	}
 	
