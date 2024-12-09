@@ -75,6 +75,9 @@ public class Robot {
 	public void step()
 	{
 		ArrayList<Unit> unitsInLane = scene.getUnitsInLane(this.lane);
+		
+		if (scene.isPaused()) return;
+		
 		if (unitAttacking != null)
 		{
 			return;

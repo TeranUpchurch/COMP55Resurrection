@@ -548,6 +548,10 @@ public class GameScene extends Scene{
 	
 	public void setPaused (boolean paused) {
 		this.isPaused = paused;
+		
+		if (paused) gameTimer.pause();
+		else gameTimer.resume();
+		
 		toggleAllRobotTimers(paused);
 		toggleCooldownTimers(paused);
 	}
