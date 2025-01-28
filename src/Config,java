@@ -1,0 +1,15 @@
+// config java file
+
+public class Config {
+	private bool debugMode;
+
+	// Getter
+   	public boolean isDebugMode() {
+        	return debugMode;
+    	}
+
+    	// Setter
+    	public void setDebugMode(boolean debugMode) {
+        	this.debugMode = debugMode;
+   	}
+}
