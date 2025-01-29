@@ -13,6 +13,7 @@ This debugging mode will be controlled by a JSON configuration file. The file wi
  // Toggle debug mode
     method toggleDebugMode():
         debugMode = NOT debugMode  // Toggle the debug mode
+        
 ### Pseudocode
 
 // visualDebug Class
@@ -33,17 +34,19 @@ class visualDebug {
     
     method initialize():
     
-        unitDisplay = new Map<Unit, VisualElement>()
+        // Initialize lists of objects on the grid
+
+        unitDisplayMap<Unit, UnitVisual>
         
-        robotDisplay = new Map<Robot, VisualElement>()
+        robotDisplayMap<Robot, RobotVisual>
         
-        projectileDisplay = new Map<Projectile, VisualElement>()
+        projectileDisplayMap<Projectile, ProjectileDisplay>
         
     // Toggle debug mode
 
-    method toggleDebugMode():
+    method toggleDebugMode(bool newMode):
     
-        debugMode = NOT debugMode
+        debugMode = newMode
         
     // Render information for each unit
     
@@ -65,7 +68,7 @@ class visualDebug {
             
             robotDisplay.put(robot, createVisualElement(robot))
             
-    // Render information for each projectile
+    // Render info of each projectile
     
     method renderProjectileInfo(projectile: Projectile):
 
